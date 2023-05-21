@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaBuddyIdeaProjectConfig">
+    <option name="defaultUnitInitialized" value="true" />
+    <option name="renamerInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="b5c07fe3-ee5e-4c12-b152-e09e77526b89" />
+    <option name="reLastEntityCreationPackage" value="src/main/java/com/watchvibe/ad/tablas" />
+    <reUseDbSnapshotConnections>
+      <dbConnection id="b5c07fe3-ee5e-4c12-b152-e09e77526b89" />
+    </reUseDbSnapshotConnections>
+    <option name="reIgnoreSlowDbConnections">
+      <ignoreDs id="b5c07fe3-ee5e-4c12-b152-e09e77526b89" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.watchvibe.proyectofinal.FXMLRegistroController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="imagen1" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen2" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen3" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen4" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen5" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen6" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox layoutX="-89.0" layoutY="474.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="imagen7" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen8" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen9" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen10" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen11" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen12" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox layoutX="-68.0" layoutY="237.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="imagen13" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen14" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen15" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen16" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen17" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imagen18" fitHeight="237.0" fitWidth="166.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <Pane fx:id="panelprincipal" layoutX="200.0" prefHeight="613.0" prefWidth="459.0" style="-fx-background-color: #ECAE29;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <ImageView fx:id="fondo" fitHeight="613.0" fitWidth="497.0" layoutX="-4.0" layoutY="-2.0">
+               <image>
+                  <Image url="@../recursos_fondos/naranja.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="labelusuario" fill="WHITE" layoutX="92.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuario" wrappingWidth="93.34541320800781">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Text>
+            <TextField fx:id="textfieldusuario" layoutX="189.0" layoutY="279.0" promptText="Nombre de usuario" style="-fx-text-fill: white;" />
+            <Text fx:id="labelcontrasena" fill="WHITE" layoutX="89.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" wrappingWidth="71.783203125">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Text>
+            <TextField fx:id="textfieldcontrasena" accessibleRole="PASSWORD_FIELD" layoutX="189.0" layoutY="328.0" promptText="*********" style="-fx-text-fill: white;" />
+            <Button fx:id="botonregistro" layoutX="97.0" layoutY="516.0" mnemonicParsing="false" onAction="#onClickRegistro" style="-fx-border-radius: 100px;" text="Unete!">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="logotipo" fitHeight="225.0" fitWidth="375.0" layoutX="54.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icono/logopng.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="labelrepcontrasena" fill="WHITE" layoutX="89.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repetir contraseña" wrappingWidth="71.783203125">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Text>
+            <TextField fx:id="textfieldrepcontrasena" accessibleRole="PASSWORD_FIELD" layoutX="189.0" layoutY="375.0" promptText="*********" style="-fx-text-fill: white;" />
+            <Text fx:id="labelemail" fill="WHITE" layoutX="89.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo Electronico" wrappingWidth="71.783203125">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Text>
+            <TextField fx:id="textfieldemail" layoutX="189.0" layoutY="423.0" promptText="email@email.com" style="-fx-text-fill: white;" />
+            <Button fx:id="botoncancelar" layoutX="283.0" layoutY="516.0" mnemonicParsing="false" onAction="#onClickCancelar" style="-fx-border-radius: 100px;" text="Cancelar">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane opacity="0.41" prefHeight="613.0" prefWidth="203.0" style="-fx-background-color: #000000;" />
+      <Pane layoutX="688.0" opacity="0.41" prefHeight="613.0" prefWidth="203.0" style="-fx-background-color: #000000;">
+         <children>
+            <Label fx:id="botonCerra" alignment="CENTER" layoutX="155.0" layoutY="3.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" text="✕" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="botonminimiza" alignment="CENTER" layoutX="123.0" layoutY="4.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children></Pane>
+   </children>
+</Pane>

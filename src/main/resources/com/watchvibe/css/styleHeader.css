@@ -1,0 +1,8 @@
+.button:hover {
+  -fx-text-fill: red;
+}
+
+.label:hover {
+  -fx-text-fill: red;
+}
+

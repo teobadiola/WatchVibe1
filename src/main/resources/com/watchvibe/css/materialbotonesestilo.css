@@ -1,0 +1,64 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&display=swap');
+
+/* Estilos del botón */
+.boton-material {
+    -font-family: 'Plus Jakarta Sans', sans-serif;
+    -fx-font-weight: 500;
+    -fx-font-size: 14px;
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-pref-width: 120px;
+    -fx-pref-height: 36px;
+    -fx-padding: 0 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 1);
+}
+
+/* Estilos cuando se pasa el mouse sobre el botón */
+.boton-material:hover {
+    -fx-background-color: #64B5F6;
+}
+
+/* Estilos cuando se presiona el botón */
+.boton-material:pressed {
+    -fx-background-color: #1976D2;
+    -fx-effect: none;
+}
+
+.label-material {
+    -fx-background-color: transparent;
+    -font-family: 'Plus Jakarta Sans', sans-serif;
+    -fx-padding: 0.333333em 0.666667em 0.25em 0.666667em;
+    -fx-font-size: 0.875em;
+    -fx-text-fill: rgba(0, 0, 0, 0.6);
+    -fx-background-insets: 0;
+}
+
+.custom-textfield {
+    -font-family: 'Plus Jakarta Sans', sans-serif;
+    -fx-font-size: 20px;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-text-fill: white;
+}
+
+.custom-textfield {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: white;
+    -fx-border-size:7;
+    /* Solo la línea inferior */
+}
+
+.custom-label {
+    -font-family: 'Plus Jakarta Sans', sans-serif;
+    -fx-font-size: 7px;
+    -fx-border-color: white;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: white;
+    -fx-border-size:7;
+    /* Solo la línea inferior */
+}
+

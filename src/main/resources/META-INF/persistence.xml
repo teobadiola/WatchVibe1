@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.watchvibe.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>com.watchvibe.ad.tablas.CatalogoPeliculas</class>
+    <class>com.watchvibe.ad.tablas.Usuarios</class>
+    <class>com.watchvibe.ad.tablas.Series</class>
+    <class>com.watchvibe.ad.tablas.SeguimientoUsuarios</class>
+    <class>com.watchvibe.ad.tablas.Comentarios</class>
+    <class>com.watchvibe.ad.tablas.Valoraciones</class>
+    <class>com.watchvibe.ad.tablas.Peliculas</class>
+    <class>com.watchvibe.ad.tablas.CatalogoSeries</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://74.235.96.254:3306/watchvibe"/>
+      <property name="javax.persistence.jdbc.user" value="adminwatchvibe"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="admin"/>
+    </properties>
+  </persistence-unit>
+</persistence>
