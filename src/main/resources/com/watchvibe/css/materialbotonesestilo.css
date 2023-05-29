@@ -62,3 +62,35 @@
     /* Solo la línea inferior */
 }
 
+.list-view-material {
+    -fx-background-color: #FFFFFF;
+}
+
+.list-view-material .list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 8px 12px;
+    -fx-cursor: hand;
+}
+
+.list-view-material .list-cell:hover {
+    -fx-background-color: #F5F5F5;
+}
+
+.list-view-material .list-cell:selected {
+    -fx-background-color: #E0E0E0;
+}
+
+.list-view-material .text {
+    -fx-font-family: 'Plus Jakarta Sans', sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(0, 0, 0, 0.87);
+}
+
+.list-view-material .graphic {
+    -fx-padding: 0 8px;
+}
+
+.list-view-material .arrow {
+    -fx-shape: "M 0 0 L 10 5 L 0 10 L 2 5 Z";
+    -fx-fill: rgba(0, 0, 0, 0.54);
+}

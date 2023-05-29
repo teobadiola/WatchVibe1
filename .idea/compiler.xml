@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ProyectoFinal" />
+        <module name="WatchVibe" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ProyectoFinal" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
