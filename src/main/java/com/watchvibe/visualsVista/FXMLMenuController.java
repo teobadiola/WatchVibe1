@@ -306,7 +306,7 @@ public class FXMLMenuController {
         } else {
             try {
                 // Cargar el archivo FXML "perfil.fxml"
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLBuscar.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/watchvibe/ProyectoFinal/FXMLBuscar.fxml"));
                 Parent root = loader.load();
 
                 // Obtener la instancia del controlador de la nueva escena

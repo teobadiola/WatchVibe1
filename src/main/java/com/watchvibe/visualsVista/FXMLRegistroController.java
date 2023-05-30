@@ -94,6 +94,7 @@ public class FXMLRegistroController {
     @FXML
     public Label botonminimizar;
 
+    Operacion op = new Operacion();
 
     public void initialize() {
 
@@ -283,20 +284,8 @@ public class FXMLRegistroController {
     @FXML
     public void onClickCancelar(ActionEvent actionEvent) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("FXMLogin.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(fxmlLoader.load());
-            scene.getStylesheets().add(getClass().getResource("/com/watchvibe/css/materialbotonesestilo.css").toExternalForm());
-            stage.setTitle("WatchVibe");
-            stage.setResizable(false);
-            stage.initStyle(StageStyle.UNDECORATED);
-            scene.setFill(Color.TRANSPARENT);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            javafx.scene.image.Image backg = new javafx.scene.image.Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ISOTIPO_NEGRO.png"));
-            stage.getIcons().add(backg);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
+            op.cambiarEscena(actionEvent,"/com/watchvibe/ProyectoFinal/FXMLogin.fxml", getClass());
+        } catch (Exception ex) {
         System.err.println("Error! " + ex.getMessage());
     }
 
@@ -309,6 +298,7 @@ public class FXMLRegistroController {
         Boolean EmailUtilizado = false;
         Boolean PassDiferente = false;
         Boolean correct;
+        Operacion op = new Operacion();
 
         if (textfieldusuario.getText().isBlank()) {
             vibrarcion(textfieldusuario);
@@ -355,22 +345,10 @@ public class FXMLRegistroController {
             }
 
         }if (correct) {
-            System.out.println(Operacion.procesarRegistro(this));
+            System.out.println(op.procesarRegistro(this));
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("FXMLogin.fxml"));
-                Scene scene = new Scene(fxmlLoader.load());
-                Stage stage = new Stage();
-                scene.getStylesheets().add(getClass().getResource("/com/watchvibe/css/materialbotonesestilo.css").toExternalForm());
-                stage.setTitle("WatchVibe");
-                stage.setResizable(false);
-                stage.initStyle(StageStyle.UNDECORATED);
-                scene.setFill(Color.TRANSPARENT);
-                stage.initStyle(StageStyle.TRANSPARENT);
-                javafx.scene.image.Image backg = new javafx.scene.image.Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ISOTIPO_NEGRO.png"));
-                stage.getIcons().add(backg);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
+                op.cambiarEscena(actionEvent,"/com/watchvibe/ProyectoFinal/FXMLogin.fxml", getClass());
+            } catch (Exception ex) {
                 System.err.println("No pudo encontrar la clase " + ex.getMessage());
             }
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);

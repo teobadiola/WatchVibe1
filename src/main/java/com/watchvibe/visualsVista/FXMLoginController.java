@@ -1,6 +1,7 @@
 package com.watchvibe.visualsVista;
 
 import com.watchvibe.adModelo.cruds.CRUDUsuarios;
+import com.watchvibe.adModelo.operaciones.Operacion;
 import com.watchvibe.adModelo.tablas.Usuarios;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -79,6 +80,7 @@ public class FXMLoginController {
     @FXML
     private Label registrase;
 
+    Operacion op = new Operacion();
 
     /**
      *
@@ -232,22 +234,8 @@ public class FXMLoginController {
 
         if (correcto) {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("FXMLMenu.fxml"));
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                scene.getStylesheets().add(getClass().getResource("/com/watchvibe/css/materialbotonesestilo.css").toExternalForm());
-                stage.setResizable(false);
-                stage.initStyle(StageStyle.UNDECORATED);
-                scene.setFill(Color.TRANSPARENT);
-                stage.initStyle(StageStyle.TRANSPARENT);
-                stage.setScene(scene);
-                Node source = (Node) actionEvent.getSource();
-                Stage stageActual = (Stage) source.getScene().getWindow();
-                stageActual.close();
-                javafx.scene.image.Image backg = new javafx.scene.image.Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ISOTIPO_NEGRO.png"));
-                stage.getIcons().add(backg);
-                stage.show();
-            } catch (IOException ex) {
+                op.cambiarEscena(actionEvent,"/com/watchvibe/ProyectoFinal/FXMLMenu.fxml", getClass());
+            } catch (Exception ex) {
                 System.err.println("Error! " + ex.getMessage());
             }
         }
@@ -286,23 +274,6 @@ public class FXMLoginController {
     }
 
     public void handleBotonRegistrarse(MouseEvent mouseEvent) {
-        try {
-            // Cargar el archivo FXML "perfil.fxml"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLRegistro.fxml"));
-            Parent root = loader.load();
-
-            // Crear una nueva escena con el archivo FXML cargado
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/com/watchvibe/css/materialbotonesestilo.css").toExternalForm());
-
-            // Obtener la ventana actual a través del evento
-            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-
-            // Establecer la escena en la ventana
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        op.cambiarEscena(mouseEvent,"/com/watchvibe/ProyectoFinal/FXMLRegistro.fxml", getClass());
     }
 }
