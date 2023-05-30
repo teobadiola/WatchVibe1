@@ -24,6 +24,7 @@ import javafx.util.Duration;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class FXMLRegistroController {
@@ -146,117 +147,45 @@ public class FXMLRegistroController {
         Image backgroundImage = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/naranja.png"));
         fondo.setImage(backgroundImage);
 
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image1 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/Sonic_2_La_pel_cula-126622695-large.jpg"));
-        imagen1.setImage(image1);
+        ImageView[] imageViewspelis = {
+                imagen1,
+                imagen2,
+                imagen3,
+                imagen4,
+                imagen5,
+                imagen6
+        };
 
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image2 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/3Gkb6jm6962ADUPaCBqzz9CTbn9.jpg"));
-        imagen2.setImage(image2);
+        ImageView[] imageViewsSeries = {
+                imagen7,
+                imagen8,
+                imagen9,
+                imagen10,
+                imagen11,
+                imagen12
+        };
 
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image3 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/eCOtqtfvn7mxGl6nfmq4b1exJRc.jpg"));
-        imagen3.setImage(image3);
+        ImageView[] imageViewsTV = {
+                imagen13,
+                imagen14,
+                imagen15,
+                imagen16,
+                imagen17,
+                imagen18
+        };
 
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image4 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/q719jXXEzOoYaps6babgKnONONX.jpg"));
-        imagen4.setImage(image4);
+        ArrayList<String> imagePathspelis = op.obtenerPathsPeliculasAleatorios();
+        System.out.println(imagePathspelis.size());
 
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image5 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/5bqwnvdmxYA55FFMc95oNvlAoYk.jpg"));
-        imagen5.setImage(image5);
+        ArrayList<String> imagePathsSeries = op.obtenerPathsSeriesAleatorios();
+        System.out.println(imagePathsSeries.size());
 
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image6 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/9050VGrYjYrEjpOvDZVAngLbg1f.jpg"));
-        imagen6.setImage(image6);
+        ArrayList<String> imagePathsTV = op.obtenerPathsPeliculasAleatorios();
+        System.out.println(imagePathspelis.size());
 
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image7 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/dm06L9pxDOL9jNSK4Cb6y139rrG.jpg"));
-        imagen7.setImage(image7);
-
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image8 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/El_gato_con_botas_El_ltimo_deseo-632107416-large.jpg"));
-        imagen8.setImage(image8);
-
-
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image9 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/Every-thing-cartel.jpg"));
-        imagen9.setImage(image9);
-
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image10 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/mdLDgQBD0va09npSQX5Zgo2evXM.jpg"));
-        imagen10.setImage(image10);
-
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image11 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg"));
-        imagen11.setImage(image11);
-
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image12 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_series/c4mk4EQVIM11yd3W43DDdqDazDU.jpg"));
-        imagen12.setImage(image12);
-
-
-
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image13 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/El_gato_con_botas_El_ltimo_deseo-632107416-large.jpg"));
-        imagen13.setImage(image13);
-
-
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image14 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/Every-thing-cartel.jpg"));
-        imagen14.setImage(image14);
-
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image15 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/mdLDgQBD0va09npSQX5Zgo2evXM.jpg"));
-        imagen15.setImage(image15);
-
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image16 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg"));
-        imagen16.setImage(image16);
-
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image17 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_series/0441DO_4.jpg"));
-        imagen17.setImage(image17);
-
-        /**
-         * Asignacion de Logo a la pantalla Inicial
-         */
-        Image image18 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/jQ0gylJMxWSL490sy0RrPj1Lj7e.jpg"));
-        imagen18.setImage(image18);
+        op.agregarURLsAImageViewsPeliculas(imagePathspelis, imageViewspelis);
+        op.agregarURLsAImageViewsSeries(imagePathsSeries, imageViewsSeries);
+        op.agregarURLsAImageViewsSeries(imagePathsTV, imageViewsTV);
 
     }
 

@@ -6,15 +6,7 @@ package com.watchvibe.adModelo.tablas;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -39,6 +31,7 @@ public class Peliculas implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID_Pelicula")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer iDPelicula;
     @Column(name = "Titulo")
     private String titulo;

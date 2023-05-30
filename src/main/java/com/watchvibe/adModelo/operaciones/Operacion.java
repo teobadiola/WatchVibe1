@@ -134,7 +134,7 @@ public class Operacion {
             transaction.begin();
 
             // Verificar si el usuario tiene un catálogo de películas
-            Query consultaCatalogo = em.createQuery("SELECT cp FROM CatalogoPeliculas cp WHERE cp.IDusuario = :usuario");
+            Query consultaCatalogo = em.createQuery("SELECT cp FROM CatalogoPeliculas cp WHERE cp.iDusuario = :usuario");
             consultaCatalogo.setParameter("usuario", usuario);
             List<CatalogoPeliculas> catalogoPeliculas = consultaCatalogo.getResultList();
 
@@ -196,7 +196,7 @@ public class Operacion {
             transaction.begin();
 
             // Verificar si el usuario tiene un catálogo de series
-            Query consultaCatalogo = em.createQuery("SELECT cs FROM CatalogoSeries cs WHERE cs.IDusuario = :usuario");
+            Query consultaCatalogo = em.createQuery("SELECT cs FROM CatalogoSeries cs WHERE cs.iDusuario = :usuario");
             consultaCatalogo.setParameter("usuario", usuario);
             List<CatalogoSeries> catalogoSeries = consultaCatalogo.getResultList();
 
@@ -248,6 +248,73 @@ public class Operacion {
         }
     }
 
+    public void agregarPeliculaPreCarga(Peliculas pelicula) {
+        EntityManager em = Conexion.conecta();
+        EntityTransaction transaction = null;
+
+        try {
+            transaction = em.getTransaction();
+            transaction.begin();
+
+            // Verificar si la película ya existe en la base de datos
+            Query consultaPelicula = em.createQuery("SELECT p FROM Peliculas p WHERE p.titulo = :titulo");
+            consultaPelicula.setParameter("titulo", pelicula.getTitulo());
+            List<Peliculas> peliculasExistentes = consultaPelicula.getResultList();
+            if (!peliculasExistentes.isEmpty()) {
+                System.out.println("La película " + pelicula.getTitulo() + " ya existe en la base de datos.");
+                return; // No se agrega la película
+            }
+
+            // Insertar la película en la tabla "peliculas"
+            em.persist(pelicula);
+
+            // Confirmar la transacción
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // En caso de error, hacer rollback de la transacción
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+        } finally {
+            // Cerrar EntityManager
+            em.close();
+        }
+    }
+
+    public void agregarSeriePreCarga(Series serie) {
+        EntityManager em = Conexion.conecta();
+        EntityTransaction transaction = null;
+
+        try {
+            transaction = em.getTransaction();
+            transaction.begin();
+
+            // Verificar si la serie ya existe en la base de datos
+            Query consultaSerie = em.createQuery("SELECT s FROM Series s WHERE s.titulo = :titulo");
+            consultaSerie.setParameter("titulo", serie.getTitulo());
+            List<Series> seriesExistentes = consultaSerie.getResultList();
+            if (!seriesExistentes.isEmpty()) {
+                System.out.println("La serie " + serie.getTitulo() + " ya existe en la base de datos.");
+                return; // No se agrega la serie
+            }
+
+            // Insertar la serie en la tabla "series"
+            em.persist(serie);
+
+            // Confirmar la transacción
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // En caso de error, hacer rollback de la transacción
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+        } finally {
+            // Cerrar EntityManager
+            em.close();
+        }
+    }
 
 
     public List<Usuarios> listarUsuariosSeguidos(Integer usuarioId) {
@@ -315,7 +382,7 @@ public class Operacion {
             TypedQuery<String> query = em.createQuery(consulta, String.class);
 
             // Establecer límite de resultados
-            query.setMaxResults(13);
+            query.setMaxResults(6);
 
             // Obtener los resultados de la consulta
             List<String> resultados = query.getResultList();
@@ -334,7 +401,40 @@ public class Operacion {
         return paths;
     }
 
-    public void agregarURLsAImageViews(ArrayList<String> imagePaths, ImageView[] imageViews) {
+    public ArrayList<String> obtenerPathsSeriesAleatorios() {
+        ArrayList<String> paths = new ArrayList<>();
+
+        // Crear el EntityManager
+        EntityManager em = Conexion.conecta();
+
+        try {
+            // Construir la consulta JPQL para obtener los paths aleatorios
+            String consulta = "SELECT s.fotodePortada FROM Series s ORDER BY RAND()";
+
+            // Crear la consulta TypedQuery
+            TypedQuery<String> query = em.createQuery(consulta, String.class);
+
+            // Establecer límite de resultados
+            query.setMaxResults(6);
+
+            // Obtener los resultados de la consulta
+            List<String> resultados = query.getResultList();
+
+            // Agregar los resultados a la lista de paths
+            paths.addAll(resultados);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Cerrar el EntityManager y el EntityManagerFactory
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return paths;
+    }
+
+    public void agregarURLsAImageViewsPeliculas(ArrayList<String> imagePaths, ImageView[] imageViews) {
         for (int i = 0; i < imagePaths.size(); i++) {
             String imagePath = imagePaths.get(i);
             Image image = new Image(imagePath);
@@ -342,9 +442,12 @@ public class Operacion {
         }
     }
 
+    public void agregarURLsAImageViewsSeries(ArrayList<String> imagePaths, ImageView[] imageViews) {
+        for (int i = 0; i < imagePaths.size(); i++) {
+                String imagePath = imagePaths.get(i);
+                Image image = new Image(imagePath);
+                imageViews[i].setImage(image);
+            }
+        }
+    }
 
-
-
-
-
-}
