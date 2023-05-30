@@ -7,10 +7,7 @@ import javafx.scene.control.Button;
 
 public class Controller {
 
-    private Button botoniniciosesion;
-    private Button botonregistro;
-
-
+    
     //Vista
     Main vi = new Main();
 

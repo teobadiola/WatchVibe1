@@ -28,15 +28,55 @@ public class FXMLBuscarController {
     @FXML
     private ListView<Peliculas> listviewpeliculas;
     @FXML
-    private Text titulo;
+    public Text titulo;
     @FXML
-    private Text anio;
+    public Text anio;
     @FXML
-    private Text director;
+    public Text director;
     @FXML
-    private Text titulotxt;
+    public Text titulotxt;
     @FXML
-    private Text aniotxt;
+    public Text aniotxt;
+
+    public Text getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(Text titulo) {
+        this.titulo = titulo;
+    }
+
+    public Text getAnio() {
+        return anio;
+    }
+
+    public void setAnio(Text anio) {
+        this.anio = anio;
+    }
+
+    public Text getDirector() {
+        return director;
+    }
+
+    public void setDirector(Text director) {
+        this.director = director;
+    }
+
+    public Text getTitulotxt() {
+        return titulotxt;
+    }
+
+    public void setTitulotxt(Text titulotxt) {
+        this.titulotxt = titulotxt;
+    }
+
+    public Text getAniotxt() {
+        return aniotxt;
+    }
+
+    public void setAniotxt(Text aniotxt) {
+        this.aniotxt = aniotxt;
+    }
 
     public void initialize() {
         listviewseries.getStyleClass().add("list-view-material");
