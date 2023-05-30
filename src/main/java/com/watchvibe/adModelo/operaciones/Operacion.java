@@ -11,11 +11,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import javax.persistence.*;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -297,6 +300,48 @@ public class Operacion {
 
         return new ArrayList<>(); // Si ocurre un error, se devuelve un ArrayList vacío
     }
+
+    public ArrayList<String> obtenerPathsPeliculasAleatorios() {
+        ArrayList<String> paths = new ArrayList<>();
+
+        // Crear el EntityManager
+        EntityManager em = Conexion.conecta();
+
+        try {
+            // Construir la consulta JPQL para obtener los paths aleatorios
+            String consulta = "SELECT p.fotodePortada FROM Peliculas p ORDER BY RAND()";
+
+            // Crear la consulta TypedQuery
+            TypedQuery<String> query = em.createQuery(consulta, String.class);
+
+            // Establecer límite de resultados
+            query.setMaxResults(13);
+
+            // Obtener los resultados de la consulta
+            List<String> resultados = query.getResultList();
+
+            // Agregar los resultados a la lista de paths
+            paths.addAll(resultados);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Cerrar el EntityManager y el EntityManagerFactory
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return paths;
+    }
+
+    public void agregarURLsAImageViews(ArrayList<String> imagePaths, ImageView[] imageViews) {
+        for (int i = 0; i < imagePaths.size(); i++) {
+            String imagePath = imagePaths.get(i);
+            Image image = new Image(imagePath);
+            imageViews[i].setImage(image);
+        }
+    }
+
 
 
 
