@@ -171,7 +171,7 @@
       <Pane opacity="0.41" prefHeight="613.0" prefWidth="203.0" style="-fx-background-color: #000000;" />
       <Pane layoutX="688.0" opacity="0.41" prefHeight="613.0" prefWidth="203.0" style="-fx-background-color: #000000;">
          <children>
-            <Label fx:id="botonCerra" alignment="CENTER" layoutX="155.0" layoutY="3.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" text="✕" textFill="WHITE">
+            <Label fx:id="botonCerrar" alignment="CENTER" layoutX="155.0" layoutY="3.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" text="✕" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -179,7 +179,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="botonminimiza" alignment="CENTER" layoutX="123.0" layoutY="4.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+            <Label fx:id="botonminimizar" alignment="CENTER" layoutX="123.0" layoutY="4.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

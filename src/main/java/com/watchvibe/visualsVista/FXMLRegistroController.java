@@ -90,9 +90,9 @@ public class FXMLRegistroController {
 
     Operacion op = new Operacion();
     @FXML
-    private PasswordField textfieldcontrasena;
+    public PasswordField textfieldcontrasena;
     @FXML
-    private PasswordField textfieldrepcontrasena;
+    public PasswordField textfieldrepcontrasena;
     @FXML
     private Label botonCerra;
     @FXML
