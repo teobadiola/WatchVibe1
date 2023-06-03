@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -77,25 +78,25 @@ public class FXMLRegistroController {
     @FXML
     public Text labelcontrasena;
     @FXML
-    public TextField textfieldcontrasena;
-    @FXML
     public Button botonregistro;
     @FXML
     public Text labelrepcontrasena;
-    @FXML
-    public TextField textfieldrepcontrasena;
     @FXML
     public Text labelemail;
     @FXML
     public TextField textfieldemail;
     @FXML
     public Button botoncancelar;
-    @FXML
-    public Label botonCerrar;
-    @FXML
-    public Label botonminimizar;
 
     Operacion op = new Operacion();
+    @FXML
+    private PasswordField textfieldcontrasena;
+    @FXML
+    private PasswordField textfieldrepcontrasena;
+    @FXML
+    private Label botonCerra;
+    @FXML
+    private Label botonminimiza;
 
     public void initialize() {
 

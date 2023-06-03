@@ -12,9 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +21,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.scene.control.Label;
 import javafx.util.Duration;
 
 
@@ -67,8 +64,6 @@ public class FXMLoginController {
     public ImageView fondo;
     @FXML
     private TextField textFieldUsuario;
-    @FXML
-    private TextField passwordFieldContrasena;
     boolean correcto = false;
     @FXML
     private Label botonCerra;
@@ -82,6 +77,8 @@ public class FXMLoginController {
     private Label registrase;
 
     Operacion op = new Operacion();
+    @FXML
+    private PasswordField passwordFieldContrasena;
 
     /**
      *
@@ -240,4 +237,5 @@ public class FXMLoginController {
     public void handleBotonRegistrarse(MouseEvent mouseEvent) {
         op.cambiarEscena(mouseEvent,"/com/watchvibe/ProyectoFinal/FXMLRegistro.fxml", getClass());
     }
+
 }

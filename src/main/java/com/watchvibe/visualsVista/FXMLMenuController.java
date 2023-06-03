@@ -31,6 +31,10 @@ import java.util.List;
 public class FXMLMenuController {
 
     private Usuarios usuario;
+    @javafx.fxml.FXML
+    private Label botonCerrar;
+    @javafx.fxml.FXML
+    private Label botonminimizar;
 
     public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
@@ -96,10 +100,6 @@ public class FXMLMenuController {
     private Text emailusuariologueado;
     @javafx.fxml.FXML
     private Text cerrarsesiontxt;
-    @javafx.fxml.FXML
-    private Label botonCerra;
-    @javafx.fxml.FXML
-    private Label botonminimiza;
 
     public void initialize() {
 
@@ -230,29 +230,6 @@ public class FXMLMenuController {
         }
         */
 
-    }
-
-    @Deprecated
-    public void onHandleAjustes(ActionEvent actionEvent) {
-               /*
-        try {
-            // Cargar el archivo FXML "perfil.fxml"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLAjustes.fxml"));
-            Parent root = loader.load();
-
-            // Crear una nueva escena con el archivo FXML cargado
-            Scene scene = new Scene(root);
-
-            // Obtener la ventana actual a través del evento
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-            // Establecer la escena en la ventana
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
     }
 
     @javafx.fxml.FXML

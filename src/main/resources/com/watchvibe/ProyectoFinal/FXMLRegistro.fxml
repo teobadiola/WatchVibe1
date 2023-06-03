@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -137,7 +138,6 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <TextField fx:id="textfieldcontrasena" accessibleRole="PASSWORD_FIELD" layoutX="189.0" layoutY="328.0" promptText="*********" style="-fx-text-fill: white;" />
             <Button fx:id="botonregistro" layoutX="97.0" layoutY="516.0" mnemonicParsing="false" onAction="#onClickRegistro" style="-fx-border-radius: 100px;" text="Unete!">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
@@ -153,7 +153,6 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <TextField fx:id="textfieldrepcontrasena" accessibleRole="PASSWORD_FIELD" layoutX="189.0" layoutY="375.0" promptText="*********" style="-fx-text-fill: white;" />
             <Text fx:id="labelemail" fill="WHITE" layoutX="89.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo Electronico" wrappingWidth="71.783203125">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
@@ -165,6 +164,8 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Button>
+            <PasswordField fx:id="textfieldcontrasena" layoutX="189.0" layoutY="328.0" promptText="Introduce la contraseña" />
+            <PasswordField fx:id="textfieldrepcontrasena" layoutX="189.0" layoutY="375.0" promptText="Repite la contraseña" />
          </children>
       </Pane>
       <Pane opacity="0.41" prefHeight="613.0" prefWidth="203.0" style="-fx-background-color: #000000;" />
