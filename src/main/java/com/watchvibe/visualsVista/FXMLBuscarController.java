@@ -4,6 +4,7 @@ import com.watchvibe.adModelo.tablas.Peliculas;
 import com.watchvibe.adModelo.tablas.Series;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Control;
@@ -155,5 +156,10 @@ public class FXMLBuscarController {
         Node source = (Node) mouseEvent.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.setIconified(true);
+    }
+
+    public void añadir(ActionEvent actionEvent) {
+
+
     }
 }

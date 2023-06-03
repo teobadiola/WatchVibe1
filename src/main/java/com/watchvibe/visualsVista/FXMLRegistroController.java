@@ -174,13 +174,13 @@ public class FXMLRegistroController {
                 imagen18
         };
 
-        ArrayList<String> imagePathspelis = op.obtenerPathsPeliculasAleatorios();
+        ArrayList<String> imagePathspelis = op.obtenerPathsPeliculasAleatorios(6);
         System.out.println(imagePathspelis.size());
 
-        ArrayList<String> imagePathsSeries = op.obtenerPathsSeriesAleatorios();
+        ArrayList<String> imagePathsSeries = op.obtenerPathsSeriesAleatorios(6);
         System.out.println(imagePathsSeries.size());
 
-        ArrayList<String> imagePathsTV = op.obtenerPathsPeliculasAleatorios();
+        ArrayList<String> imagePathsTV = op.obtenerPathsPeliculasAleatorios(6);
         System.out.println(imagePathspelis.size());
 
         op.agregarURLsAImageViewsPeliculas(imagePathspelis, imageViewspelis);

@@ -368,7 +368,7 @@ public class Operacion {
         return new ArrayList<>(); // Si ocurre un error, se devuelve un ArrayList vacío
     }
 
-    public ArrayList<String> obtenerPathsPeliculasAleatorios() {
+    public ArrayList<String> obtenerPathsPeliculasAleatorios(int nant) {
         ArrayList<String> paths = new ArrayList<>();
 
         // Crear el EntityManager
@@ -382,7 +382,7 @@ public class Operacion {
             TypedQuery<String> query = em.createQuery(consulta, String.class);
 
             // Establecer límite de resultados
-            query.setMaxResults(6);
+            query.setMaxResults(nant);
 
             // Obtener los resultados de la consulta
             List<String> resultados = query.getResultList();
@@ -401,7 +401,7 @@ public class Operacion {
         return paths;
     }
 
-    public ArrayList<String> obtenerPathsSeriesAleatorios() {
+    public ArrayList<String> obtenerPathsSeriesAleatorios( int nant) {
         ArrayList<String> paths = new ArrayList<>();
 
         // Crear el EntityManager
@@ -415,7 +415,7 @@ public class Operacion {
             TypedQuery<String> query = em.createQuery(consulta, String.class);
 
             // Establecer límite de resultados
-            query.setMaxResults(6);
+            query.setMaxResults(nant);
 
             // Obtener los resultados de la consulta
             List<String> resultados = query.getResultList();

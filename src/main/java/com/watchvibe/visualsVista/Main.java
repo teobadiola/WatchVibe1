@@ -45,7 +45,6 @@ public class Main extends Application {
     }
 
 
-
     public void setBoton1ActionListener(EventHandler<ActionEvent> eventHandler) {
         boton1.setOnAction(eventHandler);
     }

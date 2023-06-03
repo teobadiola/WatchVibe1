@@ -137,10 +137,10 @@ public class FXMLoginController {
                imagen12
        };
 
-       ArrayList<String> imagePathspelis = op.obtenerPathsPeliculasAleatorios();
+       ArrayList<String> imagePathspelis = op.obtenerPathsPeliculasAleatorios(6);
        System.out.println(imagePathspelis.size());
 
-       ArrayList<String> imagePathsSeries = op.obtenerPathsSeriesAleatorios();
+       ArrayList<String> imagePathsSeries = op.obtenerPathsSeriesAleatorios(6);
        System.out.println(imagePathsSeries.size());
 
        op.agregarURLsAImageViewsPeliculas(imagePathspelis, imageViewspelis);
@@ -190,8 +190,16 @@ public class FXMLoginController {
 
         if (correcto) {
             try {
-                op.cambiarEscena(actionEvent,"/com/watchvibe/ProyectoFinal/FXMLMenu.fxml", getClass());
-            } catch (Exception ex) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/watchvibe/ProyectoFinal/FXMLMenu.fxml"));
+                Parent root = loader.load();
+                FXMLMenuController menuController = loader.getController();
+                menuController.setUsuario(user);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                scene.getStylesheets().add(getClass().getResource("/com/watchvibe/css/materialbotonesestilo.css").toExternalForm());
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
                 System.err.println("Error! " + ex.getMessage());
             }
         }

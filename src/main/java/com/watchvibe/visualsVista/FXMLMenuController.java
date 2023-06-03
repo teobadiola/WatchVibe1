@@ -2,8 +2,10 @@ package com.watchvibe.visualsVista;
 
 
 import com.watchvibe.API.MetodosAPI;
+import com.watchvibe.adModelo.operaciones.Operacion;
 import com.watchvibe.adModelo.tablas.Peliculas;
 import com.watchvibe.adModelo.tablas.Series;
+import com.watchvibe.adModelo.tablas.Usuarios;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -22,12 +24,19 @@ import javafx.scene.control.TextField;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class FXMLMenuController {
 
+    private Usuarios usuario;
 
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+        nombreusuariologueado.setText(usuario.getNombre());
+        emailusuariologueado.setText(usuario.getCorreoelectronico());
+    }
 
     @javafx.fxml.FXML
     private Pane panelizq;
@@ -38,15 +47,9 @@ public class FXMLMenuController {
     @javafx.fxml.FXML
     private ImageView iconouser;
     @javafx.fxml.FXML
-    private Button botonPerfil;
-    @javafx.fxml.FXML
     private ImageView IconoAmigos;
     @javafx.fxml.FXML
     private Button botonAmigos;
-    @javafx.fxml.FXML
-    private ImageView IconoAjustes;
-    @javafx.fxml.FXML
-    private Button botonAjustes;
     @javafx.fxml.FXML
     private ImageView iconoPeliculas;
     @javafx.fxml.FXML
@@ -83,6 +86,16 @@ public class FXMLMenuController {
     private Text seriestendenciatext;
     @javafx.fxml.FXML
     public TextField textFieldBusqueda;
+
+    Operacion op = new Operacion();
+    @javafx.fxml.FXML
+    private Button BotonSeries;
+    @javafx.fxml.FXML
+    private Text nombreusuariologueado;
+    @javafx.fxml.FXML
+    private Text emailusuariologueado;
+    @javafx.fxml.FXML
+    private Text cerrarsesiontxt;
     @javafx.fxml.FXML
     private Label botonCerra;
     @javafx.fxml.FXML
@@ -90,12 +103,29 @@ public class FXMLMenuController {
 
     public void initialize() {
 
-        botonPerfil.getStyleClass().add("boton-material");
+        BotonSeries.getStyleClass().add("boton-material");
         botonAmigos.getStyleClass().add("boton-material");
-        botonAjustes.getStyleClass().add("boton-material");
         BotonPeliculas.getStyleClass().add("boton-material");
         botonBusqueda.getStyleClass().add("boton-material");
         textFieldBusqueda.getStyleClass().add("custom-textfield");
+
+        nombreusuariologueado.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
+                "-fx-font-size: 0.875em; " +
+                "-fx-border-color: white; " +
+                "-fx-border-width: 0 0 1 0; " +
+                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
+
+        emailusuariologueado.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
+                "-fx-font-size: 0.875em; " +
+                "-fx-border-color: white; " +
+                "-fx-border-width: 0 0 1 0; " +
+                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
+
+        cerrarsesiontxt.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
+                "-fx-font-size: 0.875em; " +
+                "-fx-border-color: white; " +
+                "-fx-border-width: 0 0 1 0; " +
+                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
 
 
         peliculastendenciatext.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
@@ -128,41 +158,36 @@ public class FXMLMenuController {
         Image iconoPeliculas1 = new Image(getClass().getResourceAsStream("/com/watchvibe/iconos_pequeños/busqueda_peliculas.png"));
         iconoPeliculas.setImage(iconoPeliculas1);
 
-        Image iconoAjustes1 = new Image(getClass().getResourceAsStream("/com/watchvibe/iconos_pequeños/ajustes.png"));
-        IconoAjustes.setImage(iconoAjustes1);
 
         Image iconoAmigos1 = new Image(getClass().getResourceAsStream("/com/watchvibe/iconos_pequeños/Amigos.png"));
         IconoAmigos.setImage(iconoAmigos1);
 
-        Image peli1 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/jQ0gylJMxWSL490sy0RrPj1Lj7e.jpg"));
-        pelicula1.setImage(peli1);
+        ImageView[] imageViewspelis = {
+                pelicula1,
+                pelicula2,
+                pelicula3,
+                pelicula4
+        };
 
-        Image peli2 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg"));
-        pelicula2.setImage(peli2);
+        ImageView[] imageViewsSeries = {
+                serie1,
+                serie2,
+                serie3,
+                serie4
+        };
 
-        Image peli3 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/q719jXXEzOoYaps6babgKnONONX.jpg"));
-        pelicula3.setImage(peli3);
+        ArrayList<String> imagePathspelis = op.obtenerPathsPeliculasAleatorios(4);
+        System.out.println(imagePathspelis.size());
 
-        Image peli4 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/eCOtqtfvn7mxGl6nfmq4b1exJRc.jpg"));
-        pelicula4.setImage(peli4);
+        ArrayList<String> imagePathsSeries = op.obtenerPathsSeriesAleatorios(4);
+        System.out.println(imagePathsSeries.size());
 
-        Image series1 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/jQ0gylJMxWSL490sy0RrPj1Lj7e.jpg"));
-        serie1.setImage(series1);
-
-        Image series2 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/mZ4gBdfkhP9tvLH1DO4m4HYtiyi.jpg"));
-        serie2.setImage(series2);
-
-        Image series3 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/q719jXXEzOoYaps6babgKnONONX.jpg"));
-        serie3.setImage(series3);
-
-        Image series4 = new Image(getClass().getResourceAsStream("/com/watchvibe/caratulas_peliculas/eCOtqtfvn7mxGl6nfmq4b1exJRc.jpg"));
-        serie4.setImage(series4);
-
-
+        op.agregarURLsAImageViewsPeliculas(imagePathspelis, imageViewspelis);
+        op.agregarURLsAImageViewsSeries(imagePathsSeries, imageViewsSeries);
 
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onHandlPerfil(ActionEvent actionEvent) {
         try {
             // Cargar el archivo FXML "perfil.fxml"
@@ -207,7 +232,7 @@ public class FXMLMenuController {
 
     }
 
-    @javafx.fxml.FXML
+    @Deprecated
     public void onHandleAjustes(ActionEvent actionEvent) {
                /*
         try {
@@ -333,4 +358,34 @@ public class FXMLMenuController {
     }
 
 
+    @javafx.fxml.FXML
+    public void masPeliculas(Event event) {
+        ImageView[] imageViewspelis = {
+                pelicula1,
+                pelicula2,
+                pelicula3,
+                pelicula4
+        };
+
+        ArrayList<String> imagePathspelis = op.obtenerPathsPeliculasAleatorios(4);
+        System.out.println(imagePathspelis.size());
+
+        op.agregarURLsAImageViewsPeliculas(imagePathspelis, imageViewspelis);
     }
+
+    @javafx.fxml.FXML
+    public void masSeries(Event event) {
+        ImageView[] imageViewsSeries = {
+                serie1,
+                serie2,
+                serie3,
+                serie4
+        };
+
+        ArrayList<String> imagePathsSeries = op.obtenerPathsSeriesAleatorios(4);
+        System.out.println(imagePathsSeries.size());
+
+        op.agregarURLsAImageViewsSeries(imagePathsSeries, imageViewsSeries);
+
+    }
+}

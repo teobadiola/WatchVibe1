@@ -10,8 +10,6 @@ import java.util.List;
 
 public class principal {
     public static void main(String[] args) {
-
-
         /*
         Operacion op = new Operacion();
         // Precarga de 10 películas

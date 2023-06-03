@@ -29,46 +29,39 @@
                   <Image url="@../recursos_fondos/LOGO_COLOR.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="iconouser" fitHeight="47.0" fitWidth="51.0" layoutX="29.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="iconouser" fitHeight="47.0" fitWidth="47.0" layoutX="29.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../iconos_pequeños/usuario2.png" />
                </image>
             </ImageView>
-            <Button fx:id="botonPerfil" layoutX="113.0" layoutY="273.0" mnemonicParsing="false" onAction="#onHandlPerfil" prefHeight="30.0" prefWidth="88.0" text="Mi Perfil">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Button>
-            <ImageView fx:id="IconoAmigos" fitHeight="47.0" fitWidth="51.0" layoutX="29.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="IconoAmigos" fitHeight="47.0" fitWidth="51.0" layoutX="29.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../iconos_pequeños/Amigos.png" />
                </image>
             </ImageView>
-            <Button fx:id="botonAmigos" layoutX="113.0" layoutY="348.0" mnemonicParsing="false" onAction="#onHandleAmigos" prefHeight="30.0" prefWidth="88.0" text="Mis Amigos">
+            <Button fx:id="botonAmigos" layoutX="113.0" layoutY="300.0" mnemonicParsing="false" onAction="#onHandleAmigos" prefHeight="30.0" prefWidth="126.0" text="Mis Amigos">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Button>
-            <ImageView fx:id="IconoAjustes" fitHeight="47.0" fitWidth="51.0" layoutX="34.0" layoutY="496.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../iconos_pequeños/ajustes.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="botonAjustes" layoutX="113.0" layoutY="505.0" mnemonicParsing="false" onAction="#onHandleAjustes" prefHeight="30.0" prefWidth="88.0" text="Ajustes">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Button>
-            <ImageView fx:id="iconoPeliculas" fitHeight="47.0" fitWidth="51.0" layoutX="34.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="iconoPeliculas" fitHeight="47.0" fitWidth="51.0" layoutX="29.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../iconos_pequeños/busqueda_peliculas.png" />
                </image>
             </ImageView>
-            <Button fx:id="BotonPeliculas" layoutX="113.0" layoutY="426.0" mnemonicParsing="false" onAction="#onHandleCatalogo" prefHeight="30.0" prefWidth="88.0" text="Mi Catalogo">
+            <Button fx:id="BotonPeliculas" layoutX="113.0" layoutY="397.0" mnemonicParsing="false" onAction="#onHandleCatalogo" prefHeight="30.0" prefWidth="126.0" text="Mis Peliculas">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Button>
+            <Button fx:id="BotonSeries" layoutX="113.0" layoutY="445.0" mnemonicParsing="false" onAction="#onHandleCatalogo" prefHeight="30.0" prefWidth="126.0" text="Mis Series">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Button>
+            <Text fx:id="nombreusuariologueado" layoutX="113.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="88.0" />
+            <Text fx:id="emailusuariologueado" layoutX="113.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="88.0" />
+            <Text fx:id="cerrarsesiontxt" layoutX="25.0" layoutY="698.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cerrar Sesion" wrappingWidth="88.0" />
          </children>
       </Pane>
       <Pane fx:id="panelderecha" layoutX="276.0" layoutY="-11.0" prefHeight="743.0" prefWidth="739.0">
@@ -115,12 +108,12 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <ImageView fx:id="botonmaspeliculas" fitHeight="47.0" fitWidth="29.0" layoutX="688.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+            <ImageView fx:id="botonmaspeliculas" fitHeight="47.0" fitWidth="29.0" layoutX="688.0" layoutY="263.0" onMouseClicked="#masPeliculas" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                <image>
                   <Image url="@../iconos_pequeños/arrow.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="botonmasseries" fitHeight="47.0" fitWidth="29.0" layoutX="688.0" layoutY="572.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+            <ImageView fx:id="botonmasseries" fitHeight="47.0" fitWidth="29.0" layoutX="688.0" layoutY="572.0" onMouseClicked="#masSeries" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                <image>
                   <Image url="@../iconos_pequeños/arrow.png" />
                </image>
@@ -154,7 +147,7 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="botonCerrar" alignment="CENTER" layoutX="679.0" layoutY="14.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="✕" textFill="WHITE">
+            <Label fx:id="botonCerra" alignment="CENTER" layoutX="679.0" layoutY="14.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="✕" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -162,7 +155,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="botonminimizar" alignment="CENTER" layoutX="632.0" layoutY="14.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+            <Label fx:id="botonminimiza" alignment="CENTER" layoutX="632.0" layoutY="14.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -170,7 +163,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <TextField fx:id="textFieldBusqueda" layoutX="161.0" layoutY="48.0" prefHeight="37.0" prefWidth="437.0" />
+            <TextField fx:id="textFieldBusqueda" layoutX="209.0" layoutY="48.0" prefHeight="37.0" prefWidth="437.0" />
          </children>
       </Pane>
    </children>
