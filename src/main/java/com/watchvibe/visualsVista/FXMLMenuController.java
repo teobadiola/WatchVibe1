@@ -313,6 +313,7 @@ public class FXMLMenuController {
 
                 // Obtener la instancia del controlador de la nueva escena
                 FXMLBuscarController buscarController = loader.getController();
+                buscarController.setUsuarioLogueado(usuario);
 
                 // Pasar los ArrayList a la instancia del controlador
                 buscarController.setSeries(series);

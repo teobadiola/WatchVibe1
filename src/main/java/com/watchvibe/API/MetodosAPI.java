@@ -129,9 +129,4 @@ public class MetodosAPI {
     }
 
 
-
-
-    //https://api.themoviedb.org/3/search/movie?api_key=c5d32ee544149dd1396e8996324d5da5&query=%2520hunger%2520games&include_adult=false&language=en-US&page=1
-
-    //https://api.themoviedb.org/3/search/movie?api_key=c5d32ee544149dd1396e8996324d5da5&query=%2520hunger%2520games&include_adult=false&language=en-US&page=1
 }

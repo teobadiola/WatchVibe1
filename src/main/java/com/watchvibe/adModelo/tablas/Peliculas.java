@@ -129,6 +129,8 @@ public class Peliculas implements Serializable {
         this.fotodePortada = fotodePortada;
     }
 
+
+
     @XmlTransient
     public Collection<CatalogoPeliculas> getCatalogoPeliculasCollection() {
         return catalogoPeliculasCollection;

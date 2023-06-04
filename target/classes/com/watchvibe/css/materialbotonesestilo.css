@@ -63,13 +63,17 @@
 }
 
 .list-view-material {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #00000000;
 }
 
 .list-view-material .list-cell {
     -fx-background-color: transparent;
     -fx-padding: 8px 12px;
     -fx-cursor: hand;
+}
+
+.list-view-material .scroll-bar:vertical {
+    -fx-background-color: transparent;
 }
 
 .list-view-material .list-cell:hover {
@@ -83,7 +87,7 @@
 .list-view-material .text {
     -fx-font-family: 'Plus Jakarta Sans', sans-serif;
     -fx-font-size: 14px;
-    -fx-text-fill: rgba(0, 0, 0, 0.87);
+    -fx-text-fill: #FFFFF;
 }
 
 .list-view-material .graphic {

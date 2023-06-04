@@ -1,6 +1,7 @@
 package com.watchvibe.visualsVista;
 
 import com.watchvibe.adModelo.cruds.CRUDUsuarios;
+import com.watchvibe.adModelo.operaciones.Autenticator;
 import com.watchvibe.adModelo.operaciones.Operacion;
 import com.watchvibe.adModelo.tablas.Usuarios;
 import javafx.animation.KeyFrame;
@@ -190,6 +191,7 @@ public class FXMLoginController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/watchvibe/ProyectoFinal/FXMLMenu.fxml"));
                 Parent root = loader.load();
                 FXMLMenuController menuController = loader.getController();
+                Autenticator.setUsuarioLogueado(user);
                 menuController.setUsuario(user);
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

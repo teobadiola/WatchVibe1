@@ -41,19 +41,6 @@ public class Operacion {
             cr.createUsuario(user);
             System.out.println(user.toString());
 
-
-            // Crear el objeto Catalogo_Peliculas
-            CatalogoPeliculas cp = new CatalogoPeliculas();
-            cp.setIDusuario(user); // Asignar el ID del usuario
-            em.persist(cp);
-
-            // Crear el objeto Catalogo_Series
-            CatalogoSeries cs = new CatalogoSeries();
-            cs.setIDusuario(user); // Asignar el ID del usuario
-            em.persist(cs);
-
-
-
         } catch (PersistenceException ex) {
             em.getTransaction().rollback();
             System.err.println("ERROR al hacer el registro. " + ex.getLocalizedMessage());
@@ -99,6 +86,7 @@ public class Operacion {
 
     public int cambiarEscena(ActionEvent actionEvent, String formatEscena, Class<?> clazz) {
         int valor = 0;
+        Usuarios user = new Usuarios();
         try {
 
             // Cargar el archivo FXML "perfil.fxml"
@@ -125,6 +113,7 @@ public class Operacion {
     }
 
     public void agregarPelicula(FXMLBuscarController busqcontr, Usuarios usuario) {
+        System.out.println("ID "+usuario.getIDUsuario());
         // Establecer la conexión a la base de datos usando EntityManager
         EntityManager em = Conexion.conecta();
         EntityTransaction transaction = null;
@@ -146,31 +135,39 @@ public class Operacion {
             }
 
             // Verificar si la película ya existe
-            String tituloPelicula = busqcontr.getTitulo().getText();
+            String tituloPelicula = busqcontr.getTitulotxt().getText();
+            System.out.println(tituloPelicula);
             Query consultaPelicula = em.createQuery("SELECT p FROM Peliculas p WHERE p.titulo = :titulo");
             consultaPelicula.setParameter("titulo", tituloPelicula);
             List<Peliculas> peliculasExistentes = consultaPelicula.getResultList();
             if (!peliculasExistentes.isEmpty()) {
                 System.out.println("La película ya existe en la base de datos.");
-                return; // No se agrega la película
+
+                // Agregar la película existente al catálogo del usuario
+                Peliculas peliculaExistente = peliculasExistentes.get(0); // Obtener la primera película coincidente
+                CatalogoPeliculas cp = new CatalogoPeliculas();
+                cp.setIDusuario(usuario);
+                cp.setIDpelicula(peliculaExistente);
+                cp.setFechadeanadido(new Date());
+                em.persist(cp);
+            } else {
+                // La película no existe, se procede a agregarla
+
+                // Paso 1: Insertar la película en la tabla "peliculas"
+                Peliculas pelicula = new Peliculas();
+                pelicula.setTitulo(tituloPelicula);
+                pelicula.setAnio(Integer.parseInt(busqcontr.getAniotxt().getText()));
+                pelicula.setSinopsis(busqcontr.getSionpsistxt().getText());
+                pelicula.setFotodePortada(busqcontr.getPathimagentxt().getText());
+                em.persist(pelicula);
+
+                // Paso 2: Insertar la película en el catálogo de películas del usuario
+                CatalogoPeliculas cp = new CatalogoPeliculas();
+                cp.setIDusuario(usuario);
+                cp.setIDpelicula(pelicula);
+                cp.setFechadeanadido(new Date());
+                em.persist(cp);
             }
-
-            // La película no existe, se procede a agregarla
-
-            // Paso 1: Insertar la película en la tabla "peliculas"
-            Peliculas pelicula = new Peliculas();
-            pelicula.setTitulo(tituloPelicula);
-            pelicula.setAnio(Integer.parseInt(busqcontr.getAnio().getText()));
-            //pelicula.setSinopsis(busqcontr.g.getText());
-            //pelicula.setFotodePortada(busqcontr..getText());
-            em.persist(pelicula);
-
-            // Paso 2: Insertar la película en el catálogo de películas del usuario
-            CatalogoPeliculas cp = new CatalogoPeliculas();
-            cp.setIDusuario(usuario);
-            cp.setIDpelicula(pelicula);
-            cp.setFechadeanadido(new Date());
-            em.persist(cp);
 
             // Confirmar la transacción
             transaction.commit();
@@ -185,6 +182,7 @@ public class Operacion {
             em.close();
         }
     }
+
 
     public void agregarSeries(FXMLBuscarController busqcontr, Usuarios usuario) {
         // Establecer la conexión a la base de datos usando EntityManager
@@ -208,31 +206,39 @@ public class Operacion {
             }
 
             // Verificar si la serie ya existe
-            String tituloSerie = busqcontr.getTitulo().getText();
+            String tituloSerie = busqcontr.titulo.getText();
+            System.out.println(tituloSerie);
             Query consultaSerie = em.createQuery("SELECT s FROM Series s WHERE s.titulo = :titulo");
             consultaSerie.setParameter("titulo", tituloSerie);
             List<Series> seriesExistentes = consultaSerie.getResultList();
             if (!seriesExistentes.isEmpty()) {
                 System.out.println("La serie ya existe en la base de datos.");
-                return; // No se agrega la serie
+
+                // Agregar la serie existente al catálogo del usuario
+                Series serieExistente = seriesExistentes.get(0); // Obtener la primera serie coincidente
+                CatalogoSeries cs = new CatalogoSeries();
+                cs.setIDusuario(usuario);
+                cs.setIDserie(serieExistente);
+                cs.setFechadeanadido(new Date());
+                em.persist(cs);
+            } else {
+                // La serie no existe, se procede a agregarla
+
+                // Paso 1: Insertar la serie en la tabla "series"
+                Series serie = new Series();
+                serie.setTitulo(tituloSerie);
+                serie.setAnio(Integer.parseInt(busqcontr.getAnio().getText()));
+                serie.setSinopsis(busqcontr.getSionpsistxt().getText());
+                serie.setFotodePortada(busqcontr.getPathimagentxt().getText());
+                em.persist(serie);
+
+                // Paso 2: Insertar la serie en el catálogo de series del usuario
+                CatalogoSeries cs = new CatalogoSeries();
+                cs.setIDusuario(usuario);
+                cs.setIDserie(serie);
+                cs.setFechadeanadido(new Date());
+                em.persist(cs);
             }
-
-            // La serie no existe, se procede a agregarla
-
-            // Paso 1: Insertar la serie en la tabla "series"
-            Series serie = new Series();
-            serie.setTitulo(tituloSerie);
-            serie.setAnio(Integer.parseInt(busqcontr.getAnio().getText()));
-            //serie.setSinopsis(busqcontr.g.getText());
-            //serie.setFotodePortada(busqcontr..getText());
-            em.persist(serie);
-
-            // Paso 2: Insertar la serie en el catálogo de series del usuario
-            CatalogoSeries cs = new CatalogoSeries();
-            cs.setIDusuario(usuario);
-            cs.setIDserie(serie);
-            cs.setFechadeanadido(new Date());
-            em.persist(cs);
 
             // Confirmar la transacción
             transaction.commit();

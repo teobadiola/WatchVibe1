@@ -9,6 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -16,7 +17,7 @@
    <children>
       <Pane layoutX="276.0" layoutY="-11.0" prefHeight="826.0" prefWidth="750.0">
          <children>
-            <ImageView fx:id="fondoizq" fitHeight="822.0" fitWidth="1030.0" layoutX="-279.0" layoutY="2.0" pickOnBounds="true">
+            <ImageView fx:id="fondoizq" fitHeight="822.0" fitWidth="1030.0" layoutX="-294.0" layoutY="2.0" pickOnBounds="true">
                <image>
                   <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
                </image>
@@ -29,57 +30,50 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Button layoutX="563.0" layoutY="25.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="72.0" text="Buscar">
+            <Button fx:id="botonbuscar" layoutX="542.0" layoutY="43.0" mnemonicParsing="false" onAction="#metodoBuscarPeliculasySeries" prefHeight="30.0" prefWidth="72.0" text="Buscar">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Button>
-            <ImageView fitHeight="117.0" fitWidth="262.0" layoutX="-262.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="152.0" fitWidth="294.0" layoutX="-262.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../recursos_fondos/ISOTIPO_BLANCO.png" />
+                  <Image url="@../icono/logopng.png" />
                </image>
             </ImageView>
-            <TextField layoutX="25.0" layoutY="27.0" prefHeight="25.0" prefWidth="511.0" text="Your name" />
-            <ImageView fx:id="portada" fitHeight="552.0" fitWidth="322.0" layoutX="25.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="textfieldbusqueda" layoutX="78.0" layoutY="46.0" prefHeight="25.0" prefWidth="417.0" />
+            <ImageView fx:id="portada" fitHeight="493.0" fitWidth="293.0" layoutX="89.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../caratulas_peliculas/q719jXXEzOoYaps6babgKnONONX.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="bototnAñadir" layoutX="391.0" layoutY="336.0" mnemonicParsing="false" onAction="#añadir" prefHeight="30.0" prefWidth="254.0" text="Añadir película a mi catálogo" />
-            <Button layoutX="616.0" layoutY="766.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="108.0" text="Volver" />
-            <Text fx:id="titulo" fill="WHITE" fontSmoothingType="LCD" layoutX="375.0" layoutY="113.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Título" textAlignment="CENTER">
+            <Button fx:id="bototnAñadir" layoutX="437.0" layoutY="763.0" mnemonicParsing="false" onAction="#añadir" prefHeight="37.0" prefWidth="117.0" text="Añadir" />
+            <Button fx:id="botonvolver" layoutX="582.0" layoutY="761.0" mnemonicParsing="false" onAction="#onClickVolver" prefHeight="37.0" prefWidth="108.0" text="Volver" />
+            <Text fx:id="titulo" fill="WHITE" fontSmoothingType="LCD" layoutX="412.0" layoutY="154.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Título" textAlignment="CENTER">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="anio" fill="WHITE" fontSmoothingType="LCD" layoutX="372.0" layoutY="156.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Año" textAlignment="CENTER">
+            <Text fx:id="anio" fill="WHITE" fontSmoothingType="LCD" layoutX="409.0" layoutY="245.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Año" textAlignment="CENTER">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="director" fill="WHITE" fontSmoothingType="LCD" layoutX="370.0" layoutY="200.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Director" textAlignment="CENTER">
+            <Text fx:id="sinopsis" fill="WHITE" fontSmoothingType="LCD" layoutX="412.0" layoutY="323.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Sinopsis" textAlignment="CENTER">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="75.0" layoutY="640.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Puntuación" textAlignment="CENTER">
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="110.0" layoutY="685.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Puntuación" textAlignment="CENTER">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="372.0" layoutY="245.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Recaudación" textAlignment="CENTER">
+            <Text fx:id="titulotxt" fill="WHITE" fontSmoothingType="LCD" layoutX="409.0" layoutY="200.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" textAlignment="CENTER" wrappingWidth="309.0">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <ListView fx:id="listviewpeliculas" layoutX="-262.0" layoutY="27.0" prefHeight="385.0" prefWidth="267.0" styleClass="list-view-material" />
-            <ListView fx:id="listviewseries" layoutX="-262.0" layoutY="429.0" prefHeight="385.0" prefWidth="267.0" styleClass="list-view-material" />
-            <Text fx:id="titulotxt" fill="WHITE" fontSmoothingType="LCD" layoutX="463.0" layoutY="113.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" textAlignment="CENTER">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text fx:id="aniotxt" fill="WHITE" fontSmoothingType="LCD" layoutX="463.0" layoutY="156.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" textAlignment="CENTER">
+            <Text fx:id="aniotxt" fill="WHITE" fontSmoothingType="LCD" layoutX="412.0" layoutY="282.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" textAlignment="CENTER" wrappingWidth="82.51953125">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
@@ -92,7 +86,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="botonminimiza" alignment="CENTER" layoutX="657.0" layoutY="22.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+            <Label fx:id="botonminimiza" alignment="CENTER" layoutX="666.0" layoutY="23.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -100,6 +94,24 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
+            <Text fx:id="sionpsistxt" fill="WHITE" fontSmoothingType="LCD" layoutX="412.0" layoutY="370.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" wrappingWidth="284.0">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text fx:id="pathimagentxt" disable="true" fill="WHITE" fontSmoothingType="LCD" layoutX="473.0" layoutY="166.0" lineSpacing="2.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" textAlignment="CENTER" visible="false">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Text>
+            <Button fx:id="bototnAñadirReserña" layoutX="295.0" layoutY="763.0" mnemonicParsing="false" onAction="#añadir" prefHeight="37.0" prefWidth="117.0" text="Valoracion" />
+            <VBox layoutX="-254.0" layoutY="170.0" prefHeight="611.0" prefWidth="316.0">
+               <children>
+                  <ListView fx:id="listviewpeliculas" prefHeight="304.0" prefWidth="319.0" styleClass="list-view-material" />
+                  <Label />
+                  <ListView fx:id="listviewseries" prefHeight="312.0" prefWidth="316.0" styleClass="list-view-material" />
+               </children>
+            </VBox>
          </children>
       </Pane>
    </children>
