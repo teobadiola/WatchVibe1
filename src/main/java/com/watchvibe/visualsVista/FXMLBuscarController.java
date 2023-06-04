@@ -2,10 +2,9 @@ package com.watchvibe.visualsVista;
 
 import com.watchvibe.API.MetodosAPI;
 import com.watchvibe.adModelo.operaciones.Autenticator;
+import com.watchvibe.adModelo.operaciones.Conexion;
 import com.watchvibe.adModelo.operaciones.Operacion;
-import com.watchvibe.adModelo.tablas.Peliculas;
-import com.watchvibe.adModelo.tablas.Series;
-import com.watchvibe.adModelo.tablas.Usuarios;
+import com.watchvibe.adModelo.tablas.*;
 import com.welag.ad.tablas.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,12 +18,16 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
 
+import javax.persistence.EntityManager;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 public class FXMLBuscarController {
@@ -46,7 +49,20 @@ public class FXMLBuscarController {
     private Button bototnAñadirReserña;
     @FXML
     private Button bototnVerReseñas;
+    @FXML
+    private Pane PanelReseñas;
+    @FXML
+    private Pane panelTransparente;
+    @FXML
+    private Text textescribirreseña;
+    @FXML
+    private TextArea textoReseñaEnviar;
+    @FXML
+    private Button botonCancelarInterior;
+    @FXML
+    private Button botonAñadirReseñaInterior1;
 
+    @Deprecated
     public void setUsuarioLogueado(Usuarios usuario) {
         this.usuarioLogueado = usuario;
     }
@@ -123,11 +139,22 @@ public class FXMLBuscarController {
     }
 
     public void initialize() {
+        panelTransparente.setVisible(false);
+        botonCancelarInterior.getStyleClass().add("boton-material");
+        botonAñadirReseñaInterior1.getStyleClass().add("boton-material");
+        bototnVerReseñas.getStyleClass().add("boton-material");
         bototnAñadirReserña.getStyleClass().add("boton-material");
         bototnAñadir.getStyleClass().add("boton-material");
         botonbuscar.getStyleClass().add("boton-material");
         botonvolver.getStyleClass().add("boton-material");
         textfieldbusqueda.getStyleClass().add("custom-textfield");
+        textoReseñaEnviar.getStyleClass().add("custom-textarea");
+
+        textescribirreseña.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
+                "-fx-font-size: 0.875em; " +
+                "-fx-border-color: white; " +
+                "-fx-border-width: 0 0 1 0; " +
+                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
 
         setUsuarioLogueado(usuarioLogueado);
         listviewseries.getStyleClass().add("list-view-material");
@@ -293,24 +320,31 @@ public class FXMLBuscarController {
         }
     }
 
-    @FXML
-    public void añadir(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    public void onClicCerrar(Event event) {
-    }
-
-    @FXML
-    public void onClicMinimizar(Event event) {
-    }
 
     @FXML
     public void añadirReseña(ActionEvent actionEvent) {
+        panelTransparente.setVisible(true);
+        botonCerra.toFront();
+        botonminimiza.toFront();
+
     }
 
     @FXML
-    public void añadir(ActionEvent actionEvent) {
+    public void BBDDReseña(ActionEvent actionEvent, Peliculas pelicula) {
+        String reseña = textoReseñaEnviar.getText();
+
+        Comentarios comentario = new Comentarios();
+        comentario.setContenidodelcomentario(reseña);
+        comentario.setFechadepublicacion(new Date());
+        comentario.setIDUsuario(usuarioLogueado);
+        comentario.setIDPelicula(pelicula);
+
+        EntityManager entityManager = Conexion.conecta();
+                entityManager.getTransaction().begin();
+        entityManager.persist(comentario);
+        entityManager.getTransaction().commit();
+
+        panelTransparente.setVisible(false);
     }
 }
 

@@ -455,5 +455,7 @@ public class Operacion {
                 imageViews[i].setImage(image);
             }
         }
+
+
     }
 
