@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -26,11 +27,14 @@ import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 public class FXMLBuscarController {
+
+    private boolean elementoSeleccionado = false;
 
     private Usuarios usuarioLogueado;
     @FXML
@@ -138,7 +142,89 @@ public class FXMLBuscarController {
         this.pathimagentxt = pathimagentxt;
     }
 
+    public Button getBototnAñadirReserña() {
+        return bototnAñadirReserña;
+    }
+
+    public void setBototnAñadirReserña(Button bototnAñadirReserña) {
+        this.bototnAñadirReserña = bototnAñadirReserña;
+    }
+
+    public Button getBototnVerReseñas() {
+        return bototnVerReseñas;
+    }
+
+    public void setBototnVerReseñas(Button bototnVerReseñas) {
+        this.bototnVerReseñas = bototnVerReseñas;
+    }
+
+    public Pane getPanelReseñas() {
+        return PanelReseñas;
+    }
+
+    public void setPanelReseñas(Pane panelReseñas) {
+        PanelReseñas = panelReseñas;
+    }
+
+    public Pane getPanelTransparente() {
+        return panelTransparente;
+    }
+
+    public void setPanelTransparente(Pane panelTransparente) {
+        this.panelTransparente = panelTransparente;
+    }
+
+    public Text getTextescribirreseña() {
+        return textescribirreseña;
+    }
+
+    public void setTextescribirreseña(Text textescribirreseña) {
+        this.textescribirreseña = textescribirreseña;
+    }
+
+    public TextArea getTextoReseñaEnviar() {
+        return textoReseñaEnviar;
+    }
+
+    public void setTextoReseñaEnviar(TextArea textoReseñaEnviar) {
+        this.textoReseñaEnviar = textoReseñaEnviar;
+    }
+
+    public Button getBotonCancelarInterior() {
+        return botonCancelarInterior;
+    }
+
+    public void setBotonCancelarInterior(Button botonCancelarInterior) {
+        this.botonCancelarInterior = botonCancelarInterior;
+    }
+
+    public Button getBotonAñadirReseñaInterior1() {
+        return botonAñadirReseñaInterior1;
+    }
+
+    public void setBotonAñadirReseñaInterior1(Button botonAñadirReseñaInterior1) {
+        this.botonAñadirReseñaInterior1 = botonAñadirReseñaInterior1;
+    }
+
+    public ListView<Series> getListviewseries() {
+        return listviewseries;
+    }
+
+    public void setListviewseries(ListView<Series> listviewseries) {
+        this.listviewseries = listviewseries;
+    }
+
+    public ListView<Peliculas> getListviewpeliculas() {
+        return listviewpeliculas;
+    }
+
+    public void setListviewpeliculas(ListView<Peliculas> listviewpeliculas) {
+        this.listviewpeliculas = listviewpeliculas;
+    }
+
     public void initialize() {
+
+        bototnAñadirReserña.setVisible(false);
         panelTransparente.setVisible(false);
         botonCancelarInterior.getStyleClass().add("boton-material");
         botonAñadirReseñaInterior1.getStyleClass().add("boton-material");
@@ -220,6 +306,10 @@ public class FXMLBuscarController {
             }
         });
         listviewpeliculas.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
+                // Double-clicked the selected item, clear the selection
+                listviewpeliculas.getSelectionModel().clearSelection();
+            } else {
             Peliculas selectedPelicula = listviewpeliculas.getSelectionModel().getSelectedItem();
             if (selectedPelicula != null) {
                 titulotxt.setText(selectedPelicula.getTitulo());
@@ -232,9 +322,13 @@ public class FXMLBuscarController {
                 pathimagentxt.setText(selectedPelicula.getFotodePortada());
                 portada.setImage(new Image(selectedPelicula.getFotodePortada()));
             }
-        });
+        }});
 
         listviewseries.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
+                // Double-clicked the selected item, clear the selection
+                listviewseries.getSelectionModel().clearSelection();
+            } else {
             Series selectedSerie = listviewseries.getSelectionModel().getSelectedItem();
             if (selectedSerie != null) {
                 titulotxt.setText(selectedSerie.getTitulo());
@@ -247,7 +341,9 @@ public class FXMLBuscarController {
                 pathimagentxt.setText(selectedSerie.getFotodePortada());
                 portada.setImage(new Image(selectedSerie.getFotodePortada()));
             }
-        });
+        }});
+
+        listviewpeliculas.getSelectionModel().selectFirst();
 
     }
 
@@ -271,7 +367,7 @@ public class FXMLBuscarController {
             // Crear un objeto de tipo Operacion
             Operacion operacion = new Operacion();
             operacion.agregarPelicula(this,usuarioLogueado); // Añadir la película seleccionada a la operación
-
+            bototnAñadirReserña.setVisible(true);
         }
     }
 
@@ -330,21 +426,14 @@ public class FXMLBuscarController {
     }
 
     @FXML
-    public void BBDDReseña(ActionEvent actionEvent, Peliculas pelicula) {
-        String reseña = textoReseñaEnviar.getText();
-
-        Comentarios comentario = new Comentarios();
-        comentario.setContenidodelcomentario(reseña);
-        comentario.setFechadepublicacion(new Date());
-        comentario.setIDUsuario(usuarioLogueado);
-        comentario.setIDPelicula(pelicula);
-
-        EntityManager entityManager = Conexion.conecta();
-                entityManager.getTransaction().begin();
-        entityManager.persist(comentario);
-        entityManager.getTransaction().commit();
-
-        panelTransparente.setVisible(false);
+    public void BBDDReseña(ActionEvent actionEvent) {
+        Operacion op = new Operacion();
+        op.agregarReseña(this,usuarioLogueado);
+        System.out.println("Exito");
     }
+
+
+
+
 }
 

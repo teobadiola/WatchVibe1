@@ -457,5 +457,69 @@ public class Operacion {
         }
 
 
+    public void agregarReseña(FXMLBuscarController busqcontr,Usuarios usuario) {
+        String reseña = busqcontr.getTextoReseñaEnviar().getText();
+        Peliculas peliculaSeleccionada = busqcontr.getListviewpeliculas().getSelectionModel().getSelectedItem();
+        Series serieSeleccionada = busqcontr.getListviewseries().getSelectionModel().getSelectedItem();
+
+        EntityManager em = Conexion.conecta();
+        EntityTransaction transaction = null;
+
+        try {
+            transaction = em.getTransaction();
+            transaction.begin();
+
+            if (peliculaSeleccionada != null) {
+                // Se ha seleccionado una película
+
+                Query query = em.createQuery("SELECT p FROM Peliculas p WHERE p.titulo = :titulo");
+                query.setParameter("titulo", peliculaSeleccionada.getTitulo());
+                Peliculas peliculaExistente = (Peliculas) query.getSingleResult();
+                if (peliculaExistente != null) {
+                    peliculaSeleccionada = peliculaExistente;
+                } else {
+                    em.persist(peliculaSeleccionada);
+                    em.flush();
+                }
+
+                Comentarios comentario = new Comentarios();
+                comentario.setContenidodelcomentario(reseña);
+                comentario.setFechadepublicacion(new Date());
+                comentario.setIDUsuario(usuario);
+                comentario.setIDPelicula(peliculaSeleccionada);
+
+                em.persist(comentario);
+            } else if (serieSeleccionada != null) {
+                // Se ha seleccionado una serie
+
+                Query query = em.createQuery("SELECT s FROM Series s WHERE s.titulo = :titulo");
+                query.setParameter("titulo", serieSeleccionada.getTitulo());
+                Series serieExistente = (Series) query.getSingleResult();
+                if (serieExistente != null) {
+                    serieSeleccionada = serieExistente;
+                } else {
+                    em.persist(serieSeleccionada);
+                    em.flush();
+                }
+
+                // Realizar las operaciones adicionales necesarias para la serie seleccionada
+                // ...
+            }
+
+            transaction.commit();
+            busqcontr.getPanelTransparente().setVisible(false);
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            // Manejar la excepción
+        } finally {
+            em.close();
+        }
     }
+
+
+
+
+}
 

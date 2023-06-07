@@ -123,8 +123,8 @@
             <Pane fx:id="panelTransparente" layoutX="-279.0" layoutY="11.0" prefHeight="826.0" prefWidth="1036.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
                <Text fx:id="textescribirreseña" fill="WHITE" fontSmoothingType="LCD" layoutX="303.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Escribir Reseña" />
                <TextArea fx:id="textoReseñaEnviar" layoutX="303.0" layoutY="281.0" prefHeight="220.0" prefWidth="425.0" promptText="Escribe tu reseña..." styleClass="custom-textarea" />
-               <Button fx:id="botonCancelarInterior" layoutX="603.0" layoutY="519.0" mnemonicParsing="false" text="Cancelar" />
-               <Button fx:id="botonAñadirReseñaInterior1" layoutX="484.0" layoutY="519.0" mnemonicParsing="false" onAction="#BBDDReseña" text="Añadir" />
+               <Button fx:id="botonCancelarInterior" layoutX="633.0" layoutY="519.0" mnemonicParsing="false" text="Cancelar" />
+               <Button fx:id="botonAñadirReseñaInterior1" layoutX="467.0" layoutY="519.0" mnemonicParsing="false" onAction="#BBDDReseña" text="Añadir" />
             </Pane>
          </children>
       </Pane>
