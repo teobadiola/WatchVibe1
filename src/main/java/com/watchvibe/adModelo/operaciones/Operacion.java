@@ -1,5 +1,7 @@
 package com.watchvibe.adModelo.operaciones;
 
+import com.watchvibe.adModelo.cruds.CRUDPeliculas;
+import com.watchvibe.adModelo.cruds.CRUDSeries;
 import com.watchvibe.adModelo.cruds.CRUDUsuarios;
 import com.watchvibe.adModelo.tablas.*;
 import com.watchvibe.visualsVista.FXMLBuscarController;
@@ -491,7 +493,7 @@ public class Operacion {
                 em.persist(comentario);
             } else if (serieSeleccionada != null) {
                 // Se ha seleccionado una serie
-
+                System.out.println("serie SELECCIONADA a insertar");
                 Query query = em.createQuery("SELECT s FROM Series s WHERE s.titulo = :titulo");
                 query.setParameter("titulo", serieSeleccionada.getTitulo());
                 Series serieExistente = (Series) query.getSingleResult();
@@ -502,8 +504,6 @@ public class Operacion {
                     em.flush();
                 }
 
-                // Realizar las operaciones adicionales necesarias para la serie seleccionada
-                // ...
             }
 
             transaction.commit();
@@ -512,11 +512,58 @@ public class Operacion {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            // Manejar la excepción
         } finally {
             em.close();
         }
     }
+
+    public List<Comentarios> obtenerComentariosPeliculas(FXMLBuscarController busqcontr, Peliculas peliculaSeleccionada) {
+        CRUDPeliculas cp = new CRUDPeliculas();
+        EntityManager em = Conexion.conecta();
+
+        try {
+
+            Peliculas pelicula = cp.getPelicula(peliculaSeleccionada.getTitulo());
+            // Realizar la consulta para obtener los comentarios de la película seleccionada
+            Query consulta = em.createQuery("SELECT c FROM Comentarios c WHERE c.iDPelicula = :pelicula");
+            consulta.setParameter("pelicula", pelicula);
+            List<Comentarios> comentarios = consulta.getResultList();
+
+            return comentarios;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+
+        return new ArrayList<>(); // Si ocurre un error, se devuelve una lista vacía
+    }
+
+    public List<Comentarios> obtenerComentariosSeries(FXMLBuscarController busqcontr, Series serieSeleccionada) {
+        CRUDSeries cs = new CRUDSeries();
+        EntityManager em = Conexion.conecta();
+
+        try {
+
+            Series serie = cs.getSeries(serieSeleccionada.getTitulo());
+
+            // Realizar la consulta para obtener los comentarios de la serie seleccionada
+            Query consulta = em.createQuery("SELECT c FROM Comentarios c WHERE c.iDSerie = :serie");
+            consulta.setParameter("serie", serie);
+            List<Comentarios> comentarios = consulta.getResultList();
+
+            return comentarios;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+
+        return new ArrayList<>(); // Si ocurre un error, se devuelve una lista vacía
+    }
+
+
+
 
 
 

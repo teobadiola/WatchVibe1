@@ -29,6 +29,7 @@ import javafx.util.converter.IntegerStringConverter;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,6 +66,24 @@ public class FXMLBuscarController {
     private Button botonCancelarInterior;
     @FXML
     private Button botonAñadirReseñaInterior1;
+    @FXML
+    private Pane panelReseñasPeliculaSerie;
+    @FXML
+    private Button botonMasReseñas;
+    @FXML
+    private Text textUser1;
+    @FXML
+    private Text textReseña1;
+    @FXML
+    private Text textUser2;
+    @FXML
+    private Text textReseña2;
+    @FXML
+    private Text textUser3;
+    @FXML
+    private Text TextReseña3;
+    @FXML
+    private Button botonAtras;
 
     @Deprecated
     public void setUsuarioLogueado(Usuarios usuario) {
@@ -226,6 +245,7 @@ public class FXMLBuscarController {
 
         bototnAñadirReserña.setVisible(false);
         panelTransparente.setVisible(false);
+        panelReseñasPeliculaSerie.setVisible(false);
         botonCancelarInterior.getStyleClass().add("boton-material");
         botonAñadirReseñaInterior1.getStyleClass().add("boton-material");
         bototnVerReseñas.getStyleClass().add("boton-material");
@@ -240,7 +260,7 @@ public class FXMLBuscarController {
                 "-fx-font-size: 0.875em; " +
                 "-fx-border-color: white; " +
                 "-fx-border-width: 0 0 1 0; " +
-                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
+                "-fx-border-color: white; " + " -fx-border-size:12; " + "-fx-color: white; ");
 
         setUsuarioLogueado(usuarioLogueado);
         listviewseries.getStyleClass().add("list-view-material");
@@ -263,6 +283,7 @@ public class FXMLBuscarController {
         }
 
     }
+
     public void setSeries(List<Series> series) {
         ObservableList<Series> observableSeriesList = FXCollections.observableArrayList(series);
         listviewseries.setItems(observableSeriesList);
@@ -306,44 +327,44 @@ public class FXMLBuscarController {
             }
         });
         listviewpeliculas.setOnMouseClicked(event -> {
-            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
+            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
                 // Double-clicked the selected item, clear the selection
                 listviewpeliculas.getSelectionModel().clearSelection();
             } else {
-            Peliculas selectedPelicula = listviewpeliculas.getSelectionModel().getSelectedItem();
-            if (selectedPelicula != null) {
-                titulotxt.setText(selectedPelicula.getTitulo());
-                aniotxt.setText("" + selectedPelicula.getAnio());
-                String sinopsis = selectedPelicula.getSinopsis();
-                if (sinopsis.length() > 200) {
-                    sinopsis = sinopsis.substring(0, 200) + "...";
+                Peliculas selectedPelicula = listviewpeliculas.getSelectionModel().getSelectedItem();
+                if (selectedPelicula != null) {
+                    titulotxt.setText(selectedPelicula.getTitulo());
+                    aniotxt.setText("" + selectedPelicula.getAnio());
+                    String sinopsis = selectedPelicula.getSinopsis();
+                    if (sinopsis.length() > 200) {
+                        sinopsis = sinopsis.substring(0, 200) + "...";
+                    }
+                    sionpsistxt.setText(sinopsis);
+                    pathimagentxt.setText(selectedPelicula.getFotodePortada());
+                    portada.setImage(new Image(selectedPelicula.getFotodePortada()));
                 }
-                sionpsistxt.setText(sinopsis);
-                pathimagentxt.setText(selectedPelicula.getFotodePortada());
-                portada.setImage(new Image(selectedPelicula.getFotodePortada()));
             }
-        }});
+        });
 
         listviewseries.setOnMouseClicked(event -> {
-            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
+            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
                 // Double-clicked the selected item, clear the selection
                 listviewseries.getSelectionModel().clearSelection();
             } else {
-            Series selectedSerie = listviewseries.getSelectionModel().getSelectedItem();
-            if (selectedSerie != null) {
-                titulotxt.setText(selectedSerie.getTitulo());
-                aniotxt.setText("" + selectedSerie.getAnio());
-                String sinopsis = selectedSerie.getSinopsis();
-                if (sinopsis.length() > 200) {
-                    sinopsis = sinopsis.substring(0, 200) + "...";
+                Series selectedSerie = listviewseries.getSelectionModel().getSelectedItem();
+                if (selectedSerie != null) {
+                    titulotxt.setText(selectedSerie.getTitulo());
+                    aniotxt.setText("" + selectedSerie.getAnio());
+                    String sinopsis = selectedSerie.getSinopsis();
+                    if (sinopsis.length() > 200) {
+                        sinopsis = sinopsis.substring(0, 200) + "...";
+                    }
+                    sionpsistxt.setText(sinopsis);
+                    pathimagentxt.setText(selectedSerie.getFotodePortada());
+                    portada.setImage(new Image(selectedSerie.getFotodePortada()));
                 }
-                sionpsistxt.setText(sinopsis);
-                pathimagentxt.setText(selectedSerie.getFotodePortada());
-                portada.setImage(new Image(selectedSerie.getFotodePortada()));
             }
-        }});
-
-        listviewpeliculas.getSelectionModel().selectFirst();
+        });
 
     }
 
@@ -366,7 +387,7 @@ public class FXMLBuscarController {
         if (peliculaSeleccionada != null) {
             // Crear un objeto de tipo Operacion
             Operacion operacion = new Operacion();
-            operacion.agregarPelicula(this,usuarioLogueado); // Añadir la película seleccionada a la operación
+            operacion.agregarPelicula(this, usuarioLogueado); // Añadir la película seleccionada a la operación
             bototnAñadirReserña.setVisible(true);
         }
     }
@@ -380,22 +401,21 @@ public class FXMLBuscarController {
             System.out.println("No hay resultados para esta búsqueda");
             return; // No cargar la nueva escena si ambas listas están vacías
         } else {
-                // Limpiar el ListView
-                listviewseries.getItems().clear();
-                listviewpeliculas.getItems().clear();
+            // Limpiar el ListView
+            listviewseries.getItems().clear();
+            listviewpeliculas.getItems().clear();
 
-                // Agregar las series al ListView
-                for (Series serie : series) {
-                    listviewseries.getItems().add(serie);
-                }
+            // Agregar las series al ListView
+            for (Series serie : series) {
+                listviewseries.getItems().add(serie);
+            }
 
-                // Agregar las películas al ListView
-                for (Peliculas pelicula : peliculas) {
-                    listviewpeliculas.getItems().add(pelicula);
-                }
+            // Agregar las películas al ListView
+            for (Peliculas pelicula : peliculas) {
+                listviewpeliculas.getItems().add(pelicula);
             }
         }
-
+    }
 
 
     @FXML
@@ -428,12 +448,103 @@ public class FXMLBuscarController {
     @FXML
     public void BBDDReseña(ActionEvent actionEvent) {
         Operacion op = new Operacion();
-        op.agregarReseña(this,usuarioLogueado);
+        op.agregarReseña(this, usuarioLogueado);
         System.out.println("Exito");
     }
 
+    @FXML
+    public void MasReseñas(ActionEvent actionEvent) {
+
+    }
+
+    @FXML
+    public void verValoraciones(ActionEvent actionEvent) {
+        Operacion operacion = new Operacion();
+
+        Object seleccionPeliculas = listviewpeliculas.getSelectionModel().getSelectedItem();
+        Object seleccionSeries = listviewseries.getSelectionModel().getSelectedItem();
+
+        if (seleccionPeliculas instanceof Peliculas) {
+            Peliculas peliculaSeleccionada = (Peliculas) seleccionPeliculas;
+            panelReseñasPeliculaSerie.setVisible(true);
+            List<Comentarios> comentariosPelicula = operacion.obtenerComentariosPeliculas(this, peliculaSeleccionada);
+
+            System.out.println(comentariosPelicula.size());
 
 
+            if (comentariosPelicula.size() >= 1) {
+                // Obtener los primeros tres comentarios o menos si no hay suficientes
+                int numComentarios = Math.min(comentariosPelicula.size(), 3);
+                System.out.println("NUMcOMENTS: "+numComentarios);
 
+                // Recorrer los comentarios
+                for (int i = 0; i < numComentarios; i++) {
+                    Comentarios comentario = comentariosPelicula.get(i);
+                    Usuarios usuario = comentario.getIDUsuario();
+                    String texto = comentario.getContenidodelcomentario();
+
+                    // Establecer los valores en los campos correspondientes
+                    switch (i) {
+                        case 0:
+                            textUser1.setText(usuario.getNombre());
+                            textReseña1.setText(texto);
+                            break;
+                        case 1:
+                            textUser2.setText(usuario.getNombre());
+                            textReseña2.setText(texto);
+                            break;
+                        case 2:
+                            textUser3.setText(usuario.getNombre());
+                            TextReseña3.setText(texto);
+                            break;
+                    }
+                }
+            }
+
+        } else if (seleccionSeries instanceof Series) {
+            Series serieSeleccionada = (Series) seleccionSeries;
+            panelReseñasPeliculaSerie.setVisible(true);
+            List<Comentarios> comentariosSeries = operacion.obtenerComentariosSeries(this, serieSeleccionada);
+            System.out.println(comentariosSeries.size());
+
+            if (comentariosSeries.size() > 1) {
+                // Obtener los primeros tres comentarios o menos si no hay suficientes
+                int numComentarios = Math.min(comentariosSeries.size(), 3);
+                System.out.println("numComents series: "+numComentarios);
+
+                // Recorrer los comentarios
+                for (int i = 0; i < numComentarios; i++) {
+                    Comentarios comentario = comentariosSeries.get(i);
+                    Usuarios usuario = comentario.getIDUsuario();
+                    String texto = comentario.getContenidodelcomentario();
+
+                    // Establecer los valores en los campos correspondientes
+                    switch (i) {
+                        case 0:
+                            System.out.println(usuario.getNombre());
+                            textUser1.setText(usuario.getNombre());
+                            System.out.println(texto);
+                            textReseña1.setText(texto);
+                            break;
+                        case 1:
+                            textUser2.setText(usuario.getNombre());
+                            textReseña2.setText(texto);
+                            break;
+                        case 2:
+                            textUser3.setText(usuario.getNombre());
+                            TextReseña3.setText(texto);
+                            break;
+                    }
+                }
+            }
+        } else {
+            System.out.println("Error");
+        }
+    }
+
+    @FXML
+    public void atras(ActionEvent actionEvent) {
+        panelReseñasPeliculaSerie.setVisible(false);
+    }
 }
 

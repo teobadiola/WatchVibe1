@@ -17,7 +17,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="811.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.watchvibe.visualsVista.FXMLBuscarController">
    <children>
-      <Pane fx:id="PanelReseñas" prefHeight="811.0" prefWidth="1014.0">
+      <Pane fx:id="PanelReseñas" prefHeight="826.0" prefWidth="1030.0">
          <effect>
             <GaussianBlur />
          </effect>
@@ -112,7 +112,7 @@
                </font>
             </Text>
             <Button fx:id="bototnAñadirReserña" layoutX="97.0" layoutY="763.0" mnemonicParsing="false" onAction="#añadirReseña" prefHeight="37.0" prefWidth="117.0" text="Escribir Valoracion" />
-            <Button fx:id="bototnVerReseñas" layoutX="243.0" layoutY="763.0" mnemonicParsing="false" onAction="#añadir" prefHeight="37.0" prefWidth="117.0" text="Ver Valoraciones" />
+            <Button fx:id="bototnVerReseñas" layoutX="243.0" layoutY="763.0" mnemonicParsing="false" onAction="#verValoraciones" prefHeight="37.0" prefWidth="117.0" text="Ver Valoraciones" />
             <VBox layoutX="-254.0" layoutY="170.0" prefHeight="611.0" prefWidth="316.0">
                <children>
                   <ListView fx:id="listviewpeliculas" prefHeight="304.0" prefWidth="319.0" styleClass="list-view-material" />
@@ -122,9 +122,41 @@
             </VBox>
             <Pane fx:id="panelTransparente" layoutX="-279.0" layoutY="11.0" prefHeight="826.0" prefWidth="1036.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
                <Text fx:id="textescribirreseña" fill="WHITE" fontSmoothingType="LCD" layoutX="303.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Escribir Reseña" />
-               <TextArea fx:id="textoReseñaEnviar" layoutX="303.0" layoutY="281.0" prefHeight="219.0" prefWidth="401.0" promptText="Escribe tu reseña..." styleClass="custom-textarea" />
-               <Button fx:id="botonCancelarInterior" layoutX="642.0" layoutY="519.0" mnemonicParsing="false" text="Cancelar" />
-               <Button fx:id="botonAñadirReseñaInterior1" layoutX="510.0" layoutY="519.0" mnemonicParsing="false" text="Añadir" />
+               <TextArea fx:id="textoReseñaEnviar" layoutX="303.0" layoutY="281.0" prefHeight="220.0" prefWidth="425.0" promptText="Escribe tu reseña..." styleClass="custom-textarea" />
+               <Button fx:id="botonCancelarInterior" layoutX="633.0" layoutY="519.0" mnemonicParsing="false" text="Cancelar" />
+               <Button fx:id="botonAñadirReseñaInterior1" layoutX="467.0" layoutY="519.0" mnemonicParsing="false" onAction="#BBDDReseña" text="Añadir" />
+            </Pane>
+            <!-- New panel for displaying reviews -->
+            <Pane fx:id="panelReseñasPeliculaSerie" layoutX="-279.0" layoutY="11.0" prefHeight="826.0" prefWidth="1036.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
+               <children>
+                  <Button fx:id="botonMasReseñas" layoutX="605.0" layoutY="634.0" mnemonicParsing="false" onAction="#MasReseñas" text="Mas Reseñas" />
+                  <VBox layoutX="116.0" layoutY="71.0" prefHeight="532.0" prefWidth="725.0">
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text fill="WHITE" layoutX="32.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario: " />
+                              <Text fx:id="textUser1" fill="WHITE" layoutX="87.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="117.0" />
+                              <Text fx:id="textReseña1" fill="WHITE" layoutX="32.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reseña a sustituir" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text fill="WHITE" layoutX="23.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario: " />
+                              <Text fx:id="textUser2" fill="WHITE" layoutX="78.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="117.0" />
+                              <Text fx:id="textReseña2" fill="WHITE" layoutX="23.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reseña a sustituir" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text fill="WHITE" layoutX="23.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario: " />
+                              <Text fx:id="textUser3" fill="WHITE" layoutX="83.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="117.0" />
+                              <Text fx:id="TextReseña3" fill="WHITE" layoutX="23.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reseña a sustituir" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+                  <Button fx:id="botonAtras" layoutX="738.0" layoutY="634.0" mnemonicParsing="false" onAction="#atras" text="Atras" />
+               </children>
             </Pane>
          </children>
       </Pane>

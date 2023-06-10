@@ -27,6 +27,23 @@ public class CRUDSeries {
         return series;
     }
 
+    public Series getSeries(String titulo) {
+        Series serie = null;
+        EntityManager em = Conexion.conecta();
+        try {
+            Query query = em.createNamedQuery("Series.findByTitulo");
+            query.setParameter("titulo", titulo);
+            serie = (Series) query.getSingleResult();
+        } catch (NoResultException ex) {
+            System.out.println("No se encontró la serie. " + ex.getMessage());
+        } catch (IllegalArgumentException ex1) {
+            System.out.println("Error en el argumento. " + ex1.getMessage());
+        }
+        Conexion.desconecta(em);
+        return serie;
+    }
+
+
     public void createSeries(Series series) {
         EntityManager em = Conexion.conecta();
         EntityTransaction et = em.getTransaction();
