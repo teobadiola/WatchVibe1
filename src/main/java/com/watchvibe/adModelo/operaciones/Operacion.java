@@ -6,6 +6,7 @@ import com.watchvibe.adModelo.cruds.CRUDUsuarios;
 import com.watchvibe.adModelo.tablas.*;
 import com.watchvibe.visualsVista.FXMLBuscarController;
 import com.watchvibe.visualsVista.FXMLFichaController;
+import com.watchvibe.visualsVista.FXMLMenuController;
 import com.watchvibe.visualsVista.FXMLRegistroController;
 import com.welag.ad.tablas.Usuario;
 import javafx.event.ActionEvent;
@@ -563,10 +564,52 @@ public class Operacion {
     }
 
 
+    public List<Comentarios> obtenerComentariosPeliculas(FXMLMenuController fxmlMenuController, Peliculas peliculaSeleccionada) {
+        CRUDPeliculas cp = new CRUDPeliculas();
+        EntityManager em = Conexion.conecta();
 
+        try {
 
+            Peliculas pelicula = cp.getPelicula(peliculaSeleccionada.getTitulo());
+            // Realizar la consulta para obtener los comentarios de la película seleccionada
+            Query consulta = em.createQuery("SELECT c FROM Comentarios c WHERE c.iDPelicula = :pelicula");
+            consulta.setParameter("pelicula", pelicula);
+            List<Comentarios> comentarios = consulta.getResultList();
 
+            return comentarios;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
 
+        return new ArrayList<>(); // Si ocurre un error, se devuelve una lista vacía
 
-}
+    }
+
+    public List<Comentarios> obtenerComentariosSeries(FXMLMenuController fxmlMenuController, Series serieSeleccionada) {
+            CRUDSeries cs = new CRUDSeries();
+            EntityManager em = Conexion.conecta();
+
+            try {
+
+                Series serie = cs.getSeries(serieSeleccionada.getTitulo());
+
+                // Realizar la consulta para obtener los comentarios de la serie seleccionada
+                Query consulta = em.createQuery("SELECT c FROM Comentarios c WHERE c.iDSerie = :serie");
+                consulta.setParameter("serie", serie);
+                List<Comentarios> comentarios = consulta.getResultList();
+
+                return comentarios;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                em.close();
+            }
+
+            return new ArrayList<>(); // Si ocurre un error, se devuelve una lista vacía
+        }
+
+    }
+
 

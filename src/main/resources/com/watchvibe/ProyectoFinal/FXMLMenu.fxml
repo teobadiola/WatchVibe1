@@ -3,12 +3,14 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -49,12 +51,12 @@
                   <Image url="@../iconos_pequeños/busqueda_peliculas.png" />
                </image>
             </ImageView>
-            <Button fx:id="BotonPeliculas" layoutX="113.0" layoutY="397.0" mnemonicParsing="false" onAction="#onHandleCatalogo" prefHeight="30.0" prefWidth="126.0" text="Mis Peliculas">
+            <Button fx:id="BotonPeliculas" layoutX="113.0" layoutY="397.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" text="Mis Peliculas">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="BotonSeries" layoutX="113.0" layoutY="445.0" mnemonicParsing="false" onAction="#onHandleCatalogo" prefHeight="30.0" prefWidth="126.0" text="Mis Series">
+            <Button fx:id="BotonSeries" layoutX="113.0" layoutY="445.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" text="Mis Series">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
@@ -78,22 +80,18 @@
                <children>
                   <ImageView fx:id="pelicula1" fitHeight="238.0" fitWidth="198.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../caratulas_peliculas/q719jXXEzOoYaps6babgKnONONX.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="pelicula2" fitHeight="238.0" fitWidth="161.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../caratulas_peliculas/eCOtqtfvn7mxGl6nfmq4b1exJRc.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="pelicula3" fitHeight="238.0" fitWidth="198.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../caratulas_peliculas/d5NXSklXo0qyIYkgV94XAgMIckC.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="pelicula4" fitHeight="238.0" fitWidth="192.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../caratulas_peliculas/mdLDgQBD0va09npSQX5Zgo2evXM.jpg" />
                      </image>
                   </ImageView>
                </children>
@@ -122,22 +120,18 @@
                <children>
                   <ImageView fx:id="serie1" fitHeight="238.0" fitWidth="198.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../caratulas_Series/MV5BODJkZjk3MzgtNzhhNy00ZmFhLTkxNzktZGYzOWU4Y2E1MjZkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="serie2" fitHeight="238.0" fitWidth="161.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../caratulas_Series/lA9CNSdo50iQPZ8A2fyVpMvJZAf.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="serie3" fitHeight="238.0" fitWidth="198.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../caratulas_Series/c4mk4EQVIM11yd3W43DDdqDazDU.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="serie4" fitHeight="238.0" fitWidth="192.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../caratulas_Series/0441DO_4.jpg" />
                      </image>
                   </ImageView>
                </children>
@@ -166,5 +160,90 @@
             <TextField fx:id="textFieldBusqueda" layoutX="209.0" layoutY="48.0" prefHeight="37.0" prefWidth="437.0" />
          </children>
       </Pane>
+      <Pane fx:id="panelderechaFicha" layoutX="269.0" layoutY="-1.0" prefHeight="743.0" prefWidth="756.0">
+         <children>
+            <ImageView fx:id="fondopanelderechaficha" fitHeight="743.0" fitWidth="745.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
+               </image>
+               <effect>
+                  <BoxBlur />
+               </effect>
+            </ImageView>
+            <Button fx:id="botonBusquedaFicha" layoutX="51.0" layoutY="41.0" mnemonicParsing="false" onAction="#metodoBuscarPeliculasySeries" prefHeight="30.0" prefWidth="88.0" text="Buscar">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Button>
+            <TextField fx:id="textFieldBusqueda1" layoutX="191.0" layoutY="39.0" prefHeight="37.0" prefWidth="437.0" />
+            <ImageView fx:id="portada" fitHeight="409.0" fitWidth="256.0" layoutX="51.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="AñadirReseña" layoutX="95.0" layoutY="643.0" mnemonicParsing="false" onAction="#AñadirReseñas" text="Añadir reseña" />
+            <Button fx:id="VerReseñas" layoutX="293.0" layoutY="643.0" mnemonicParsing="false" onAction="#verReseñasTotal" text="Ver Reseñas" />
+            <Button fx:id="AñadirPelicula" layoutX="469.0" layoutY="643.0" mnemonicParsing="false" onAction="#añadirpelicula" text="Añadir" />
+            <Button fx:id="Volver" layoutX="628.0" layoutY="643.0" mnemonicParsing="false" onAction="#volver" text="Volver" />
+            <Text fill="WHITE" layoutX="367.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titulo" />
+            <Text fill="WHITE" layoutX="367.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Año" />
+            <Text fx:id="titulotxt" fill="WHITE" layoutX="367.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="añotxt" fill="WHITE" layoutX="367.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fill="WHITE" layoutX="366.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sinopsis" />
+            <Text fx:id="sinopsistxt" fill="WHITE" layoutX="366.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="364.5624999999999" />
+            <Text fx:id="pathImagen" fill="WHITE" layoutX="714.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" />
+            <Label fx:id="botonCerrar1" alignment="CENTER" layoutX="695.0" layoutY="4.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="✕" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="botonminimizar1" alignment="CENTER" layoutX="648.0" layoutY="4.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Pane fx:id="panelTransparenteReseñas" layoutX="-5.0" layoutY="-8.0" prefHeight="757.0" prefWidth="768.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
+               <Text fx:id="textescribirreseña" fill="WHITE" fontSmoothingType="LCD" layoutX="149.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Escribir Reseña" />
+               <TextArea fx:id="textoReseñaEnviar" layoutX="149.0" layoutY="234.0" prefHeight="220.0" prefWidth="425.0" promptText="Escribe tu reseña..." styleClass="custom-textarea" />
+               <Button fx:id="botonCancelarInterior" layoutX="479.0" layoutY="472.0" mnemonicParsing="false" text="Cancelar" />
+               <Button fx:id="botonAñadirReseñaInterior1" layoutX="313.0" layoutY="472.0" mnemonicParsing="false" onAction="#BBDDReseña" text="Añadir" />
+            </Pane>
+            <Pane fx:id="panelReseñasPeliculaSerie" layoutX="-1.0" layoutY="-3.0" prefHeight="743.0" prefWidth="756.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
+               <children>
+                  <Button fx:id="botonMasReseñas" layoutX="467.0" layoutY="603.0" mnemonicParsing="false" text="Mas Reseñas" />
+                  <VBox layoutX="75.0" layoutY="66.0" prefHeight="530.0" prefWidth="606.0">
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text fill="WHITE" layoutX="32.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario: " />
+                              <Text fx:id="textUser1" fill="WHITE" layoutX="87.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="117.0" />
+                              <Text fx:id="textReseña1" fill="WHITE" layoutX="32.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reseña a sustituir" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text fill="WHITE" layoutX="23.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario: " />
+                              <Text fx:id="textUser2" fill="WHITE" layoutX="78.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="117.0" />
+                              <Text fx:id="textReseña2" fill="WHITE" layoutX="23.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reseña a sustituir" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="171.0" prefWidth="645.0">
+                           <children>
+                              <Text fill="WHITE" layoutX="23.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario: " />
+                              <Text fx:id="textUser3" fill="WHITE" layoutX="83.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="117.0" />
+                              <Text fx:id="TextReseña3" fill="WHITE" layoutX="23.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reseña a sustituir" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+                  <Button fx:id="botonAtras" layoutX="600.0" layoutY="603.0" mnemonicParsing="false" text="Atras" />
+               </children>
+            </Pane>
+
+         </children>
+      </Pane>
+
    </children>
 </Pane>

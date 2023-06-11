@@ -2,7 +2,10 @@ package com.watchvibe.visualsVista;
 
 
 import com.watchvibe.API.MetodosAPI;
+import com.watchvibe.adModelo.cruds.CRUDPeliculas;
+import com.watchvibe.adModelo.cruds.CRUDSeries;
 import com.watchvibe.adModelo.operaciones.Operacion;
+import com.watchvibe.adModelo.tablas.Comentarios;
 import com.watchvibe.adModelo.tablas.Peliculas;
 import com.watchvibe.adModelo.tablas.Series;
 import com.watchvibe.adModelo.tablas.Usuarios;
@@ -30,11 +33,70 @@ import java.util.List;
 
 public class FXMLMenuController {
 
+    private Usuarios usuarioLogueado;
     private Usuarios usuario;
+    @javafx.fxml.FXML
+    private Pane panelderechaFicha;
+    @javafx.fxml.FXML
+    private TextField textFieldBusqueda1;
+    @javafx.fxml.FXML
+    private ImageView portada;
+    @javafx.fxml.FXML
+    private Button AñadirReseña;
+    @javafx.fxml.FXML
+    private Button VerReseñas;
+    @javafx.fxml.FXML
+    private Button AñadirPelicula;
+    @javafx.fxml.FXML
+    private Button Volver;
+    @javafx.fxml.FXML
+    private Text titulotxt;
+    @javafx.fxml.FXML
+    private Text añotxt;
+    @javafx.fxml.FXML
+    private Text sinopsistxt;
+    @javafx.fxml.FXML
+    private Text pathImagen;
+    @javafx.fxml.FXML
+    private Button botonBusquedaFicha;
+    @javafx.fxml.FXML
+    private ImageView fondopanelderechaficha;
+    @javafx.fxml.FXML
+    private Text textescribirreseña;
+    @javafx.fxml.FXML
+    private Button botonCancelarInterior;
+    @javafx.fxml.FXML
+    private Button botonAñadirReseñaInterior1;
     @javafx.fxml.FXML
     private Label botonCerrar;
     @javafx.fxml.FXML
     private Label botonminimizar;
+    @javafx.fxml.FXML
+    private Label botonCerra1;
+    @javafx.fxml.FXML
+    private Label botonminimiza1;
+    @javafx.fxml.FXML
+    private Pane panelTransparenteReseñas;
+    @javafx.fxml.FXML
+    private TextArea textoReseñaEnvia;
+    @javafx.fxml.FXML
+    private Pane panelReseñasPeliculaSerie;
+    @javafx.fxml.FXML
+    private Button botonMasReseñas;
+    @javafx.fxml.FXML
+    private Text textUser1;
+    @javafx.fxml.FXML
+    private Text textReseña1;
+    @javafx.fxml.FXML
+    private Text textUser2;
+    @javafx.fxml.FXML
+    private Text textReseña2;
+    @javafx.fxml.FXML
+    private Text textUser3;
+    @javafx.fxml.FXML
+    private Text TextReseña3;
+    @javafx.fxml.FXML
+    private Button botonAtras;
 
     public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
@@ -101,13 +163,47 @@ public class FXMLMenuController {
     @javafx.fxml.FXML
     private Text cerrarsesiontxt;
 
+    private Peliculas peliculaSeleccionada;
+    private Series serieSeleccionada;
+
     public void initialize() {
+
+        panelderechaFicha.setVisible(false);
+        panelTransparenteReseñas.setVisible(false);
+        panelReseñasPeliculaSerie.setVisible(false);
 
         BotonSeries.getStyleClass().add("boton-material");
         botonAmigos.getStyleClass().add("boton-material");
+
+        AñadirReseña.getStyleClass().add("boton-material");
+        VerReseñas.getStyleClass().add("boton-material");;
+        AñadirPelicula.getStyleClass().add("boton-material");;
+        Volver.getStyleClass().add("boton-material");;
+
         BotonPeliculas.getStyleClass().add("boton-material");
         botonBusqueda.getStyleClass().add("boton-material");
         textFieldBusqueda.getStyleClass().add("custom-textfield");
+
+        titulotxt.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
+                "-fx-font-size: 0.875em; " +
+                "-fx-border-color: white; " +
+                "-fx-border-width: 0 0 1 0; " +
+                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
+
+
+        añotxt.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
+                "-fx-font-size: 0.875em; " +
+                "-fx-border-color: white; " +
+                "-fx-border-width: 0 0 1 0; " +
+                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
+
+
+        sinopsistxt.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
+                "-fx-font-size: 0.875em; " +
+                "-fx-border-color: white; " +
+                "-fx-border-width: 0 0 1 0; " +
+                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
+
 
         nombreusuariologueado.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
                 "-fx-font-size: 0.875em; " +
@@ -144,10 +240,12 @@ public class FXMLMenuController {
 
         Image IMAGENFONDOIZ = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/DEGRADADO_AZUL.png"));
         fondopanelderecha.setImage(IMAGENFONDOIZ);
+        fondopanelderechaficha.setImage(IMAGENFONDOIZ);
         fondopanelderecha.toBack();
 
         Image IMAGENFONDOdr = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/naranja.png"));
         fondopanelizq.setImage(IMAGENFONDOdr);
+
 
         Image logotip = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/LOGO_COLOR.png"));
         logotipo.setImage(logotip);
@@ -185,27 +283,16 @@ public class FXMLMenuController {
         op.agregarURLsAImageViewsPeliculas(imagePathspelis, imageViewspelis);
         op.agregarURLsAImageViewsSeries(imagePathsSeries, imageViewsSeries);
 
-    }
+        pelicula1.setOnMouseClicked(this::onMouseClicked);
+        pelicula2.setOnMouseClicked(this::onMouseClicked);
+        pelicula3.setOnMouseClicked(this::onMouseClicked);
+        pelicula4.setOnMouseClicked(this::onMouseClicked);
 
-    @Deprecated
-    public void onHandlPerfil(ActionEvent actionEvent) {
-        try {
-            // Cargar el archivo FXML "perfil.fxml"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLPerfil.fxml"));
-            Parent root = loader.load();
+        serie1.setOnMouseClicked(this::onMouseClicked);
+        serie2.setOnMouseClicked(this::onMouseClicked);
+        serie3.setOnMouseClicked(this::onMouseClicked);
+        serie4.setOnMouseClicked(this::onMouseClicked);
 
-            // Crear una nueva escena con el archivo FXML cargado
-            Scene scene = new Scene(root);
-
-            // Obtener la ventana actual a través del evento
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-            // Establecer la escena en la ventana
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @javafx.fxml.FXML
@@ -232,47 +319,43 @@ public class FXMLMenuController {
 
     }
 
-    @javafx.fxml.FXML
-    public void onHandleCatalogo(ActionEvent actionEvent) {
-               /*
-        try {
-            // Cargar el archivo FXML "perfil.fxml"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLCatalogo.fxml"));
-            Parent root = loader.load();
-
-            // Crear una nueva escena con el archivo FXML cargado
-            Scene scene = new Scene(root);
-
-            // Obtener la ventana actual a través del evento
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-            // Establecer la escena en la ventana
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
-    }
 
     @javafx.fxml.FXML
-    public void onMouseClicked(Event event) {
-        try {
-            // Cargar el archivo FXML "perfil.fxml"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLFicha.fxml"));
-            Parent root = loader.load();
+    public void onMouseClicked(MouseEvent event) {
 
-            // Crear una nueva escena con el archivo FXML cargado
-            Scene scene = new Scene(root);
+        panelderecha.setVisible(false);
+        CRUDPeliculas cp = new CRUDPeliculas();
+        CRUDSeries cs = new CRUDSeries();
 
-            // Obtener la ventana actual a través del evento
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        ImageView imageView = (ImageView) event.getSource();
+        String imagePath = imageView.getImage().getUrl();
 
-            // Establecer la escena en la ventana
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        // Comprobar si es una película
+        peliculaSeleccionada = cp.getPeliculaPorPath(imagePath);
+        if (peliculaSeleccionada != null) {
+            // Actualizar los elementos en el panel de películas
+            titulotxt.setText(peliculaSeleccionada.getTitulo());
+            añotxt.setText("" + peliculaSeleccionada.getAnio());
+            sinopsistxt.setText(peliculaSeleccionada.getSinopsis());
+            portada.setImage(new Image(imagePath));
+            // Actualiza otros elementos según los datos de la película seleccionada
+
+            // Mostrar el panel de películas
+            panelderechaFicha.setVisible(true);
+        } else {
+            // Comprobar si es una serie
+            serieSeleccionada = cs.getSeriesPath(imagePath);
+            if (serieSeleccionada != null) {
+                // Actualizar los elementos en el panel de series
+                titulotxt.setText(serieSeleccionada.getTitulo());
+                añotxt.setText("" + serieSeleccionada.getAnio());
+                sinopsistxt.setText(serieSeleccionada.getSinopsis());
+                portada.setImage(new Image(imagePath));
+                // Mostrar el panel de series
+                panelderechaFicha.setVisible(true);
+            } else {
+                System.out.println("No se encontró la película ni la serie.");
+            }
         }
     }
 
@@ -365,5 +448,121 @@ public class FXMLMenuController {
 
         op.agregarURLsAImageViewsSeries(imagePathsSeries, imageViewsSeries);
 
+    }
+
+    @javafx.fxml.FXML
+    public void AñadirReseñas(ActionEvent actionEvent) {
+        /*
+        Operacion op = new Operacion();
+        op.agregarReseña(this, usuarioLogueado);
+        System.out.println("Exito");
+         */
+    }
+
+    @javafx.fxml.FXML
+    public void verReseñasTotal(ActionEvent actionEvent) {
+        panelTransparenteReseñas.setVisible(false);
+
+        Operacion operacion = new Operacion();
+
+        if (peliculaSeleccionada != null) {
+            panelReseñasPeliculaSerie.setVisible(true);
+            List<Comentarios> comentariosPelicula = operacion.obtenerComentariosPeliculas(this, peliculaSeleccionada);
+
+            if (comentariosPelicula.size() >= 1) {
+                // Obtener los primeros tres comentarios o menos si no hay suficientes
+                int numComentarios = Math.min(comentariosPelicula.size(), 3);
+
+                // Recorrer los comentarios
+                for (int i = 0; i < numComentarios; i++) {
+                    Comentarios comentario = comentariosPelicula.get(i);
+                    Usuarios usuario = comentario.getIDUsuario();
+                    String texto = comentario.getContenidodelcomentario();
+
+                    // Establecer los valores en los campos correspondientes
+                    switch (i) {
+                        case 0:
+                            textUser1.setText(usuario.getNombre());
+                            textReseña1.setText(texto);
+                            break;
+                        case 1:
+                            textUser2.setText(usuario.getNombre());
+                            textReseña2.setText(texto);
+                            break;
+                        case 2:
+                            textUser3.setText(usuario.getNombre());
+                            TextReseña3.setText(texto);
+                            break;
+                    }
+                }
+            } else {
+                // No hay comentarios
+                // Limpiar los campos correspondientes
+                textUser1.setText("-");
+                textReseña1.setText("-");
+                textUser2.setText("-");
+                textReseña2.setText("-");
+                textUser3.setText("-");
+                TextReseña3.setText("-");
+            }
+        } else if (serieSeleccionada != null) {
+            panelReseñasPeliculaSerie.setVisible(true);
+
+            List<Comentarios> comentariosSeries = operacion.obtenerComentariosSeries(this,serieSeleccionada);
+
+            if (comentariosSeries.size() >= 1) {
+                // Obtener los primeros tres comentarios o menos si no hay suficientes
+                int numComentarios = Math.min(comentariosSeries.size(), 3);
+
+                // Recorrer los comentarios
+                for (int i = 0; i < numComentarios; i++) {
+                    Comentarios comentario = comentariosSeries.get(i);
+                    Usuarios usuario = comentario.getIDUsuario();
+                    String texto = comentario.getContenidodelcomentario();
+
+                    // Establecer los valores en los campos correspondientes
+                    switch (i) {
+                        case 0:
+                            textUser1.setText(usuario.getNombre());
+                            textReseña1.setText(texto);
+                            break;
+                        case 1:
+                            textUser2.setText(usuario.getNombre());
+                            textReseña2.setText(texto);
+                            break;
+                        case 2:
+                            textUser3.setText(usuario.getNombre());
+                            TextReseña3.setText(texto);
+                            break;
+                    }
+                }
+            } else {
+                textUser1.setText("");
+                textReseña1.setText("");
+                textUser2.setText("");
+                textReseña2.setText("");
+                textUser3.setText("");
+                TextReseña3.setText("");
+            }
+        } else {
+            System.out.println("Error");
+        }
+    }
+
+
+    @javafx.fxml.FXML
+    public void añadirpelicula(ActionEvent actionEvent) {
+
+
+    }
+
+    @javafx.fxml.FXML
+    public void volver(ActionEvent actionEvent) {
+        panelderechaFicha.setVisible(false);
+        panelderecha.setVisible(true);
+    }
+
+    @javafx.fxml.FXML
+    public void BBDDReseña(ActionEvent actionEvent) {
     }
 }

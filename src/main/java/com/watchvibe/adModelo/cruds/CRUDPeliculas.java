@@ -42,6 +42,23 @@ public class CRUDPeliculas {
         return pelicula;
     }
 
+    public Peliculas getPeliculaPorPath(String FotodePortada) {
+        Peliculas pelicula = null;
+        EntityManager em = Conexion.conecta();
+        try {
+            Query query = em.createNamedQuery("Peliculas.findByFotodePortada");
+            query.setParameter("fotodePortada", FotodePortada);
+            pelicula = (Peliculas) query.getSingleResult();
+        } catch (NoResultException ex) {
+            System.out.println("No se encontró la película. " + ex.getMessage());
+        } catch (IllegalArgumentException ex1) {
+            System.out.println("Error en el argumento. " + ex1.getMessage());
+        }
+        Conexion.desconecta(em);
+        return pelicula;
+    }
+
+
 
     public void createPelicula(Peliculas pelicula) {
         EntityManager em = Conexion.conecta();

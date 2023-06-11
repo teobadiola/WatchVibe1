@@ -43,6 +43,22 @@ public class CRUDSeries {
         return serie;
     }
 
+    public Series getSeriesPath(String path) {
+        Series serie = null;
+        EntityManager em = Conexion.conecta();
+        try {
+            Query query = em.createNamedQuery("Series.findByFotodePortada");
+            query.setParameter("fotodePortada", path);
+            serie = (Series) query.getSingleResult();
+        } catch (NoResultException ex) {
+            System.out.println("No se encontró la serie. " + ex.getMessage());
+        } catch (IllegalArgumentException ex1) {
+            System.out.println("Error en el argumento. " + ex1.getMessage());
+        }
+        Conexion.desconecta(em);
+        return serie;
+    }
+
 
     public void createSeries(Series series) {
         EntityManager em = Conexion.conecta();
