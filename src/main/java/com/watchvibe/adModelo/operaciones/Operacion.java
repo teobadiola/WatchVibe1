@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import javax.persistence.*;
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -116,7 +117,7 @@ public class Operacion {
     }
 
     public void agregarPelicula(FXMLBuscarController busqcontr, Usuarios usuario) {
-        System.out.println("ID "+usuario.getIDUsuario());
+        System.out.println("ID " + usuario.getIDUsuario());
         // Establecer la conexión a la base de datos usando EntityManager
         EntityManager em = Conexion.conecta();
         EntityTransaction transaction = null;
@@ -256,6 +257,122 @@ public class Operacion {
             em.close();
         }
     }
+
+    public void agregarPeliculaSerie(FXMLBuscarController busqcontr, Usuarios usuario, boolean esPelicula) {
+        // Establecer la conexión a la base de datos usando EntityManager
+        EntityManager em = Conexion.conecta();
+        EntityTransaction transaction = null;
+
+        try {
+            transaction = em.getTransaction();
+            transaction.begin();
+
+            // Verificar si el usuario tiene un catálogo de películas o series
+            Query consultaCatalogoPeliculas = em.createQuery("SELECT cp FROM CatalogoPeliculas cp WHERE cp.iDusuario = :usuario");
+            consultaCatalogoPeliculas.setParameter("usuario", usuario);
+            List<CatalogoPeliculas> catalogoPeliculas = consultaCatalogoPeliculas.getResultList();
+
+            Query consultaCatalogoSeries = em.createQuery("SELECT cs FROM CatalogoSeries cs WHERE cs.iDusuario = :usuario");
+            consultaCatalogoSeries.setParameter("usuario", usuario);
+            List<CatalogoSeries> catalogoSeries = consultaCatalogoSeries.getResultList();
+
+            // Si el catálogo de películas o series del usuario no existe, se crea
+            if (catalogoPeliculas.isEmpty() && esPelicula) {
+                CatalogoPeliculas nuevoCatalogoPeliculas = new CatalogoPeliculas();
+                nuevoCatalogoPeliculas.setIDusuario(usuario);
+                em.persist(nuevoCatalogoPeliculas);
+            }
+
+            if (catalogoSeries.isEmpty() && !esPelicula) {
+                CatalogoSeries nuevoCatalogoSeries = new CatalogoSeries();
+                nuevoCatalogoSeries.setIDusuario(usuario);
+                em.persist(nuevoCatalogoSeries);
+            }
+
+            // Verificar si el título ya existe en la base de datos
+            String titulo = busqcontr.getTitulotxt().getText();
+            Query consultaItem = null;
+            List<?> itemsExistentes = null;
+
+            if (esPelicula) {
+                consultaItem = em.createQuery("SELECT p FROM Peliculas p WHERE p.titulo = :titulo");
+                consultaItem.setParameter("titulo", titulo);
+                itemsExistentes = consultaItem.getResultList();
+            } else {
+                consultaItem = em.createQuery("SELECT s FROM Series s WHERE s.titulo = :titulo");
+                consultaItem.setParameter("titulo", titulo);
+                itemsExistentes = consultaItem.getResultList();
+            }
+
+            if (!itemsExistentes.isEmpty()) {
+                System.out.println("El item ya existe en la base de datos.");
+
+                // Agregar el item existente al catálogo del usuario
+                Object itemExistente = itemsExistentes.get(0); // Obtener el primer item coincidente
+
+                if (esPelicula) {
+                    CatalogoPeliculas cp = new CatalogoPeliculas();
+                    cp.setIDusuario(usuario);
+                    cp.setIDpelicula((Peliculas) itemExistente);
+                    cp.setFechadeanadido(new Date());
+                    em.persist(cp);
+                } else {
+                    CatalogoSeries cs = new CatalogoSeries();
+                    cs.setIDusuario(usuario);
+                    cs.setIDserie((Series) itemExistente);
+                    cs.setFechadeanadido(new Date());
+                    em.persist(cs);
+                }
+            } else {
+                // El item no existe, se procede a agregarlo
+
+                if (esPelicula) {
+                    // Paso 1: Insertar la película en la tabla "peliculas"
+                    Peliculas pelicula = new Peliculas();
+                    pelicula.setTitulo(titulo);
+                    pelicula.setAnio(Integer.parseInt(busqcontr.getAniotxt().getText()));
+                    pelicula.setSinopsis(busqcontr.getSionpsistxt().getText());
+                    pelicula.setFotodePortada(busqcontr.getPathimagentxt().getText());
+                    em.persist(pelicula);
+
+                    // Paso 2: Insertar la película en el catálogo de películas del usuario
+                    CatalogoPeliculas cp = new CatalogoPeliculas();
+                    cp.setIDusuario(usuario);
+                    cp.setIDpelicula(pelicula);
+                    cp.setFechadeanadido(new Date());
+                    em.persist(cp);
+                } else {
+                    // Paso 1: Insertar la serie en la tabla "series"
+                    Series serie = new Series();
+                    serie.setTitulo(titulo);
+                    serie.setAnio(Integer.parseInt(busqcontr.getAniotxt().getText()));
+                    serie.setSinopsis(busqcontr.getSionpsistxt().getText());
+                    serie.setFotodePortada(busqcontr.getPathimagentxt().getText());
+                    em.persist(serie);
+
+                    // Paso 2: Insertar la serie en el catálogo de series del usuario
+                    CatalogoSeries cs = new CatalogoSeries();
+                    cs.setIDusuario(usuario);
+                    cs.setIDserie(serie);
+                    cs.setFechadeanadido(new Date());
+                    em.persist(cs);
+                }
+            }
+
+            // Confirmar la transacción
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // En caso de error, hacer rollback de la transacción
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+        } finally {
+            // Cerrar EntityManager
+            em.close();
+        }
+    }
+
 
     public void agregarPeliculaPreCarga(Peliculas pelicula) {
         EntityManager em = Conexion.conecta();
@@ -410,7 +527,7 @@ public class Operacion {
         return paths;
     }
 
-    public ArrayList<String> obtenerPathsSeriesAleatorios( int nant) {
+    public ArrayList<String> obtenerPathsSeriesAleatorios(int nant) {
         ArrayList<String> paths = new ArrayList<>();
 
         // Crear el EntityManager
@@ -453,14 +570,14 @@ public class Operacion {
 
     public void agregarURLsAImageViewsSeries(ArrayList<String> imagePaths, ImageView[] imageViews) {
         for (int i = 0; i < imagePaths.size(); i++) {
-                String imagePath = imagePaths.get(i);
-                Image image = new Image(imagePath);
-                imageViews[i].setImage(image);
-            }
+            String imagePath = imagePaths.get(i);
+            Image image = new Image(imagePath);
+            imageViews[i].setImage(image);
         }
+    }
 
 
-    public void agregarReseña(FXMLBuscarController busqcontr,Usuarios usuario) {
+    public void agregarReseña(FXMLBuscarController busqcontr, Usuarios usuario) {
         String reseña = busqcontr.getTextoReseñaEnviar().getText();
         Peliculas peliculaSeleccionada = busqcontr.getListviewpeliculas().getSelectionModel().getSelectedItem();
         Series serieSeleccionada = busqcontr.getListviewseries().getSelectionModel().getSelectedItem();
@@ -509,6 +626,55 @@ public class Operacion {
 
             transaction.commit();
             busqcontr.getPanelTransparente().setVisible(false);
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+        } finally {
+            em.close();
+        }
+    }
+
+    public void agregarReseñaMenu(FXMLMenuController fxmlMenuController, Usuarios usuario) {
+        String reseña = fxmlMenuController.getTextoReseñaEnviarr().getText();
+
+        EntityManager em = Conexion.conecta();
+        EntityTransaction transaction = null;
+
+        try {
+            transaction = em.getTransaction();
+            transaction.begin();
+
+            if (fxmlMenuController.peliculaSeleccionada != null) {
+
+                Query query = em.createQuery("SELECT p FROM Peliculas p WHERE p.titulo = :titulo");
+                query.setParameter("titulo", fxmlMenuController.peliculaSeleccionada.getTitulo());
+                Peliculas peliculaExistente = (Peliculas) query.getSingleResult();
+
+                Comentarios comentario = new Comentarios();
+                comentario.setContenidodelcomentario(reseña);
+                comentario.setFechadepublicacion(new Date());
+                comentario.setIDUsuario(usuario);
+                comentario.setIDPelicula(peliculaExistente);
+
+                em.persist(comentario);
+            } else if (fxmlMenuController.serieSeleccionada != null) {
+
+                System.out.println("serie SELECCIONADA a insertar");
+                Query query = em.createQuery("SELECT s FROM Series s WHERE s.titulo = :titulo");
+                query.setParameter("titulo", fxmlMenuController.serieSeleccionada.getTitulo());
+                Series serieExistente = (Series) query.getSingleResult();
+
+                Comentarios comentario = new Comentarios();
+                comentario.setContenidodelcomentario(reseña);
+                comentario.setFechadepublicacion(new Date());
+                comentario.setIDUsuario(usuario);
+                comentario.setIDSerie(serieExistente);
+
+            }
+
+            transaction.commit();
+            fxmlMenuController.getPanelReseñasPeliculaSerie().setVisible(false);
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
@@ -588,28 +754,89 @@ public class Operacion {
     }
 
     public List<Comentarios> obtenerComentariosSeries(FXMLMenuController fxmlMenuController, Series serieSeleccionada) {
-            CRUDSeries cs = new CRUDSeries();
-            EntityManager em = Conexion.conecta();
+        CRUDSeries cs = new CRUDSeries();
+        EntityManager em = Conexion.conecta();
 
-            try {
+        try {
 
-                Series serie = cs.getSeries(serieSeleccionada.getTitulo());
+            Series serie = cs.getSeries(serieSeleccionada.getTitulo());
 
-                // Realizar la consulta para obtener los comentarios de la serie seleccionada
-                Query consulta = em.createQuery("SELECT c FROM Comentarios c WHERE c.iDSerie = :serie");
-                consulta.setParameter("serie", serie);
-                List<Comentarios> comentarios = consulta.getResultList();
+            // Realizar la consulta para obtener los comentarios de la serie seleccionada
+            Query consulta = em.createQuery("SELECT c FROM Comentarios c WHERE c.iDSerie = :serie");
+            consulta.setParameter("serie", serie);
+            List<Comentarios> comentarios = consulta.getResultList();
 
-                return comentarios;
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                em.close();
-            }
-
-            return new ArrayList<>(); // Si ocurre un error, se devuelve una lista vacía
+            return comentarios;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
         }
 
+        return new ArrayList<>(); // Si ocurre un error, se devuelve una lista vacía
     }
+
+    public void AgregarCatalogo(FXMLMenuController fxmlMenuController, Usuarios usuario) {
+        EntityManager em = Conexion.conecta();
+        EntityTransaction transaction = null;
+
+        try {
+            transaction = em.getTransaction();
+            transaction.begin();
+
+            if (fxmlMenuController.peliculaSeleccionada != null) {
+                // Verificar si el usuario ya tiene la película en su catálogo
+                Query query = em.createQuery("SELECT cp FROM CatalogoPeliculas cp WHERE cp.iDusuario = :usuario AND cp.iDpelicula = :pelicula");
+                query.setParameter("usuario", usuario);
+                query.setParameter("pelicula", fxmlMenuController.peliculaSeleccionada);
+                List<CatalogoPeliculas> catalogoPeliculas = query.getResultList();
+
+                if (catalogoPeliculas.isEmpty()) {
+                    CatalogoPeliculas cp = new CatalogoPeliculas();
+                    cp.setIDusuario(usuario);
+                    cp.setIDpelicula(fxmlMenuController.peliculaSeleccionada);
+                    cp.setFechadeanadido(new Date());
+                    em.persist(cp);
+                    System.out.println("Película agregada");
+                } else {
+                    System.out.println("El usuario ya tiene la película en su catálogo.");
+                }
+            } else {
+                System.out.println("No se ha seleccionado una película para agregar al catálogo.");
+            }
+
+            if (fxmlMenuController.serieSeleccionada != null) {
+                // Verificar si el usuario ya tiene la serie en su catálogo
+                Query query = em.createQuery("SELECT cs FROM CatalogoSeries cs WHERE cs.iDusuario = :usuario AND cs.iDserie = :serie");
+                query.setParameter("usuario", usuario);
+                query.setParameter("serie", fxmlMenuController.serieSeleccionada);
+                List<CatalogoSeries> catalogoSeries = query.getResultList();
+
+                if (catalogoSeries.isEmpty()) {
+                    CatalogoSeries cs = new CatalogoSeries();
+                    cs.setIDusuario(usuario);
+                    cs.setIDserie(fxmlMenuController.serieSeleccionada);
+                    cs.setFechadeanadido(new Date());
+                    em.persist(cs);
+                    System.out.println("Serie agregada al catálogo.");
+                } else {
+                    System.out.println("El usuario ya tiene la serie en su catálogo.");
+                }
+            } else {
+                System.out.println("No se ha seleccionado una serie para agregar al catálogo.");
+            }
+
+            transaction.commit();
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            System.out.println("Error al agregar el elemento al catálogo: " + ex.getMessage());
+        } finally {
+            em.close();
+        }
+    }
+}
+
 
 

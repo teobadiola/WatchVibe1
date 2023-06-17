@@ -242,7 +242,9 @@ public class FXMLRegistroController {
                 correct = false;
             } else {
                 textfieldemail.setStyle("");
-                /*Contraseña entre 4 y 32 caracteres que necesita al menos 3 de 4 (mayúsculas y letras minúsculas, números y caracteres especiales) y como máximo 2 caracteres consecutivos iguales.*/
+
+                /*Contraseña entre 4 y 32 caracteres que necesita al menos 3 de 4 (mayúsculas y letras minúsculas,
+                 números y caracteres especiales) y como máximo 2 caracteres consecutivos iguales.*/
                 String COMPLEX_PASSWORD_REGEX = "^(?:(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])|"
                         + "(?=.*\\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|"
                         + "(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|"

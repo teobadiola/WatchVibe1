@@ -162,7 +162,7 @@
       </Pane>
       <Pane fx:id="panelderechaFicha" layoutX="269.0" layoutY="-1.0" prefHeight="743.0" prefWidth="756.0">
          <children>
-            <ImageView fx:id="fondopanelderechaficha" fitHeight="743.0" fitWidth="745.0" pickOnBounds="true">
+            <ImageView fx:id="fondopanelderechaficha" fitHeight="743.0" fitWidth="745.0" layoutX="-6.0" layoutY="-1.0" pickOnBounds="true">
                <image>
                   <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
                </image>
@@ -170,17 +170,11 @@
                   <BoxBlur />
                </effect>
             </ImageView>
-            <Button fx:id="botonBusquedaFicha" layoutX="51.0" layoutY="41.0" mnemonicParsing="false" onAction="#metodoBuscarPeliculasySeries" prefHeight="30.0" prefWidth="88.0" text="Buscar">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Button>
-            <TextField fx:id="textFieldBusqueda1" layoutX="191.0" layoutY="39.0" prefHeight="37.0" prefWidth="437.0" />
             <ImageView fx:id="portada" fitHeight="409.0" fitWidth="256.0" layoutX="51.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="AñadirReseña" layoutX="95.0" layoutY="643.0" mnemonicParsing="false" onAction="#AñadirReseñas" text="Añadir reseña" />
-            <Button fx:id="VerReseñas" layoutX="293.0" layoutY="643.0" mnemonicParsing="false" onAction="#verReseñasTotal" text="Ver Reseñas" />
-            <Button fx:id="AñadirPelicula" layoutX="469.0" layoutY="643.0" mnemonicParsing="false" onAction="#añadirpelicula" text="Añadir" />
-            <Button fx:id="Volver" layoutX="628.0" layoutY="643.0" mnemonicParsing="false" onAction="#volver" text="Volver" />
+            <Button fx:id="AñadirReseña" layoutX="79.0" layoutY="618.0" mnemonicParsing="false" onAction="#AñadirReseñas" text="Añadir reseña" />
+            <Button fx:id="VerReseñas" layoutX="207.0" layoutY="618.0" mnemonicParsing="false" onAction="#verReseñasTotal" text="Ver Reseñas" />
+            <Button fx:id="AñadirPelicula" layoutX="460.0" layoutY="618.0" mnemonicParsing="false" onAction="#añadirpelicula" text="Añadir" />
+            <Button fx:id="Volver" layoutX="598.0" layoutY="618.0" mnemonicParsing="false" onAction="#volver" text="Volver" />
             <Text fill="WHITE" layoutX="367.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titulo" />
             <Text fill="WHITE" layoutX="367.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Año" />
             <Text fx:id="titulotxt" fill="WHITE" layoutX="367.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" />
@@ -238,7 +232,7 @@
                         </Pane>
                      </children>
                   </VBox>
-                  <Button fx:id="botonAtras" layoutX="600.0" layoutY="603.0" mnemonicParsing="false" text="Atras" />
+                  <Button fx:id="botonAtras" layoutX="600.0" layoutY="603.0" mnemonicParsing="false" onAction="#volverReseñasTotales" text="Atras" />
                </children>
             </Pane>
 

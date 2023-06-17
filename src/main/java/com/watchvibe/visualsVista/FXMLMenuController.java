@@ -4,6 +4,7 @@ package com.watchvibe.visualsVista;
 import com.watchvibe.API.MetodosAPI;
 import com.watchvibe.adModelo.cruds.CRUDPeliculas;
 import com.watchvibe.adModelo.cruds.CRUDSeries;
+import com.watchvibe.adModelo.operaciones.Autenticator;
 import com.watchvibe.adModelo.operaciones.Operacion;
 import com.watchvibe.adModelo.tablas.Comentarios;
 import com.watchvibe.adModelo.tablas.Peliculas;
@@ -38,8 +39,6 @@ public class FXMLMenuController {
     @javafx.fxml.FXML
     private Pane panelderechaFicha;
     @javafx.fxml.FXML
-    private TextField textFieldBusqueda1;
-    @javafx.fxml.FXML
     private ImageView portada;
     @javafx.fxml.FXML
     private Button AñadirReseña;
@@ -58,8 +57,6 @@ public class FXMLMenuController {
     @javafx.fxml.FXML
     private Text pathImagen;
     @javafx.fxml.FXML
-    private Button botonBusquedaFicha;
-    @javafx.fxml.FXML
     private ImageView fondopanelderechaficha;
     @javafx.fxml.FXML
     private Text textescribirreseña;
@@ -68,17 +65,7 @@ public class FXMLMenuController {
     @javafx.fxml.FXML
     private Button botonAñadirReseñaInterior1;
     @javafx.fxml.FXML
-    private Label botonCerrar;
-    @javafx.fxml.FXML
-    private Label botonminimizar;
-    @javafx.fxml.FXML
-    private Label botonCerra1;
-    @javafx.fxml.FXML
-    private Label botonminimiza1;
-    @javafx.fxml.FXML
     private Pane panelTransparenteReseñas;
-    @javafx.fxml.FXML
-    private TextArea textoReseñaEnvia;
     @javafx.fxml.FXML
     private Pane panelReseñasPeliculaSerie;
     @javafx.fxml.FXML
@@ -97,6 +84,16 @@ public class FXMLMenuController {
     private Text TextReseña3;
     @javafx.fxml.FXML
     private Button botonAtras;
+    @javafx.fxml.FXML
+    private Label botonCerrar;
+    @javafx.fxml.FXML
+    private Label botonminimizar;
+    @javafx.fxml.FXML
+    private Label botonCerrarr1;
+    @javafx.fxml.FXML
+    private Label botonminimizarr1;
+    @javafx.fxml.FXML
+    public TextArea textoReseñaEnviarr;
 
     public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
@@ -163,8 +160,492 @@ public class FXMLMenuController {
     @javafx.fxml.FXML
     private Text cerrarsesiontxt;
 
-    private Peliculas peliculaSeleccionada;
-    private Series serieSeleccionada;
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public Pane getPanelderechaFicha() {
+        return panelderechaFicha;
+    }
+
+    public void setPanelderechaFicha(Pane panelderechaFicha) {
+        this.panelderechaFicha = panelderechaFicha;
+    }
+
+    public ImageView getPortada() {
+        return portada;
+    }
+
+    public void setPortada(ImageView portada) {
+        this.portada = portada;
+    }
+
+    public Button getAñadirReseña() {
+        return AñadirReseña;
+    }
+
+    public void setAñadirReseña(Button añadirReseña) {
+        AñadirReseña = añadirReseña;
+    }
+
+    public Button getVerReseñas() {
+        return VerReseñas;
+    }
+
+    public void setVerReseñas(Button verReseñas) {
+        VerReseñas = verReseñas;
+    }
+
+    public Button getAñadirPelicula() {
+        return AñadirPelicula;
+    }
+
+    public void setAñadirPelicula(Button añadirPelicula) {
+        AñadirPelicula = añadirPelicula;
+    }
+
+    public Button getVolver() {
+        return Volver;
+    }
+
+    public void setVolver(Button volver) {
+        Volver = volver;
+    }
+
+    public Text getTitulotxt() {
+        return titulotxt;
+    }
+
+    public void setTitulotxt(Text titulotxt) {
+        this.titulotxt = titulotxt;
+    }
+
+    public Text getAñotxt() {
+        return añotxt;
+    }
+
+    public void setAñotxt(Text añotxt) {
+        this.añotxt = añotxt;
+    }
+
+    public Text getSinopsistxt() {
+        return sinopsistxt;
+    }
+
+    public void setSinopsistxt(Text sinopsistxt) {
+        this.sinopsistxt = sinopsistxt;
+    }
+
+    public Text getPathImagen() {
+        return pathImagen;
+    }
+
+    public void setPathImagen(Text pathImagen) {
+        this.pathImagen = pathImagen;
+    }
+
+    public ImageView getFondopanelderechaficha() {
+        return fondopanelderechaficha;
+    }
+
+    public void setFondopanelderechaficha(ImageView fondopanelderechaficha) {
+        this.fondopanelderechaficha = fondopanelderechaficha;
+    }
+
+    public Text getTextescribirreseña() {
+        return textescribirreseña;
+    }
+
+    public void setTextescribirreseña(Text textescribirreseña) {
+        this.textescribirreseña = textescribirreseña;
+    }
+
+    public Button getBotonCancelarInterior() {
+        return botonCancelarInterior;
+    }
+
+    public void setBotonCancelarInterior(Button botonCancelarInterior) {
+        this.botonCancelarInterior = botonCancelarInterior;
+    }
+
+    public Button getBotonAñadirReseñaInterior1() {
+        return botonAñadirReseñaInterior1;
+    }
+
+    public void setBotonAñadirReseñaInterior1(Button botonAñadirReseñaInterior1) {
+        this.botonAñadirReseñaInterior1 = botonAñadirReseñaInterior1;
+    }
+
+    public Pane getPanelTransparenteReseñas() {
+        return panelTransparenteReseñas;
+    }
+
+    public void setPanelTransparenteReseñas(Pane panelTransparenteReseñas) {
+        this.panelTransparenteReseñas = panelTransparenteReseñas;
+    }
+
+    public Pane getPanelReseñasPeliculaSerie() {
+        return panelReseñasPeliculaSerie;
+    }
+
+    public void setPanelReseñasPeliculaSerie(Pane panelReseñasPeliculaSerie) {
+        this.panelReseñasPeliculaSerie = panelReseñasPeliculaSerie;
+    }
+
+    public Button getBotonMasReseñas() {
+        return botonMasReseñas;
+    }
+
+    public void setBotonMasReseñas(Button botonMasReseñas) {
+        this.botonMasReseñas = botonMasReseñas;
+    }
+
+    public Text getTextUser1() {
+        return textUser1;
+    }
+
+    public void setTextUser1(Text textUser1) {
+        this.textUser1 = textUser1;
+    }
+
+    public Text getTextReseña1() {
+        return textReseña1;
+    }
+
+    public void setTextReseña1(Text textReseña1) {
+        this.textReseña1 = textReseña1;
+    }
+
+    public Text getTextUser2() {
+        return textUser2;
+    }
+
+    public void setTextUser2(Text textUser2) {
+        this.textUser2 = textUser2;
+    }
+
+    public Text getTextReseña2() {
+        return textReseña2;
+    }
+
+    public void setTextReseña2(Text textReseña2) {
+        this.textReseña2 = textReseña2;
+    }
+
+    public Text getTextUser3() {
+        return textUser3;
+    }
+
+    public void setTextUser3(Text textUser3) {
+        this.textUser3 = textUser3;
+    }
+
+    public Text getTextReseña3() {
+        return TextReseña3;
+    }
+
+    public void setTextReseña3(Text textReseña3) {
+        TextReseña3 = textReseña3;
+    }
+
+    public Button getBotonAtras() {
+        return botonAtras;
+    }
+
+    public void setBotonAtras(Button botonAtras) {
+        this.botonAtras = botonAtras;
+    }
+
+    public Label getBotonCerrar() {
+        return botonCerrar;
+    }
+
+    public void setBotonCerrar(Label botonCerrar) {
+        this.botonCerrar = botonCerrar;
+    }
+
+    public Label getBotonminimizar() {
+        return botonminimizar;
+    }
+
+    public void setBotonminimizar(Label botonminimizar) {
+        this.botonminimizar = botonminimizar;
+    }
+
+    public Label getBotonCerrarr1() {
+        return botonCerrarr1;
+    }
+
+    public void setBotonCerrarr1(Label botonCerrarr1) {
+        this.botonCerrarr1 = botonCerrarr1;
+    }
+
+    public Label getBotonminimizarr1() {
+        return botonminimizarr1;
+    }
+
+    public void setBotonminimizarr1(Label botonminimizarr1) {
+        this.botonminimizarr1 = botonminimizarr1;
+    }
+
+    public TextArea getTextoReseñaEnviarr() {
+        return textoReseñaEnviarr;
+    }
+
+    public void setTextoReseñaEnviarr(TextArea textoReseñaEnviarr) {
+        this.textoReseñaEnviarr = textoReseñaEnviarr;
+    }
+
+    public Pane getPanelizq() {
+        return panelizq;
+    }
+
+    public void setPanelizq(Pane panelizq) {
+        this.panelizq = panelizq;
+    }
+
+    public ImageView getFondopanelizq() {
+        return fondopanelizq;
+    }
+
+    public void setFondopanelizq(ImageView fondopanelizq) {
+        this.fondopanelizq = fondopanelizq;
+    }
+
+    public ImageView getLogotipo() {
+        return logotipo;
+    }
+
+    public void setLogotipo(ImageView logotipo) {
+        this.logotipo = logotipo;
+    }
+
+    public ImageView getIconouser() {
+        return iconouser;
+    }
+
+    public void setIconouser(ImageView iconouser) {
+        this.iconouser = iconouser;
+    }
+
+    public ImageView getIconoAmigos() {
+        return IconoAmigos;
+    }
+
+    public void setIconoAmigos(ImageView iconoAmigos) {
+        IconoAmigos = iconoAmigos;
+    }
+
+    public Button getBotonAmigos() {
+        return botonAmigos;
+    }
+
+    public void setBotonAmigos(Button botonAmigos) {
+        this.botonAmigos = botonAmigos;
+    }
+
+    public ImageView getIconoPeliculas() {
+        return iconoPeliculas;
+    }
+
+    public void setIconoPeliculas(ImageView iconoPeliculas) {
+        this.iconoPeliculas = iconoPeliculas;
+    }
+
+    public Button getBotonPeliculas() {
+        return BotonPeliculas;
+    }
+
+    public void setBotonPeliculas(Button botonPeliculas) {
+        BotonPeliculas = botonPeliculas;
+    }
+
+    public Pane getPanelderecha() {
+        return panelderecha;
+    }
+
+    public void setPanelderecha(Pane panelderecha) {
+        this.panelderecha = panelderecha;
+    }
+
+    public ImageView getFondopanelderecha() {
+        return fondopanelderecha;
+    }
+
+    public void setFondopanelderecha(ImageView fondopanelderecha) {
+        this.fondopanelderecha = fondopanelderecha;
+    }
+
+    public ImageView getPelicula1() {
+        return pelicula1;
+    }
+
+    public void setPelicula1(ImageView pelicula1) {
+        this.pelicula1 = pelicula1;
+    }
+
+    public ImageView getPelicula2() {
+        return pelicula2;
+    }
+
+    public void setPelicula2(ImageView pelicula2) {
+        this.pelicula2 = pelicula2;
+    }
+
+    public ImageView getPelicula3() {
+        return pelicula3;
+    }
+
+    public void setPelicula3(ImageView pelicula3) {
+        this.pelicula3 = pelicula3;
+    }
+
+    public ImageView getPelicula4() {
+        return pelicula4;
+    }
+
+    public void setPelicula4(ImageView pelicula4) {
+        this.pelicula4 = pelicula4;
+    }
+
+    public ImageView getBotonmaspeliculas() {
+        return botonmaspeliculas;
+    }
+
+    public void setBotonmaspeliculas(ImageView botonmaspeliculas) {
+        this.botonmaspeliculas = botonmaspeliculas;
+    }
+
+    public ImageView getBotonmasseries() {
+        return botonmasseries;
+    }
+
+    public void setBotonmasseries(ImageView botonmasseries) {
+        this.botonmasseries = botonmasseries;
+    }
+
+    public ImageView getSerie1() {
+        return serie1;
+    }
+
+    public void setSerie1(ImageView serie1) {
+        this.serie1 = serie1;
+    }
+
+    public ImageView getSerie2() {
+        return serie2;
+    }
+
+    public void setSerie2(ImageView serie2) {
+        this.serie2 = serie2;
+    }
+
+    public ImageView getSerie3() {
+        return serie3;
+    }
+
+    public void setSerie3(ImageView serie3) {
+        this.serie3 = serie3;
+    }
+
+    public ImageView getSerie4() {
+        return serie4;
+    }
+
+    public void setSerie4(ImageView serie4) {
+        this.serie4 = serie4;
+    }
+
+    public Button getBotonBusqueda() {
+        return botonBusqueda;
+    }
+
+    public void setBotonBusqueda(Button botonBusqueda) {
+        this.botonBusqueda = botonBusqueda;
+    }
+
+    public Text getPeliculastendenciatext() {
+        return peliculastendenciatext;
+    }
+
+    public void setPeliculastendenciatext(Text peliculastendenciatext) {
+        this.peliculastendenciatext = peliculastendenciatext;
+    }
+
+    public Text getSeriestendenciatext() {
+        return seriestendenciatext;
+    }
+
+    public void setSeriestendenciatext(Text seriestendenciatext) {
+        this.seriestendenciatext = seriestendenciatext;
+    }
+
+    public TextField getTextFieldBusqueda() {
+        return textFieldBusqueda;
+    }
+
+    public void setTextFieldBusqueda(TextField textFieldBusqueda) {
+        this.textFieldBusqueda = textFieldBusqueda;
+    }
+
+    public Operacion getOp() {
+        return op;
+    }
+
+    public void setOp(Operacion op) {
+        this.op = op;
+    }
+
+    public Button getBotonSeries() {
+        return BotonSeries;
+    }
+
+    public void setBotonSeries(Button botonSeries) {
+        BotonSeries = botonSeries;
+    }
+
+    public Text getNombreusuariologueado() {
+        return nombreusuariologueado;
+    }
+
+    public void setNombreusuariologueado(Text nombreusuariologueado) {
+        this.nombreusuariologueado = nombreusuariologueado;
+    }
+
+    public Text getEmailusuariologueado() {
+        return emailusuariologueado;
+    }
+
+    public void setEmailusuariologueado(Text emailusuariologueado) {
+        this.emailusuariologueado = emailusuariologueado;
+    }
+
+    public Text getCerrarsesiontxt() {
+        return cerrarsesiontxt;
+    }
+
+    public void setCerrarsesiontxt(Text cerrarsesiontxt) {
+        this.cerrarsesiontxt = cerrarsesiontxt;
+    }
+
+    public Peliculas getPeliculaSeleccionada() {
+        return peliculaSeleccionada;
+    }
+
+    public void setPeliculaSeleccionada(Peliculas peliculaSeleccionada) {
+        this.peliculaSeleccionada = peliculaSeleccionada;
+    }
+
+    public Series getSerieSeleccionada() {
+        return serieSeleccionada;
+    }
+
+    public void setSerieSeleccionada(Series serieSeleccionada) {
+        this.serieSeleccionada = serieSeleccionada;
+    }
+
+    public Peliculas peliculaSeleccionada;
+    public Series serieSeleccionada;
 
     public void initialize() {
 
@@ -338,7 +819,6 @@ public class FXMLMenuController {
             añotxt.setText("" + peliculaSeleccionada.getAnio());
             sinopsistxt.setText(peliculaSeleccionada.getSinopsis());
             portada.setImage(new Image(imagePath));
-            // Actualiza otros elementos según los datos de la película seleccionada
 
             // Mostrar el panel de películas
             panelderechaFicha.setVisible(true);
@@ -452,11 +932,9 @@ public class FXMLMenuController {
 
     @javafx.fxml.FXML
     public void AñadirReseñas(ActionEvent actionEvent) {
-        /*
-        Operacion op = new Operacion();
-        op.agregarReseña(this, usuarioLogueado);
-        System.out.println("Exito");
-         */
+        panelTransparenteReseñas.setVisible(true);
+        //botonCerra.toFront();
+        //botonminimiza.toFront();
     }
 
     @javafx.fxml.FXML
@@ -552,8 +1030,10 @@ public class FXMLMenuController {
 
     @javafx.fxml.FXML
     public void añadirpelicula(ActionEvent actionEvent) {
-
-
+        usuarioLogueado = Autenticator.getUsuarioLogueado();
+        System.out.println(usuarioLogueado.toString());
+        Operacion op = new Operacion();
+        op.AgregarCatalogo(this,usuarioLogueado);
     }
 
     @javafx.fxml.FXML
@@ -564,5 +1044,13 @@ public class FXMLMenuController {
 
     @javafx.fxml.FXML
     public void BBDDReseña(ActionEvent actionEvent) {
+        Operacion op = new Operacion();
+        op.agregarReseñaMenu(this, usuarioLogueado);
+        System.out.println("Exito");
+    }
+
+    @javafx.fxml.FXML
+    public void volverReseñasTotales(ActionEvent actionEvent) {
+        panelReseñasPeliculaSerie.setVisible(false);
     }
 }

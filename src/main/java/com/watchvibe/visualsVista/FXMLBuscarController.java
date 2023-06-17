@@ -381,16 +381,24 @@ public class FXMLBuscarController {
     }
 
     public void añadir(ActionEvent actionEvent) {
-        // Obtener la película seleccionada
-        Peliculas peliculaSeleccionada = listviewpeliculas.getSelectionModel().getSelectedItem();
+        // Obtener el elemento seleccionado en el ListView de películas
+        Object elementoPeliculaSeleccionado = listviewpeliculas.getSelectionModel().getSelectedItem();
 
-        if (peliculaSeleccionada != null) {
-            // Crear un objeto de tipo Operacion
-            Operacion operacion = new Operacion();
-            operacion.agregarPelicula(this, usuarioLogueado); // Añadir la película seleccionada a la operación
-            bototnAñadirReserña.setVisible(true);
+        // Obtener el elemento seleccionado en el ListView de series
+        Object elementoSerieSeleccionado = listviewseries.getSelectionModel().getSelectedItem();
+
+        Operacion operacion = new Operacion();
+
+        if (elementoPeliculaSeleccionado instanceof Peliculas) {
+            Peliculas peliculaSeleccionada = (Peliculas) elementoPeliculaSeleccionado;
+            operacion.agregarPeliculaSerie(this, usuarioLogueado, true);
+        } else if (elementoSerieSeleccionado instanceof Series) {
+            Series serieSeleccionada = (Series) elementoSerieSeleccionado;
+            operacion.agregarPeliculaSerie(this, usuarioLogueado, false);
         }
+
     }
+
 
     @javafx.fxml.FXML
     public void metodoBuscarPeliculasySeries(ActionEvent actionEvent) {
