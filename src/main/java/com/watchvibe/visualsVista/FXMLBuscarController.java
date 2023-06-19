@@ -84,6 +84,14 @@ public class FXMLBuscarController {
     private Text TextReseña3;
     @FXML
     private Button botonAtras;
+    @FXML
+    private Text Usuario;
+    @FXML
+    private Text Usuario2;
+    @FXML
+    private Text Usuario3;
+    @FXML
+    private ImageView fondotira;
 
     @Deprecated
     public void setUsuarioLogueado(Usuarios usuario) {
@@ -99,8 +107,6 @@ public class FXMLBuscarController {
     @FXML
     private ListView<Peliculas> listviewpeliculas;
     @FXML
-    public Text titulo;
-    @FXML
     public Text anio;
     @FXML
     public Text titulotxt;
@@ -112,14 +118,6 @@ public class FXMLBuscarController {
     private Label botonCerra;
     @FXML
     private Label botonminimiza;
-
-    public Text getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(Text titulo) {
-        this.titulo = titulo;
-    }
 
     public Text getAnio() {
         return anio;
@@ -251,6 +249,8 @@ public class FXMLBuscarController {
         panelTransparente.setVisible(false);
         panelReseñasPeliculaSerie.setVisible(false);
         botonCancelarInterior.getStyleClass().add("boton-material");
+        botonMasReseñas.getStyleClass().add("boton-material");
+        botonAtras.getStyleClass().add("boton-material");
         botonAñadirReseñaInterior1.getStyleClass().add("boton-material");
         bototnVerReseñas.getStyleClass().add("boton-material");
         bototnAñadirReserña.getStyleClass().add("boton-material");
@@ -625,5 +625,9 @@ public class FXMLBuscarController {
         panelReseñasPeliculaSerie.setVisible(false);
     }
 
+    @FXML
+    public void cancelarEscribirReseña(ActionEvent actionEvent) {
+        panelTransparente.setVisible(false);
+    }
 }
 

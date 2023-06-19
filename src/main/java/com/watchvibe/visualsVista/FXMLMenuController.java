@@ -855,6 +855,41 @@ public class FXMLMenuController {
         });
 
 
+                /*
+        Imagenes para los botones
+         */
+        Image imagen1 = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ICONO_REVIEW.png"));
+
+        // Crear un ImageView con la imagen
+        ImageView imageView = new ImageView(imagen1);
+
+        // Establecer el ImageView como contenido gráfico del botón
+        VerReseñas.setGraphic(imageView);
+
+        Image imagen2 = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ICONO_ESCRIBIR_REVIEW.png"));
+
+        // Crear un ImageView con la imagen
+        ImageView imageView1 = new ImageView(imagen2);
+
+        // Establecer el ImageView como contenido gráfico del botón
+        AñadirReseña.setGraphic(imageView1);
+
+        Image imagen3 = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ICONO_AÑADIRR.png"));
+
+        // Crear un ImageView con la imagen
+        ImageView imageView2 = new ImageView(imagen3);
+
+        // Establecer el ImageView como contenido gráfico del botón
+        AñadirPelicula.setGraphic(imageView2);
+
+        Image imagen4 = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/FLECHA.png"));
+
+        // Crear un ImageView con la imagen
+        ImageView imageView3 = new ImageView(imagen4);
+
+        // Establecer el ImageView como contenido gráfico del botón
+        Volver.setGraphic(imageView3);
+
 
     }
 

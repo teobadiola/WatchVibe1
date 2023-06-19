@@ -213,7 +213,7 @@ public class Operacion {
             }
 
             // Verificar si la serie ya existe
-            String tituloSerie = busqcontr.titulo.getText();
+            String tituloSerie = busqcontr.getTitulotxt().getText();
             System.out.println(tituloSerie);
             Query consultaSerie = em.createQuery("SELECT s FROM Series s WHERE s.titulo = :titulo");
             consultaSerie.setParameter("titulo", tituloSerie);

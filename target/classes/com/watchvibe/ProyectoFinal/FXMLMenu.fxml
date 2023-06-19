@@ -119,29 +119,46 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="panelderechaFicha" layoutX="135.0" prefHeight="743.0" prefWidth="1020.0" visible="false">
+      <Pane fx:id="panelderechaFicha" layoutX="135.0" prefHeight="743.0" prefWidth="1020.0">
          <children>
-            <ImageView fx:id="fondopanelderechaficha" fitHeight="736.0" fitWidth="886.0" layoutX="-6.0" layoutY="-1.0" pickOnBounds="true">
+            <ImageView fx:id="fondopanelderechaficha" fitHeight="736.0" fitWidth="886.0" layoutX="-12.0" layoutY="1.0" pickOnBounds="true">
                <image>
-                  <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
+                  <Image url="@../recursos_fondos/FONDO_NEGRRO.png" />
                </image>
                <effect>
                   <BoxBlur />
                </effect>
             </ImageView>
             <ImageView fx:id="portada" fitHeight="409.0" fitWidth="256.0" layoutX="51.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="AñadirReseña" layoutX="79.0" layoutY="618.0" mnemonicParsing="false" onAction="#AñadirReseñas" text="Añadir reseña" />
-            <Button fx:id="VerReseñas" layoutX="207.0" layoutY="618.0" mnemonicParsing="false" onAction="#verReseñasTotal" text="Ver Reseñas" />
-            <Button fx:id="AñadirPelicula" layoutX="460.0" layoutY="618.0" mnemonicParsing="false" onAction="#añadirpelicula" text="Añadir" />
-            <Button fx:id="Volver" layoutX="598.0" layoutY="618.0" mnemonicParsing="false" onAction="#volver" text="Volver" />
-            <Text fill="WHITE" layoutX="367.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titulo" />
-            <Text fill="WHITE" layoutX="367.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Año" />
-            <Text fx:id="titulotxt" fill="WHITE" layoutX="367.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text fx:id="añotxt" fill="WHITE" layoutX="367.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text fill="WHITE" layoutX="366.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sinopsis" />
-            <Text fx:id="sinopsistxt" fill="WHITE" layoutX="366.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="364.5624999999999" />
+            <Button fx:id="AñadirReseña" layoutX="365.0" layoutY="482.0" mnemonicParsing="false" onAction="#AñadirReseñas" prefHeight="26.0" prefWidth="28.0" styleClass="transparent-button" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" />
+            <Button fx:id="VerReseñas" layoutX="431.0" layoutY="483.0" mnemonicParsing="false" onAction="#verReseñasTotal" prefHeight="23.0" prefWidth="29.0" styleClass="transparent-button" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" />
+            <Button fx:id="AñadirPelicula" layoutX="496.0" layoutY="483.0" mnemonicParsing="false" onAction="#añadirpelicula" prefHeight="26.0" prefWidth="29.0" styleClass="transparent-button" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" />
+            <Button fx:id="Volver" layoutX="802.0" layoutY="122.0" mnemonicParsing="false" onAction="#volver" styleClass="transparent-button" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" />
+            <Text fill="WHITE" layoutX="366.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AÑO:">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font></Text>
+            <Text fx:id="titulotxt" fill="WHITE" layoutX="365.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="377.5625">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="añotxt" fill="WHITE" layoutX="418.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="67.640625">    <font>
+               <Font name="Arial Rounded MT Bold" size="14.0" />
+            </font>
+            </Text>
+            <Text fill="WHITE" layoutX="366.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SINOPSIS: ">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="sinopsistxt" fill="WHITE" layoutX="370.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="477.5624999999999">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Text>
             <Text fx:id="pathImagen" fill="WHITE" layoutX="714.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" />
-            <Label fx:id="botonCerra1" alignment="CENTER" layoutX="695.0" layoutY="4.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="✕" textFill="WHITE">
+            <Label fx:id="botonCerra1" alignment="CENTER" layoutX="810.0" layoutY="14.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="✕" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -149,7 +166,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="botonminimiza1" alignment="CENTER" layoutX="648.0" layoutY="4.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+            <Label fx:id="botonminimiza1" alignment="CENTER" layoutX="763.0" layoutY="14.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
