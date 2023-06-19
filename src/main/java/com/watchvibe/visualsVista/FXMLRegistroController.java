@@ -94,9 +94,13 @@ public class FXMLRegistroController {
     @FXML
     public PasswordField textfieldrepcontrasena;
     @FXML
-    private Label botonCerra;
+    private Label botonCerrar;
     @FXML
-    private Label botonminimiza;
+    private Label botonminimizar;
+    @FXML
+    private ImageView degradadoizq;
+    @FXML
+    private ImageView degradadodcha;
 
     public void initialize() {
 
@@ -142,10 +146,10 @@ public class FXMLRegistroController {
         /**
          * Asignacion de Logo a la pantalla Inicial
          */
-        Image image = new Image(getClass().getResourceAsStream("/com/watchvibe/icono/logopng.png"));
+        Image image = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/LOGO_CONAZUL.png"));
         logotipo.setImage(image);
 
-        Image backgroundImage = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/naranja.png"));
+        Image backgroundImage = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/FONDO_NARANJA.png"));
         fondo.setImage(backgroundImage);
 
         ImageView[] imageViewspelis = {
@@ -187,6 +191,14 @@ public class FXMLRegistroController {
         op.agregarURLsAImageViewsPeliculas(imagePathspelis, imageViewspelis);
         op.agregarURLsAImageViewsSeries(imagePathsSeries, imageViewsSeries);
         op.agregarURLsAImageViewsSeries(imagePathsTV, imageViewsTV);
+
+        Image imagendegradado1 = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/DEGRADADO_DER.png"));
+        degradadodcha.setImage(imagendegradado1);
+        degradadodcha.toFront();
+
+        Image imagendegradado2 = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/DEGRADADO_IZQ.png"));
+        degradadoizq.setImage(imagendegradado2);
+        degradadoizq.toFront();
 
     }
 

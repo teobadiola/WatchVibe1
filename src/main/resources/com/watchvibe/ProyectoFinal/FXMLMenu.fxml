@@ -15,64 +15,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.watchvibe.visualsVista.FXMLMenuController">
    <children>
-      <Pane fx:id="panelizq" prefHeight="725.0" prefWidth="276.0">
+      <Pane fx:id="panelderecha" layoutX="143.0" layoutY="-11.0" prefHeight="736.0" prefWidth="872.0">
          <children>
-            <ImageView fx:id="fondopanelizq" fitHeight="736.0" fitWidth="284.0" layoutY="-5.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true">
+            <ImageView fx:id="fondopanelderecha" fitHeight="736.0" fitWidth="886.0" layoutX="-14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../recursos_fondos/naranja.png" />
-               </image>
-               <effect>
-                  <BoxBlur />
-               </effect>
-            </ImageView>
-            <ImageView fx:id="logotipo" fitHeight="117.0" fitWidth="262.0" layoutX="8.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../recursos_fondos/LOGO_COLOR.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="iconouser" fitHeight="47.0" fitWidth="47.0" layoutX="29.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../iconos_pequeños/usuario2.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="IconoAmigos" fitHeight="47.0" fitWidth="51.0" layoutX="29.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../iconos_pequeños/Amigos.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="botonAmigos" layoutX="113.0" layoutY="300.0" mnemonicParsing="false" onAction="#onHandleAmigos" prefHeight="30.0" prefWidth="126.0" text="Mis Amigos">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Button>
-            <ImageView fx:id="iconoPeliculas" fitHeight="47.0" fitWidth="51.0" layoutX="29.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../iconos_pequeños/busqueda_peliculas.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="BotonPeliculas" layoutX="113.0" layoutY="397.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" text="Mis Peliculas">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="BotonSeries" layoutX="113.0" layoutY="445.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="126.0" text="Mis Series">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Button>
-            <Text fx:id="nombreusuariologueado" layoutX="113.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="88.0" />
-            <Text fx:id="emailusuariologueado" layoutX="113.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="88.0" />
-            <Label fx:id="cerrarsesion" layoutX="29.0" layoutY="694.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="Cerrar Sesion" onMouseClicked="#onClicCerrarSesion" />
-         </children>
-      </Pane>
-      <Pane fx:id="panelderecha" layoutX="276.0" layoutY="-11.0" prefHeight="743.0" prefWidth="739.0">
-         <children>
-            <ImageView fx:id="fondopanelderecha" fitHeight="743.0" fitWidth="745.0" layoutY="6.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
+                  <Image url="@../recursos_fondos/FONDO_NEGRRO.png" />
                </image>
                <effect>
                   <BoxBlur />
@@ -84,66 +33,64 @@
                      <image>
                      </image>
                   </ImageView>
+                  <Label text="           " />
                   <ImageView fx:id="pelicula2" fitHeight="238.0" fitWidth="161.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                      </image>
                   </ImageView>
-                  <ImageView fx:id="pelicula3" fitHeight="238.0" fitWidth="198.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
+                  <Label text="           " />
+                  <ImageView fx:id="pelicula3" fitHeight="238.0" fitWidth="209.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                      </image>
                   </ImageView>
+                  <Label text="           " />
                   <ImageView fx:id="pelicula4" fitHeight="238.0" fitWidth="192.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                      </image>
                   </ImageView>
+                  <Label text="           " />
                </children>
             </HBox>
-            <Text fx:id="peliculastendenciatext" fill="WHITE" fontSmoothingType="LCD" layoutX="32.0" layoutY="135.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Peliculas en Tendencia" textAlignment="CENTER">
+            <Text fx:id="peliculastendenciatext" fill="WHITE" fontSmoothingType="LCD" layoutX="32.0" layoutY="135.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Peliculas populares en WatchVibe" textAlignment="CENTER">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="seriestendenciatext" fill="WHITE" fontSmoothingType="LCD" layoutX="32.0" layoutY="437.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Series en Tendencia" textAlignment="CENTER">
+            <Text fx:id="seriestendenciatext" fill="WHITE" fontSmoothingType="LCD" layoutX="32.0" layoutY="437.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Series populares en WatchVibe" textAlignment="CENTER">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <ImageView fx:id="botonmaspeliculas" fitHeight="47.0" fitWidth="29.0" layoutX="688.0" layoutY="263.0" onMouseClicked="#masPeliculas" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-               <image>
-                  <Image url="@../iconos_pequeños/arrow.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="botonmasseries" fitHeight="47.0" fitWidth="29.0" layoutX="688.0" layoutY="572.0" onMouseClicked="#masSeries" pickOnBounds="true" preserveRatio="true" rotate="180.0">
-               <image>
-                  <Image url="@../iconos_pequeños/arrow.png" />
-               </image>
-            </ImageView>
             <HBox layoutX="32.0" layoutY="453.0" prefHeight="238.0" prefWidth="636.0">
                <children>
                   <ImageView fx:id="serie1" fitHeight="238.0" fitWidth="198.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                      </image>
                   </ImageView>
+                  <Label text="           " />
                   <ImageView fx:id="serie2" fitHeight="238.0" fitWidth="161.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                      </image>
                   </ImageView>
+                  <Label text="           " />
                   <ImageView fx:id="serie3" fitHeight="238.0" fitWidth="198.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                      </image>
                   </ImageView>
+                  <Label text="           " />
                   <ImageView fx:id="serie4" fitHeight="238.0" fitWidth="192.0" onMouseClicked="#onMouseClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                      </image>
                   </ImageView>
+                  <Label text="           " />
                </children>
             </HBox>
-            <Button fx:id="botonBusqueda" layoutX="43.0" layoutY="51.0" mnemonicParsing="false" onAction="#metodoBuscarPeliculasySeries" prefHeight="30.0" prefWidth="88.0" text="Buscar">
+            <Button fx:id="botonBusqueda" layoutX="59.0" layoutY="52.0" mnemonicParsing="false" onAction="#metodoBuscarPeliculasySeries" prefHeight="30.0" prefWidth="88.0" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" text="Buscar">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="botonCerra" alignment="CENTER" layoutX="679.0" layoutY="14.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="✕" textFill="WHITE">
+            <Label fx:id="botonCerra" alignment="CENTER" layoutX="809.0" layoutY="14.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="✕" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -151,7 +98,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="botonminimiza" alignment="CENTER" layoutX="632.0" layoutY="14.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+            <Label fx:id="botonminimiza" alignment="CENTER" layoutX="762.0" layoutY="14.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -159,12 +106,22 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <TextField fx:id="textFieldBusqueda" layoutX="209.0" layoutY="48.0" prefHeight="37.0" prefWidth="437.0" />
+            <TextField fx:id="textFieldBusqueda" layoutX="266.0" layoutY="48.0" prefHeight="37.0" prefWidth="437.0" />
+            <ImageView fx:id="botonmaspeliculas" fitHeight="47.0" fitWidth="29.0" layoutX="727.0" layoutY="264.0" onMouseClicked="#masPeliculas" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos_fondos/FLECHA.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="botonmasseries" fitHeight="47.0" fitWidth="29.0" layoutX="727.0" layoutY="571.0" onMouseClicked="#masSeries" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos_fondos/FLECHA.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="panelderechaFicha" layoutX="269.0" prefHeight="743.0" prefWidth="756.0" visible="false">
+      <Pane fx:id="panelderechaFicha" layoutX="135.0" prefHeight="743.0" prefWidth="1020.0" visible="false">
          <children>
-            <ImageView fx:id="fondopanelderechaficha" fitHeight="743.0" fitWidth="745.0" layoutX="-6.0" layoutY="-1.0" pickOnBounds="true">
+            <ImageView fx:id="fondopanelderechaficha" fitHeight="736.0" fitWidth="886.0" layoutX="-6.0" layoutY="-1.0" pickOnBounds="true">
                <image>
                   <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
                </image>
@@ -202,7 +159,7 @@
             </Label>
             <Pane fx:id="panelTransparenteReseñas" layoutX="-5.0" layoutY="-8.0" prefHeight="757.0" prefWidth="768.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" visible="false">
                <Text fx:id="textescribirreseña" fill="WHITE" fontSmoothingType="LCD" layoutX="149.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Escribir Reseña" />
-               <TextArea fx:id="textoReseñaEnviar" layoutX="149.0" layoutY="234.0" prefHeight="220.0" prefWidth="425.0" promptText="Escribe tu reseña..." styleClass="custom-textarea" />
+               <TextArea fx:id="textoReseñaEnviarr" layoutX="149.0" layoutY="234.0" prefHeight="220.0" prefWidth="425.0" promptText="Escribe tu reseña..." styleClass="custom-textarea" />
                <Button fx:id="botonCancelarInterior" layoutX="479.0" layoutY="472.0" mnemonicParsing="false" text="Cancelar" />
                <Button fx:id="botonAñadirReseñaInterior1" layoutX="313.0" layoutY="472.0" mnemonicParsing="false" onAction="#BBDDReseña" text="Añadir" />
             </Pane>
@@ -239,9 +196,9 @@
             </Pane>
          </children>
       </Pane>
-      <Pane fx:id="panelMisPeliculas" layoutX="276.0" prefHeight="736.0" prefWidth="745.0" visible="false">
+      <Pane fx:id="panelMisPeliculas" layoutX="135.0" prefHeight="736.0" prefWidth="886.0" visible="false">
          <children>
-            <ImageView fx:id="fondoMisPeliculas" fitHeight="736.0" fitWidth="739.0" pickOnBounds="true">
+            <ImageView fx:id="fondoMisPeliculas" fitHeight="736.0" fitWidth="896.0" layoutX="-11.0" pickOnBounds="true">
                <image>
                   <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
                </image>
@@ -269,9 +226,9 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="panelMisSeries" layoutX="275.0" layoutY="-5.0" prefHeight="749.0" prefWidth="749.0" visible="false">
+      <Pane fx:id="panelMisSeries" layoutX="128.0" layoutY="1.0" prefHeight="743.0" prefWidth="896.0" visible="false">
          <children>
-            <ImageView fx:id="fondoMisSeries" fitHeight="743.0" fitWidth="749.0" layoutX="-9.0" layoutY="-13.0" pickOnBounds="true">
+            <ImageView fx:id="fondoMisSeries" fitHeight="757.0" fitWidth="886.0" layoutX="1.0" layoutY="-13.0" pickOnBounds="true">
                <image>
                   <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
                </image>
@@ -297,6 +254,81 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="panelAmigos" layoutX="313.0" layoutY="44.0" prefHeight="710.0" prefWidth="721.0" visible="false">
+         <children>
+            <ImageView fx:id="fondoMisSeries1" fitHeight="743.0" fitWidth="930.0" layoutX="-186.0" layoutY="-45.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="botonCerra4" alignment="CENTER" layoutX="674.0" layoutY="-23.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="✕" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="botonminimiza4" alignment="CENTER" layoutX="633.0" layoutY="-23.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <VBox fx:id="Amigoss" layoutX="-107.0" layoutY="37.0" prefHeight="544.0" prefWidth="721.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="panelizq" prefHeight="725.0" prefWidth="132.0">
+         <children>
+            <ImageView fx:id="fondopanelizq" fitHeight="736.0" fitWidth="132.0" layoutX="-2.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true">
+               <image>
+                  <Image url="@../recursos_fondos/FONDO_NARANJA.png" />
+               </image>
+               <effect>
+                  <BoxBlur />
+               </effect>
+            </ImageView>
+            <ImageView fx:id="logotipo" fitHeight="100.0" fitWidth="84.0" layoutX="19.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos_fondos/LOGO_CORTO.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="iconouser" fitHeight="47.0" fitWidth="61.0" layoutX="33.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos_fondos/ICONO_AMIGO.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="IconoAmigos" fitHeight="47.0" fitWidth="61.0" layoutX="31.0" layoutY="448.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos_fondos/ICONO_PELIS.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="botonAmigos" layoutY="381.0" mnemonicParsing="false" onAction="#onHandleAmigos" prefHeight="30.0" prefWidth="84.0" styleClass="transparent-button" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" text="Mis Amigos">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="iconoPeliculas" fitHeight="54.0" fitWidth="61.0" layoutX="36.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos_fondos/ICONO_SERIES.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="BotonPeliculas" layoutX="-4.0" layoutY="495.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="92.0" styleClass="transparent-button" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" text="Mis Peliculas">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="BotonSeries" layoutX="2.0" layoutY="620.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" styleClass="transparent-button" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" text="Mis Series">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Button>
+            <Text fx:id="nombreusuariologueado" fill="WHITE" layoutX="28.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="88.0" />
+            <Label fx:id="cerrarsesion" layoutX="28.0" layoutY="687.0" onMouseClicked="#onClicCerrarSesion" stylesheets="/com/watchvibe/css/styleHeader.css" text="Cerrar Sesion" />
          </children>
       </Pane>
    </children>

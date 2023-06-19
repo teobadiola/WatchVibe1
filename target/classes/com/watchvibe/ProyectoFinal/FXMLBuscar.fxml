@@ -10,6 +10,7 @@
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -22,12 +23,12 @@
             <GaussianBlur />
          </effect>
       </Pane>
-      <Pane layoutX="276.0" layoutY="-11.0" prefHeight="826.0" prefWidth="750.0">
+      <Pane layoutX="276.0" layoutY="-11.0" prefHeight="826.0" prefWidth="755.0">
          <children>
 
-            <ImageView fx:id="fondoizq" fitHeight="822.0" fitWidth="1030.0" layoutX="-294.0" layoutY="2.0" pickOnBounds="true">
+                  <ImageView fx:id="fondoizq" fitHeight="826.0" fitWidth="1030.0" layoutX="-298.0" pickOnBounds="true">
                <image>
-                  <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
+                  <Image url="@../recursos_fondos/FONDO_NEGRO_CON_BLOQUES.png" />
                </image>
                <effect>
                   <BoxBlur />
@@ -38,49 +39,28 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Button fx:id="botonbuscar" layoutX="542.0" layoutY="43.0" mnemonicParsing="false" onAction="#metodoBuscarPeliculasySeries" prefHeight="30.0" prefWidth="72.0" text="Buscar">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="152.0" fitWidth="294.0" layoutX="-262.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icono/logopng.png" />
-               </image>
-            </ImageView>
-            <TextField fx:id="textfieldbusqueda" layoutX="78.0" layoutY="46.0" prefHeight="25.0" prefWidth="417.0" />
-            <ImageView fx:id="portada" fitHeight="493.0" fitWidth="293.0" layoutX="89.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="portada" fitHeight="433.0" fitWidth="303.0" layoutX="-160.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
                <image>
                </image>
             </ImageView>
-            <Button fx:id="bototnAñadir" layoutX="453.0" layoutY="763.0" mnemonicParsing="false" onAction="#añadir" prefHeight="37.0" prefWidth="117.0" text="Añadir" />
-            <Button fx:id="botonvolver" layoutX="596.0" layoutY="763.0" mnemonicParsing="false" onAction="#onClickVolver" prefHeight="37.0" prefWidth="108.0" text="Volver" />
-            <Text fx:id="titulo" fill="WHITE" fontSmoothingType="LCD" layoutX="412.0" layoutY="154.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Título" textAlignment="CENTER">
+            <Button fx:id="bototnAñadir" layoutX="335.0" layoutY="551.0" mnemonicParsing="false" onAction="#añadir" prefHeight="37.0" prefWidth="43.0" styleClass="transparent-button" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" />
+            <Button fx:id="botonvolver" layoutX="621.0" layoutY="197.0" mnemonicParsing="false" onAction="#onClickVolver" prefHeight="37.0" prefWidth="43.0" styleClass="transparent-button" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" />
+            <Text fx:id="anio" fill="WHITE" fontSmoothingType="LCD" layoutX="184.0" layoutY="274.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Año:" textAlignment="CENTER">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="anio" fill="WHITE" fontSmoothingType="LCD" layoutX="409.0" layoutY="245.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Año" textAlignment="CENTER">
+            <Text fx:id="sinopsis" fill="WHITE" fontSmoothingType="LCD" layoutX="184.0" layoutY="319.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="SINOPSIS:" textAlignment="CENTER">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Text fx:id="sinopsis" fill="WHITE" fontSmoothingType="LCD" layoutX="412.0" layoutY="323.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Sinopsis" textAlignment="CENTER">
+            <Text fx:id="titulotxt" fill="WHITE" fontSmoothingType="LCD" layoutX="177.0" layoutY="234.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" wrappingWidth="416.0">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="110.0" layoutY="685.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Puntuación" textAlignment="CENTER">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text fx:id="titulotxt" fill="WHITE" fontSmoothingType="LCD" layoutX="409.0" layoutY="200.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" textAlignment="CENTER" wrappingWidth="309.0">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
-               </font>
-            </Text>
-            <Text fx:id="aniotxt" fill="WHITE" fontSmoothingType="LCD" layoutX="412.0" layoutY="282.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" textAlignment="CENTER" wrappingWidth="82.51953125">
+            <Text fx:id="aniotxt" fill="WHITE" fontSmoothingType="LCD" layoutX="239.0" layoutY="274.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" textAlignment="CENTER" wrappingWidth="82.51953125">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
@@ -93,7 +73,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="botonminimiza" alignment="CENTER" layoutX="666.0" layoutY="23.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+            <Label fx:id="botonminimiza" alignment="CENTER" layoutX="657.0" layoutY="21.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -101,7 +81,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Text fx:id="sionpsistxt" fill="WHITE" fontSmoothingType="LCD" layoutX="412.0" layoutY="370.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" wrappingWidth="284.0">
+            <Text fx:id="sionpsistxt" fill="WHITE" fontSmoothingType="LCD" layoutX="184.0" layoutY="355.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" wrappingWidth="466.0">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
@@ -111,23 +91,25 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Text>
-            <Button fx:id="bototnAñadirReserña" layoutX="97.0" layoutY="763.0" mnemonicParsing="false" onAction="#añadirReseña" prefHeight="37.0" prefWidth="117.0" text="Escribir Valoracion" />
-            <Button fx:id="bototnVerReseñas" layoutX="243.0" layoutY="763.0" mnemonicParsing="false" onAction="#verValoraciones" prefHeight="37.0" prefWidth="117.0" text="Ver Valoraciones" />
-            <VBox layoutX="-254.0" layoutY="170.0" prefHeight="611.0" prefWidth="316.0">
+            <Button fx:id="bototnAñadirReserña" layoutX="259.0" layoutY="551.0" mnemonicParsing="false" onAction="#añadirReseña" prefHeight="37.0" prefWidth="43.0" styleClass="transparent-button" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" />
+            <Button fx:id="bototnVerReseñas" layoutX="183.0" layoutY="551.0" mnemonicParsing="false" onAction="#verValoraciones" prefHeight="37.0" prefWidth="46.0" styleClass="transparent-button" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" />
+            <HBox layoutX="-218.0" layoutY="683.0" prefHeight="101.0" prefWidth="870.0">
                <children>
-                  <ListView fx:id="listviewpeliculas" prefHeight="304.0" prefWidth="319.0" styleClass="list-view-material" />
-                  <Label />
-                  <ListView fx:id="listviewseries" prefHeight="312.0" prefWidth="316.0" styleClass="list-view-material" />
+                  <ListView fx:id="listviewpeliculas" prefHeight="101.0" prefWidth="431.0" styleClass="list-view-material" />
+                  <Label prefHeight="17.0" prefWidth="25.0" text="                   " />
+                  <Label prefHeight="17.0" prefWidth="25.0" text="                   " />
+                  <Label prefHeight="17.0" prefWidth="25.0" text="                   " />
+                  <ListView fx:id="listviewseries" prefHeight="101.0" prefWidth="437.0" styleClass="list-view-material" />
                </children>
-            </VBox>
-            <Pane fx:id="panelTransparente" layoutX="-279.0" layoutY="11.0" prefHeight="826.0" prefWidth="1036.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
+            </HBox>
+            <Pane fx:id="panelTransparente" layoutX="-279.0" layoutY="11.0" prefHeight="826.0" prefWidth="1036.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" visible="false">
                <Text fx:id="textescribirreseña" fill="WHITE" fontSmoothingType="LCD" layoutX="303.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Escribir Reseña" />
                <TextArea fx:id="textoReseñaEnviar" layoutX="303.0" layoutY="281.0" prefHeight="220.0" prefWidth="425.0" promptText="Escribe tu reseña..." styleClass="custom-textarea" />
                <Button fx:id="botonCancelarInterior" layoutX="633.0" layoutY="519.0" mnemonicParsing="false" text="Cancelar" />
                <Button fx:id="botonAñadirReseñaInterior1" layoutX="467.0" layoutY="519.0" mnemonicParsing="false" onAction="#BBDDReseña" text="Añadir" />
             </Pane>
             <!-- New panel for displaying reviews -->
-            <Pane fx:id="panelReseñasPeliculaSerie" layoutX="-279.0" layoutY="11.0" prefHeight="826.0" prefWidth="1036.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
+            <Pane fx:id="panelReseñasPeliculaSerie" layoutX="-279.0" layoutY="11.0" prefHeight="826.0" prefWidth="1036.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" visible="false">
                <children>
                   <Button fx:id="botonMasReseñas" layoutX="605.0" layoutY="634.0" mnemonicParsing="false" onAction="#MasReseñas" text="Mas Reseñas" />
                   <VBox layoutX="116.0" layoutY="71.0" prefHeight="532.0" prefWidth="725.0">
@@ -155,9 +137,25 @@
                         </Pane>
                      </children>
                   </VBox>
-                  <Button fx:id="botonAtras" layoutX="738.0" layoutY="634.0" mnemonicParsing="false" onAction="#atras" text="Atras" />
+                  <Button fx:id="botonAtras" layoutX="738.0" layoutY="634.0" mnemonicParsing="false" onAction="#atras" styleClass="transparent-button" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" text="Atras" />
                </children>
             </Pane>
+            <ImageView fx:id="fondotira" fitHeight="148.0" fitWidth="1015.0" layoutX="-279.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos_fondos/BARRA_NARANJA_SUPERIOR.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="botonbuscar" layoutX="470.0" layoutY="75.0" mnemonicParsing="false" onAction="#metodoBuscarPeliculasySeries" prefHeight="30.0" prefWidth="72.0" text="Buscar">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Button>
+            <TextField fx:id="textfieldbusqueda" layoutX="-55.0" layoutY="78.0" prefHeight="25.0" prefWidth="498.0" />
+            <ImageView fitHeight="80.0" fitWidth="152.0" layoutX="-176.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../recursos_fondos/LOGO_CORTO.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

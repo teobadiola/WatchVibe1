@@ -14,16 +14,43 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 1);
 }
 
+
 /* Estilos cuando se pasa el mouse sobre el botón */
 .boton-material:hover {
+
     -fx-background-color: #64B5F6;
+
 }
+
+
 
 /* Estilos cuando se presiona el botón */
 .boton-material:pressed {
+
     -fx-background-color: #1976D2;
     -fx-effect: none;
+
+
 }
+
+
+
+.transparent-button {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-family: 'Arial Rounded MT Bold', sans-serif;
+    -fx-font-weight: bold;
+}
+
+.transparent-button:hover,
+.transparent-button:pressed {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
 
 .label-material {
     -fx-background-color: transparent;
@@ -46,9 +73,9 @@
 .custom-textfield {
     -fx-background-color: transparent;
     -fx-border-color: white;
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0 0 2 0;
     -fx-border-color: white;
-    -fx-border-size:7;
+    -fx-border-size:15;
     /* Solo la línea inferior */
 }
 
@@ -56,14 +83,13 @@
     -font-family: 'Plus Jakarta Sans', sans-serif;
     -fx-font-size: 7px;
     -fx-border-color: white;
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0 0 32 0;
     -fx-border-color: white;
-    -fx-border-size:7;
+    -fx-border-size:15;
     /* Solo la línea inferior */
 }
-
 .list-view-material {
-    -fx-background-color: #00000000;
+    -fx-control-inner-background: rgba(0, 0, 0, 0.8);
 }
 
 .list-view-material .list-cell {
@@ -87,7 +113,11 @@
 .list-view-material .text {
     -fx-font-family: 'Plus Jakarta Sans', sans-serif;
     -fx-font-size: 14px;
-    -fx-text-fill: #FFFFF;
+    -fx-fill: #FFFFFF;
+}
+
+.list-view-material .list-cell:selected .text {
+    -fx-fill: #000000;
 }
 
 .list-view-material .graphic {
@@ -98,6 +128,7 @@
     -fx-shape: "M 0 0 L 10 5 L 0 10 L 2 5 Z";
     -fx-fill: rgba(0, 0, 0, 0.54);
 }
+
 
 #PanelReseñas {
     -fx-effect: blur(30px);

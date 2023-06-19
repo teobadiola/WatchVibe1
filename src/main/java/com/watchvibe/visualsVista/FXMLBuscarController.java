@@ -243,7 +243,11 @@ public class FXMLBuscarController {
 
     public void initialize() {
 
-        bototnAñadirReserña.setVisible(false);
+
+        Image imagenfondo = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/FONDO_NEGRO_CON_BLOQUES.png"));
+        fondoizq.setImage(imagenfondo);
+
+        bototnAñadirReserña.setVisible(true);
         panelTransparente.setVisible(false);
         panelReseñasPeliculaSerie.setVisible(false);
         botonCancelarInterior.getStyleClass().add("boton-material");
@@ -281,6 +285,42 @@ public class FXMLBuscarController {
         if (peliculasScrollBar != null) {
             peliculasScrollBar.setVisible(false);
         }
+
+        /*
+        Imagenes para los botones
+         */
+        Image imagen1 = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ICONO_REVIEW.png"));
+
+        // Crear un ImageView con la imagen
+        ImageView imageView = new ImageView(imagen1);
+
+        // Establecer el ImageView como contenido gráfico del botón
+        bototnVerReseñas.setGraphic(imageView);
+
+        Image imagen2 = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ICONO_ESCRIBIR_REVIEW.png"));
+
+        // Crear un ImageView con la imagen
+        ImageView imageView1 = new ImageView(imagen2);
+
+        // Establecer el ImageView como contenido gráfico del botón
+        bototnAñadirReserña.setGraphic(imageView1);
+
+        Image imagen3 = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ICONO_AÑADIRR.png"));
+
+        // Crear un ImageView con la imagen
+        ImageView imageView2 = new ImageView(imagen3);
+
+        // Establecer el ImageView como contenido gráfico del botón
+        bototnAñadir.setGraphic(imageView2);
+
+        Image imagen4 = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/FLECHA.png"));
+
+        // Crear un ImageView con la imagen
+        ImageView imageView3 = new ImageView(imagen4);
+
+        // Establecer el ImageView como contenido gráfico del botón
+        botonvolver.setGraphic(imageView3);
+
 
     }
 
@@ -367,6 +407,21 @@ public class FXMLBuscarController {
             }
         });
 
+        listviewpeliculas.getSelectionModel().selectFirst();
+
+        Peliculas pelicula = listviewpeliculas.getSelectionModel().getSelectedItem();
+        if (pelicula != null) {
+            titulotxt.setText(pelicula.getTitulo());
+            aniotxt.setText("" + pelicula.getAnio());
+            String sinopsis = pelicula.getSinopsis();
+            if (sinopsis.length() > 200) {
+                sinopsis = sinopsis.substring(0, 200) + "...";
+            }
+            sionpsistxt.setText(sinopsis);
+            pathimagentxt.setText(pelicula.getFotodePortada());
+            portada.setImage(new Image(pelicula.getFotodePortada()));
+        }
+
     }
 
     public void onClicCerrar(MouseEvent mouseEvent) {
@@ -421,6 +476,21 @@ public class FXMLBuscarController {
             // Agregar las películas al ListView
             for (Peliculas pelicula : peliculas) {
                 listviewpeliculas.getItems().add(pelicula);
+            }
+
+            listviewpeliculas.getSelectionModel().selectFirst();
+
+            Peliculas pelicula = listviewpeliculas.getSelectionModel().getSelectedItem();
+            if (pelicula != null) {
+                titulotxt.setText(pelicula.getTitulo());
+                aniotxt.setText("" + pelicula.getAnio());
+                String sinopsis = pelicula.getSinopsis();
+                if (sinopsis.length() > 200) {
+                    sinopsis = sinopsis.substring(0, 200) + "...";
+                }
+                sionpsistxt.setText(sinopsis);
+                pathimagentxt.setText(pelicula.getFotodePortada());
+                portada.setImage(new Image(pelicula.getFotodePortada()));
             }
         }
     }
@@ -554,5 +624,6 @@ public class FXMLBuscarController {
     public void atras(ActionEvent actionEvent) {
         panelReseñasPeliculaSerie.setVisible(false);
     }
+
 }
 

@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.watchvibe.visualsVista.FXMLRegistroController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.watchvibe.visualsVista.FXMLRegistroController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -122,7 +122,7 @@
             <DropShadow />
          </effect>
          <children>
-            <ImageView fx:id="fondo" fitHeight="613.0" fitWidth="497.0" layoutX="-4.0" layoutY="-2.0">
+            <ImageView fx:id="fondo" fitHeight="623.0" fitWidth="497.0" layoutX="-4.0" layoutY="-2.0">
                <image>
                   <Image url="@../recursos_fondos/naranja.png" />
                </image>
@@ -143,9 +143,9 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Button>
-            <ImageView fx:id="logotipo" fitHeight="225.0" fitWidth="375.0" layoutX="54.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="logotipo" fitHeight="95.0" fitWidth="274.0" layoutX="93.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icono/logopng.png" />
+                  <Image url="@../recursos_fondos/LOGO_CONAZUL.png" />
                </image>
             </ImageView>
             <Text fx:id="labelrepcontrasena" fill="WHITE" layoutX="89.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repetir contraseña" wrappingWidth="71.783203125">
@@ -171,7 +171,7 @@
       <Pane opacity="0.41" prefHeight="613.0" prefWidth="203.0" style="-fx-background-color: #000000;" />
       <Pane layoutX="688.0" opacity="0.41" prefHeight="613.0" prefWidth="203.0" style="-fx-background-color: #000000;">
          <children>
-            <Label fx:id="botonCerrar" alignment="CENTER" layoutX="155.0" layoutY="3.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" text="✕" textFill="WHITE">
+            <Label fx:id="botonCerra" alignment="CENTER" layoutX="155.0" layoutY="3.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/materialbotonesestilo.css" text="✕" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -179,7 +179,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="botonminimizar" alignment="CENTER" layoutX="123.0" layoutY="4.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+            <Label fx:id="botonminimiza" alignment="CENTER" layoutX="123.0" layoutY="4.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -188,5 +188,15 @@
                </cursor>
             </Label>
          </children></Pane>
+      <ImageView fx:id="degradadoizq" fitHeight="688.0" fitWidth="203.0" layoutY="-75.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../recursos_fondos/DEGRADADO_IZQ.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="degradadodcha" fitHeight="613.0" fitWidth="203.0" layoutX="693.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../recursos_fondos/DEGRADADO_DER.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

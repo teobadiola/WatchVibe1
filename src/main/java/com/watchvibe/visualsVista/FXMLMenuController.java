@@ -24,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -115,7 +116,11 @@ public class FXMLMenuController {
     @javafx.fxml.FXML
     private ImageView PortadaSerie;
     @javafx.fxml.FXML
-    private Label cerrarsesiontxt;
+    private Pane panelAmigos;
+    @javafx.fxml.FXML
+    private ImageView fondoMisSeries1;
+    @javafx.fxml.FXML
+    private VBox Amigoss;
     @javafx.fxml.FXML
     private Label botonCerrar;
     @javafx.fxml.FXML
@@ -125,14 +130,29 @@ public class FXMLMenuController {
     @javafx.fxml.FXML
     private Label botonminimizar1;
     @javafx.fxml.FXML
-    private TextArea textoReseñaEnviarr;
+    private TextArea textoReseñaEnviar;
     @javafx.fxml.FXML
     private Label EliminarPeliculas;
+    @javafx.fxml.FXML
+    private Label botonCerrar2;
+    @javafx.fxml.FXML
+    private Label botonminimizar2;
+    @javafx.fxml.FXML
+    private Label EliminarSerie;
+    @javafx.fxml.FXML
+    private Label botonCerrar3;
+    @javafx.fxml.FXML
+    private Label botonminimizar3;
+    @javafx.fxml.FXML
+    private Label botonCerrar4;
+    @javafx.fxml.FXML
+    private Label botonminimizar4;
+    @javafx.fxml.FXML
+    private Label cerrarsesiontxt;
 
     public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
-        nombreusuariologueado.setText(usuario.getNombre());
-        emailusuariologueado.setText(usuario.getCorreoelectronico());
+        nombreusuariologueado.setText("Bienvenido,     "+usuario.getNombre());
     }
 
     @javafx.fxml.FXML
@@ -189,8 +209,6 @@ public class FXMLMenuController {
     private Button BotonSeries;
     @javafx.fxml.FXML
     private Text nombreusuariologueado;
-    @javafx.fxml.FXML
-    private Text emailusuariologueado;
 
     public Usuarios getUsuario() {
         return usuario;
@@ -605,14 +623,6 @@ public class FXMLMenuController {
         this.nombreusuariologueado = nombreusuariologueado;
     }
 
-    public Text getEmailusuariologueado() {
-        return emailusuariologueado;
-    }
-
-    public void setEmailusuariologueado(Text emailusuariologueado) {
-        this.emailusuariologueado = emailusuariologueado;
-    }
-
     public Peliculas getPeliculaSeleccionada() {
         return peliculaSeleccionada;
     }
@@ -634,8 +644,12 @@ public class FXMLMenuController {
 
     public void initialize() {
 
+        Amigoss.setVisible(false);
+        panelderecha.setVisible(true);
+
+        panelAmigos.setVisible(false);
         panelMisPeliculas.setVisible(false);
-        //panelMisSeriessss.setVisible(false);
+        panelMisSeries.setVisible(false);
 
         panelderechaFicha.setVisible(false);
         panelTransparenteReseñas.setVisible(false);
@@ -698,19 +712,6 @@ public class FXMLMenuController {
                 "-fx-border-width: 0 0 1 0; " +
                 "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
 
-
-        nombreusuariologueado.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
-                "-fx-font-size: 0.875em; " +
-                "-fx-border-color: white; " +
-                "-fx-border-width: 0 0 1 0; " +
-                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
-
-        emailusuariologueado.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
-                "-fx-font-size: 0.875em; " +
-                "-fx-border-color: white; " +
-                "-fx-border-width: 0 0 1 0; " +
-                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
-
         peliculastendenciatext.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
                 "-fx-font-size: 0.875em; " +
                 "-fx-border-color: white; " +
@@ -723,28 +724,24 @@ public class FXMLMenuController {
                 "-fx-border-width: 0 0 1 0; " +
                 "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
 
+        nombreusuariologueado.setStyle("-fx-font-family: 'Arial Rounded'; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-color: white; -fx-border-width: 0 0 1 0;");
 
-
-        Image IMAGENFONDOIZ = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/DEGRADADO_AZUL.png"));
+        Image IMAGENFONDOIZ = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/FONDO_NEGRRO.png"));
         fondopanelderecha.setImage(IMAGENFONDOIZ);
         fondopanelderechaficha.setImage(IMAGENFONDOIZ);
-        fondopanelderecha.toBack();
 
         Image IMAGENFONDOdr = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/naranja.png"));
         fondopanelizq.setImage(IMAGENFONDOdr);
 
 
-        Image logotip = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/LOGO_COLOR.png"));
+        Image logotip = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/LOGO_CORTO.png"));
         logotipo.setImage(logotip);
 
-        Image iconouser1 = new Image(getClass().getResourceAsStream("/com/watchvibe/iconos_pequeños/usuario2.png"));
-        iconouser.setImage(iconouser1);
-
-        Image iconoPeliculas1 = new Image(getClass().getResourceAsStream("/com/watchvibe/iconos_pequeños/busqueda_peliculas.png"));
+        Image iconoPeliculas1 = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ICONO_PELIS.png"));
         iconoPeliculas.setImage(iconoPeliculas1);
 
 
-        Image iconoAmigos1 = new Image(getClass().getResourceAsStream("/com/watchvibe/iconos_pequeños/Amigos.png"));
+        Image iconoAmigos1 = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ICONO_AMIGO.png"));
         IconoAmigos.setImage(iconoAmigos1);
 
         fondoMisPeliculas.setImage(IMAGENFONDOIZ);
@@ -862,34 +859,28 @@ public class FXMLMenuController {
     }
 
 
-
     @javafx.fxml.FXML
     public void onHandleAmigos(ActionEvent actionEvent) {
-        /*
-        try {
-            // Cargar el archivo FXML "perfil.fxml"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLAmigos.fxml"));
-            Parent root = loader.load();
+        panelizq.toFront();
+        Amigoss.setVisible(true);
+        panelAmigos.setVisible(true);
+        Operacion op = new Operacion();
 
-            // Crear una nueva escena con el archivo FXML cargado
-            Scene scene = new Scene(root);
+        List<Usuarios> users = op.obtenerTodosLosUsuarios();
+        System.out.println("N:"+users.size());
 
-            // Obtener la ventana actual a través del evento
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-            // Establecer la escena en la ventana
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        // Genera y agrega los elementos predefinidos según los amigos
+        for (Usuarios user : users) {
+            Pane paneAmigo = op.crearPaneAmigo(user);
+            Amigoss.getChildren().add(paneAmigo);
         }
-        */
 
     }
 
 
     @javafx.fxml.FXML
     public void onMouseClicked(MouseEvent event) {
+        panelizq.toFront();
 
         panelderecha.setVisible(false);
         CRUDPeliculas cp = new CRUDPeliculas();
@@ -988,6 +979,7 @@ public class FXMLMenuController {
     }
 
     public void metodoMisPeliculas(ActionEvent actionEvent) {
+        panelizq.toFront();
         listviewMisPeliculas.getItems().clear();
 
         usuarioLogueado = Autenticator.getUsuarioLogueado();
@@ -995,6 +987,7 @@ public class FXMLMenuController {
         ArrayList<CatalogoPeliculas> peliculas = op.obtenerCatalogoPeliculasUsuario(usuarioLogueado);
         List<Peliculas> peliculasUs = op.obtenerPeliculasDeCatalogo(peliculas);
 
+        panelAmigos.setVisible(false);
         panelMisSeries.setVisible(false);
         panelderechaFicha.setVisible(false);
         panelderechaFicha.setVisible(false);
@@ -1016,6 +1009,8 @@ public class FXMLMenuController {
     }
 
     public void metodoMisSeries(ActionEvent actionEvent) {
+        panelizq.toFront();
+
         listviewmisseries.getItems().clear();
 
         usuarioLogueado = Autenticator.getUsuarioLogueado();
@@ -1023,6 +1018,7 @@ public class FXMLMenuController {
         ArrayList<CatalogoSeries> series = op.obtenerCatalogoSeriesUsuario(usuarioLogueado);
         List<Series> SeriesUs = op.obtenerSeriesDeCatalogo(series);
 
+        panelAmigos.setVisible(false);
         panelMisPeliculas.setVisible(false);
         panelderechaFicha.setVisible(false);
         panelderechaFicha.setVisible(false);
@@ -1251,9 +1247,35 @@ public class FXMLMenuController {
         }
 
     }
+    public void onClicCerrarSesion(MouseEvent mouseEvent) throws IOException {
 
-    public void onClicCerrarSesion(MouseEvent mouseEvent) {
+        Button boton1;
+        javafx.scene.control.Label boton2;
 
+        Node source = (Node) mouseEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/watchvibe/ProyectoFinal/FXMLogin.fxml"));
+        Parent root = fxmlLoader.load();
+
+        // Obtener los botones del archivo FXML
+        boton1 = (Button) fxmlLoader.getNamespace().get("botoniniciosesion");
+        boton2 = (javafx.scene.control.Label) fxmlLoader.getNamespace().get("registrase");
+
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/com/watchvibe/css/materialbotonesestilo.css").toExternalForm());
+        Stage newStage = new Stage();
+        newStage.setTitle("WatchVibe");
+        newStage.setResizable(false);
+        newStage.initStyle(StageStyle.UNDECORATED);
+        scene.setFill(Color.TRANSPARENT);
+        newStage.initStyle(StageStyle.TRANSPARENT);
+        Image backg = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ISOTIPO_NEGRO.png"));
+        newStage.getIcons().add(backg);
+        newStage.setScene(scene);
+        newStage.show();
 
     }
+
 }

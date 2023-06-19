@@ -14,9 +14,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.persistence.*;
@@ -1012,6 +1015,52 @@ public class Operacion {
             }
         }
     }
+
+    public List<Usuarios> obtenerTodosLosUsuarios() {
+        List<Usuarios> usuarios = new ArrayList<>();
+
+        // Crear el EntityManager
+        EntityManager em = Conexion.conecta();
+
+        try {
+            // Construir la consulta JPQL para obtener todos los usuarios
+            String consulta = "SELECT u FROM Usuarios u";
+
+            // Crear la consulta TypedQuery
+            TypedQuery<Usuarios> query = em.createQuery(consulta, Usuarios.class);
+
+            // Obtener los resultados de la consulta
+            usuarios = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Cerrar el EntityManager
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return usuarios;
+    }
+
+    public static Pane crearPaneAmigo(Usuarios user) {
+        // Crea un nuevo Pane para el amigo
+        Pane paneAmigo = new Pane();
+        paneAmigo.setStyle("-fx-background-color: transparent; -fx-padding: 10px;");
+
+        // Agrega los elementos de contenido al Pane
+        Label nombreLabel = new Label("Usuario: " + user.getNombre());
+        nombreLabel.setStyle("-fx-font-weight: bold;");
+
+        Button addButton = new Button("Añadir Amigo");
+        addButton.setLayoutX(10);
+        addButton.setLayoutY(30);
+
+        paneAmigo.getChildren().addAll(nombreLabel, addButton);
+
+        return paneAmigo;
+    }
+
 
 
 

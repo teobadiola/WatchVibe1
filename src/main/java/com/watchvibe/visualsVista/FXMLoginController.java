@@ -80,6 +80,8 @@ public class FXMLoginController {
     Operacion op = new Operacion();
     @FXML
     private PasswordField passwordFieldContrasena;
+    @FXML
+    private ImageView degradado;
 
     /**
      *
@@ -101,19 +103,17 @@ public class FXMLoginController {
        fondo.setImage(backgroundImage);
        fondo.toBack();
 
-       Image usr = new Image(getClass().getResourceAsStream("/com/watchvibe/iconos_pequeños/avatar.png"));
+       Image usr = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ICONO_USER.png"));
        user.setImage(usr);
-       Image pssq = new Image(getClass().getResourceAsStream("/com/watchvibe/iconos_pequeños/contrasena.png"));
+       Image pssq = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/ICONO_PASSWROD.png"));
        contra.setImage(pssq);
-
-
 
        panelinicioderecha.toFront();
 
         /**
          * Asignacion de Logo a la pantalla Inicial
          */
-        Image image = new Image(getClass().getResourceAsStream("/com/watchvibe/icono/logopng.png"));
+        Image image = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/LOGO_CONAZUL.png"));
         imagenlogo.setImage(image);
 
 
@@ -143,6 +143,10 @@ public class FXMLoginController {
 
        op.agregarURLsAImageViewsPeliculas(imagePathspelis, imageViewspelis);
        op.agregarURLsAImageViewsSeries(imagePathsSeries, imageViewsSeries);
+
+       Image Degradado = new Image(getClass().getResourceAsStream("/com/watchvibe/recursos_fondos/DegradadoLogin.png"));
+       degradado.setImage(Degradado);
+       degradado.toFront();
 
     }
 
