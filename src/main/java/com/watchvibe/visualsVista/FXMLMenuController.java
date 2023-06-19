@@ -6,27 +6,33 @@ import com.watchvibe.adModelo.cruds.CRUDPeliculas;
 import com.watchvibe.adModelo.cruds.CRUDSeries;
 import com.watchvibe.adModelo.operaciones.Autenticator;
 import com.watchvibe.adModelo.operaciones.Operacion;
-import com.watchvibe.adModelo.tablas.Comentarios;
-import com.watchvibe.adModelo.tablas.Peliculas;
-import com.watchvibe.adModelo.tablas.Series;
-import com.watchvibe.adModelo.tablas.Usuarios;
+import com.watchvibe.adModelo.tablas.*;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.control.TextField;
+import javafx.stage.StageStyle;
 
 
 import java.awt.*;
+import java.awt.Label;
+import java.awt.TextArea;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,15 +91,43 @@ public class FXMLMenuController {
     @javafx.fxml.FXML
     private Button botonAtras;
     @javafx.fxml.FXML
+    private ImageView fondoMisPeliculas;
+    @javafx.fxml.FXML
+    private Pane panelMisPeliculas;
+    @javafx.fxml.FXML
+    private ListView listviewMisPeliculas;
+    @javafx.fxml.FXML
+    private Button botonVolver;
+    @javafx.fxml.FXML
+    private Text textMisPeliculas;
+    @javafx.fxml.FXML
+    private ImageView PortadaPelicula;
+    @javafx.fxml.FXML
+    private Pane panelMisSeries;
+    @javafx.fxml.FXML
+    private ImageView fondoMisSeries;
+    @javafx.fxml.FXML
+    private ListView listviewmisseries;
+    @javafx.fxml.FXML
+    private Button botonVolverSeries;
+    @javafx.fxml.FXML
+    private Text textMisSeries;
+    @javafx.fxml.FXML
+    private ImageView PortadaSerie;
+    @javafx.fxml.FXML
+    private Label cerrarsesiontxt;
+    @javafx.fxml.FXML
     private Label botonCerrar;
     @javafx.fxml.FXML
     private Label botonminimizar;
     @javafx.fxml.FXML
-    private Label botonCerrarr1;
+    private Label botonCerrar1;
     @javafx.fxml.FXML
-    private Label botonminimizarr1;
+    private Label botonminimizar1;
     @javafx.fxml.FXML
-    public TextArea textoReseñaEnviarr;
+    private TextArea textoReseñaEnviarr;
+    @javafx.fxml.FXML
+    private Label EliminarPeliculas;
 
     public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
@@ -157,12 +191,11 @@ public class FXMLMenuController {
     private Text nombreusuariologueado;
     @javafx.fxml.FXML
     private Text emailusuariologueado;
-    @javafx.fxml.FXML
-    private Text cerrarsesiontxt;
 
     public Usuarios getUsuario() {
         return usuario;
     }
+
 
     public Pane getPanelderechaFicha() {
         return panelderechaFicha;
@@ -354,46 +387,6 @@ public class FXMLMenuController {
 
     public void setBotonAtras(Button botonAtras) {
         this.botonAtras = botonAtras;
-    }
-
-    public Label getBotonCerrar() {
-        return botonCerrar;
-    }
-
-    public void setBotonCerrar(Label botonCerrar) {
-        this.botonCerrar = botonCerrar;
-    }
-
-    public Label getBotonminimizar() {
-        return botonminimizar;
-    }
-
-    public void setBotonminimizar(Label botonminimizar) {
-        this.botonminimizar = botonminimizar;
-    }
-
-    public Label getBotonCerrarr1() {
-        return botonCerrarr1;
-    }
-
-    public void setBotonCerrarr1(Label botonCerrarr1) {
-        this.botonCerrarr1 = botonCerrarr1;
-    }
-
-    public Label getBotonminimizarr1() {
-        return botonminimizarr1;
-    }
-
-    public void setBotonminimizarr1(Label botonminimizarr1) {
-        this.botonminimizarr1 = botonminimizarr1;
-    }
-
-    public TextArea getTextoReseñaEnviarr() {
-        return textoReseñaEnviarr;
-    }
-
-    public void setTextoReseñaEnviarr(TextArea textoReseñaEnviarr) {
-        this.textoReseñaEnviarr = textoReseñaEnviarr;
     }
 
     public Pane getPanelizq() {
@@ -620,14 +613,6 @@ public class FXMLMenuController {
         this.emailusuariologueado = emailusuariologueado;
     }
 
-    public Text getCerrarsesiontxt() {
-        return cerrarsesiontxt;
-    }
-
-    public void setCerrarsesiontxt(Text cerrarsesiontxt) {
-        this.cerrarsesiontxt = cerrarsesiontxt;
-    }
-
     public Peliculas getPeliculaSeleccionada() {
         return peliculaSeleccionada;
     }
@@ -649,6 +634,9 @@ public class FXMLMenuController {
 
     public void initialize() {
 
+        panelMisPeliculas.setVisible(false);
+        //panelMisSeriessss.setVisible(false);
+
         panelderechaFicha.setVisible(false);
         panelTransparenteReseñas.setVisible(false);
         panelReseñasPeliculaSerie.setVisible(false);
@@ -664,6 +652,31 @@ public class FXMLMenuController {
         BotonPeliculas.getStyleClass().add("boton-material");
         botonBusqueda.getStyleClass().add("boton-material");
         textFieldBusqueda.getStyleClass().add("custom-textfield");
+
+
+        listviewmisseries.getStyleClass().add("list-view-material");
+        listviewmisseries.setPrefHeight(Control.USE_COMPUTED_SIZE);
+        listviewmisseries.setStyle("-fx-background-color: transparent;");
+
+        listviewMisPeliculas.getStyleClass().add("list-view-material");
+        listviewMisPeliculas.setPrefHeight(Control.USE_COMPUTED_SIZE);
+        listviewMisPeliculas.setStyle("-fx-background-color: transparent;");
+
+        botonVolver.getStyleClass().add("boton-material");
+        botonVolverSeries.getStyleClass().add("boton-material");
+
+        textMisPeliculas.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
+                "-fx-font-size: 2em; " +
+                "-fx-border-color: white; " +
+                "-fx-border-width: 0 0 1 0; " +
+                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
+
+        textMisSeries.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
+                "-fx-font-size: 2em; " +
+                "-fx-border-color: white; " +
+                "-fx-border-width: 0 0 1 0; " +
+                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
+
 
         titulotxt.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
                 "-fx-font-size: 0.875em; " +
@@ -697,13 +710,6 @@ public class FXMLMenuController {
                 "-fx-border-color: white; " +
                 "-fx-border-width: 0 0 1 0; " +
                 "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
-
-        cerrarsesiontxt.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
-                "-fx-font-size: 0.875em; " +
-                "-fx-border-color: white; " +
-                "-fx-border-width: 0 0 1 0; " +
-                "-fx-border-color: white; "+ " -fx-border-size:12; " + "-fx-color: white; ");
-
 
         peliculastendenciatext.setStyle("-font-family: 'Plus Jakarta Sans', sans-serif;" +
                 "-fx-font-size: 0.875em; " +
@@ -741,6 +747,10 @@ public class FXMLMenuController {
         Image iconoAmigos1 = new Image(getClass().getResourceAsStream("/com/watchvibe/iconos_pequeños/Amigos.png"));
         IconoAmigos.setImage(iconoAmigos1);
 
+        fondoMisPeliculas.setImage(IMAGENFONDOIZ);
+
+        fondoMisSeries.setImage(IMAGENFONDOIZ);
+
         ImageView[] imageViewspelis = {
                 pelicula1,
                 pelicula2,
@@ -774,7 +784,84 @@ public class FXMLMenuController {
         serie3.setOnMouseClicked(this::onMouseClicked);
         serie4.setOnMouseClicked(this::onMouseClicked);
 
+        BotonPeliculas.setOnAction(this::metodoMisPeliculas);
+        BotonSeries.setOnAction(this::metodoMisSeries);
+
+        botonVolver.setOnAction(this::volverMenu);
+        botonVolverSeries.setOnAction(this::volverMenu);
+
+        //
+        // ListView Configuracion y Formato
+        //
+
+        // Ocultar la barra de desplazamiento vertical del ListView de series
+        ScrollBar seriesScrollBar = (ScrollBar) listviewmisseries.lookup(".scroll-bar:vertical");
+        if (seriesScrollBar != null) {
+            seriesScrollBar.setVisible(false);
+        }
+
+        // Ocultar la barra de desplazamiento vertical del ListView de películas
+        ScrollBar peliculasScrollBar = (ScrollBar) listviewMisPeliculas.lookup(".scroll-bar:vertical");
+        if (peliculasScrollBar != null) {
+            peliculasScrollBar.setVisible(false);
+        }
+
+        //Imprimir solo los titulos en los ListView
+        listviewmisseries.setCellFactory(param -> new ListCell<Series>() {
+            @Override
+            protected void updateItem(Series item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getTitulo());
+                }
+            }
+        });
+
+        //Imprimir solo los titulos en los ListView
+        listviewMisPeliculas.setCellFactory(param -> new ListCell<Peliculas>() {
+            @Override
+            protected void updateItem(Peliculas item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getTitulo());
+                }
+            }
+        });
+
+        //Metodo OnMouseClicked para que haga set en las propiedades escogidas
+        listviewmisseries.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                // Double-clicked the selected item, clear the selection
+                listviewmisseries.getSelectionModel().clearSelection();
+            } else {
+                Series selectedSerie = (Series) listviewmisseries.getSelectionModel().getSelectedItem();
+                if (selectedSerie != null) {
+                    PortadaSerie.setImage(new Image(selectedSerie.getFotodePortada()));
+                }
+            }
+        });
+
+        listviewMisPeliculas.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                // Double-clicked the selected item, clear the selection
+                listviewMisPeliculas.getSelectionModel().clearSelection();
+            } else {
+                Peliculas selectedPelicula = (Peliculas) listviewMisPeliculas.getSelectionModel().getSelectedItem();
+                if (selectedPelicula != null) {
+                    PortadaPelicula.setImage(new Image(selectedPelicula.getFotodePortada()));
+                }
+            }
+        });
+
+
+
     }
+
+
 
     @javafx.fxml.FXML
     public void onHandleAmigos(ActionEvent actionEvent) {
@@ -840,6 +927,8 @@ public class FXMLMenuController {
     }
 
 
+
+
     public void onClicCerrar(MouseEvent mouseEvent) {
         Node source = (Node) mouseEvent.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
@@ -897,6 +986,66 @@ public class FXMLMenuController {
             }
         }
     }
+
+    public void metodoMisPeliculas(ActionEvent actionEvent) {
+        listviewMisPeliculas.getItems().clear();
+
+        usuarioLogueado = Autenticator.getUsuarioLogueado();
+        Operacion op = new Operacion();
+        ArrayList<CatalogoPeliculas> peliculas = op.obtenerCatalogoPeliculasUsuario(usuarioLogueado);
+        List<Peliculas> peliculasUs = op.obtenerPeliculasDeCatalogo(peliculas);
+
+        panelMisSeries.setVisible(false);
+        panelderechaFicha.setVisible(false);
+        panelderechaFicha.setVisible(false);
+
+        if (peliculasUs.isEmpty()) {
+            // Mostrar Alert si no hay resultados
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información");
+            alert.setHeaderText(null);
+            alert.setContentText("No hay peliculas para esta búsqueda. Añadelas para ver tu catalogo de peliculas");
+            alert.showAndWait();
+        } else {
+            panelMisPeliculas.setVisible(true);
+            for (Peliculas pelicula : peliculasUs) {
+                listviewMisPeliculas.getItems().add(pelicula);
+            }
+        }
+
+    }
+
+    public void metodoMisSeries(ActionEvent actionEvent) {
+        listviewmisseries.getItems().clear();
+
+        usuarioLogueado = Autenticator.getUsuarioLogueado();
+        Operacion op = new Operacion();
+        ArrayList<CatalogoSeries> series = op.obtenerCatalogoSeriesUsuario(usuarioLogueado);
+        List<Series> SeriesUs = op.obtenerSeriesDeCatalogo(series);
+
+        panelMisPeliculas.setVisible(false);
+        panelderechaFicha.setVisible(false);
+        panelderechaFicha.setVisible(false);
+
+        if (SeriesUs.isEmpty()) {
+            // Mostrar Alert si no hay resultados
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Información");
+            alert.setHeaderText(null);
+            alert.setContentText("No hay series para esta búsqueda. Añadelas para ver tu catalogo de series");
+            alert.showAndWait();
+        } else {
+            panelMisSeries.setVisible(true);
+            for (Series serie : SeriesUs) {
+                listviewmisseries.getItems().add(serie);
+            }
+        }
+
+
+
+
+    }
+
 
 
     @javafx.fxml.FXML
@@ -1052,5 +1201,59 @@ public class FXMLMenuController {
     @javafx.fxml.FXML
     public void volverReseñasTotales(ActionEvent actionEvent) {
         panelReseñasPeliculaSerie.setVisible(false);
+    }
+
+    @javafx.fxml.FXML
+    public void volverMenu(ActionEvent actionEvent) {
+        panelMisPeliculas.setVisible(false);
+        panelMisSeries.setVisible(false);
+        panelderecha.setVisible(true);
+    }
+
+    public void onClicElimSerie(MouseEvent mouseEvent) {
+        usuarioLogueado = Autenticator.getUsuarioLogueado();
+        Operacion op = new Operacion();
+        // Obtener la serie seleccionada
+        Series selectedSerie = (Series) listviewmisseries.getSelectionModel().getSelectedItem();
+
+        if (selectedSerie != null) {
+            // Acceder a la base de datos y eliminar la serie
+            boolean eliminada = op.eliminarSerie(selectedSerie.getIDSerie(), usuarioLogueado.getIDUsuario());
+
+            if (eliminada) {
+                // Si la serie fue eliminada de la base de datos, también la eliminamos del ListView
+                listviewmisseries.getItems().remove(selectedSerie);
+            } else {
+                // Manejar el caso en el que ocurra un error al eliminar la serie de la base de datos
+                System.out.println("Error al eliminar la serie de la base de datos");
+            }
+        }
+
+    }
+
+    public void onClicElimPelicula(MouseEvent mouseEvent) {
+        usuarioLogueado = Autenticator.getUsuarioLogueado();
+        Operacion op = new Operacion();
+        // Obtener la serie seleccionada
+        Peliculas selectedPelicula = (Peliculas) listviewMisPeliculas.getSelectionModel().getSelectedItem();
+
+        if (selectedPelicula != null) {
+            // Acceder a la base de datos y eliminar la serie
+            boolean eliminada = op.eliminarPelicula(selectedPelicula.getIDPelicula(), usuarioLogueado.getIDUsuario());
+
+            if (eliminada) {
+                // Si la serie fue eliminada de la base de datos, también la eliminamos del ListView
+                listviewMisPeliculas.getItems().remove(selectedPelicula);
+            } else {
+                // Manejar el caso en el que ocurra un error al eliminar la serie de la base de datos
+                System.out.println("Error al eliminar la pelicula de la base de datos");
+            }
+        }
+
+    }
+
+    public void onClicCerrarSesion(MouseEvent mouseEvent) {
+
+
     }
 }

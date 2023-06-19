@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.BoxBlur?>
@@ -13,6 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.watchvibe.visualsVista.FXMLMenuController">
    <children>
@@ -63,12 +65,12 @@
             </Button>
             <Text fx:id="nombreusuariologueado" layoutX="113.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="88.0" />
             <Text fx:id="emailusuariologueado" layoutX="113.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="88.0" />
-            <Text fx:id="cerrarsesiontxt" layoutX="25.0" layoutY="698.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cerrar Sesion" wrappingWidth="88.0" />
+            <Label fx:id="cerrarsesion" layoutX="29.0" layoutY="694.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="Cerrar Sesion" onMouseClicked="#onClicCerrarSesion" />
          </children>
       </Pane>
       <Pane fx:id="panelderecha" layoutX="276.0" layoutY="-11.0" prefHeight="743.0" prefWidth="739.0">
          <children>
-            <ImageView fx:id="fondopanelderecha" fitHeight="743.0" fitWidth="745.0" layoutX="-3.0" layoutY="2.0" pickOnBounds="true">
+            <ImageView fx:id="fondopanelderecha" fitHeight="743.0" fitWidth="745.0" layoutY="6.0" pickOnBounds="true">
                <image>
                   <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
                </image>
@@ -160,7 +162,7 @@
             <TextField fx:id="textFieldBusqueda" layoutX="209.0" layoutY="48.0" prefHeight="37.0" prefWidth="437.0" />
          </children>
       </Pane>
-      <Pane fx:id="panelderechaFicha" layoutX="269.0" layoutY="-1.0" prefHeight="743.0" prefWidth="756.0">
+      <Pane fx:id="panelderechaFicha" layoutX="269.0" prefHeight="743.0" prefWidth="756.0" visible="false">
          <children>
             <ImageView fx:id="fondopanelderechaficha" fitHeight="743.0" fitWidth="745.0" layoutX="-6.0" layoutY="-1.0" pickOnBounds="true">
                <image>
@@ -182,7 +184,7 @@
             <Text fill="WHITE" layoutX="366.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sinopsis" />
             <Text fx:id="sinopsistxt" fill="WHITE" layoutX="366.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="364.5624999999999" />
             <Text fx:id="pathImagen" fill="WHITE" layoutX="714.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" />
-            <Label fx:id="botonCerrar1" alignment="CENTER" layoutX="695.0" layoutY="4.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="✕" textFill="WHITE">
+            <Label fx:id="botonCerra1" alignment="CENTER" layoutX="695.0" layoutY="4.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="✕" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -190,7 +192,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="botonminimizar1" alignment="CENTER" layoutX="648.0" layoutY="4.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+            <Label fx:id="botonminimiza1" alignment="CENTER" layoutX="648.0" layoutY="4.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -198,13 +200,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Pane fx:id="panelTransparenteReseñas" layoutX="-5.0" layoutY="-8.0" prefHeight="757.0" prefWidth="768.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
+            <Pane fx:id="panelTransparenteReseñas" layoutX="-5.0" layoutY="-8.0" prefHeight="757.0" prefWidth="768.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" visible="false">
                <Text fx:id="textescribirreseña" fill="WHITE" fontSmoothingType="LCD" layoutX="149.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" text="Escribir Reseña" />
                <TextArea fx:id="textoReseñaEnviar" layoutX="149.0" layoutY="234.0" prefHeight="220.0" prefWidth="425.0" promptText="Escribe tu reseña..." styleClass="custom-textarea" />
                <Button fx:id="botonCancelarInterior" layoutX="479.0" layoutY="472.0" mnemonicParsing="false" text="Cancelar" />
                <Button fx:id="botonAñadirReseñaInterior1" layoutX="313.0" layoutY="472.0" mnemonicParsing="false" onAction="#BBDDReseña" text="Añadir" />
             </Pane>
-            <Pane fx:id="panelReseñasPeliculaSerie" layoutX="-1.0" layoutY="-3.0" prefHeight="743.0" prefWidth="756.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);">
+            <Pane fx:id="panelReseñasPeliculaSerie" layoutX="-1.0" layoutY="-3.0" prefHeight="743.0" prefWidth="756.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" visible="false">
                <children>
                   <Button fx:id="botonMasReseñas" layoutX="467.0" layoutY="603.0" mnemonicParsing="false" text="Mas Reseñas" />
                   <VBox layoutX="75.0" layoutY="66.0" prefHeight="530.0" prefWidth="606.0">
@@ -235,9 +237,67 @@
                   <Button fx:id="botonAtras" layoutX="600.0" layoutY="603.0" mnemonicParsing="false" onAction="#volverReseñasTotales" text="Atras" />
                </children>
             </Pane>
-
          </children>
       </Pane>
-
+      <Pane fx:id="panelMisPeliculas" layoutX="276.0" prefHeight="736.0" prefWidth="745.0" visible="false">
+         <children>
+            <ImageView fx:id="fondoMisPeliculas" fitHeight="736.0" fitWidth="739.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
+               </image>
+            </ImageView>
+            <ListView fx:id="listviewMisPeliculas" layoutX="50.0" layoutY="93.0" prefHeight="550.0" prefWidth="300.0" />
+            <Button fx:id="botonVolver" layoutX="551.0" layoutY="659.0" mnemonicParsing="false" onAction="#volverMenu" text="Volver" />
+            <Text fx:id="textMisPeliculas" fill="WHITE" layoutX="151.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mis peliculas" />
+            <ImageView fx:id="PortadaPelicula" fitHeight="420.0" fitWidth="284.0" layoutX="388.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="EliminarPelicula" layoutX="551.0" layoutY="533.0" onMouseClicked="#onClicElimPelicula" stylesheets="/com/watchvibe/css/styleHeader.css" text="Elilimar de mi catalogo" />
+            <Label fx:id="botonCerra2" alignment="CENTER" layoutX="684.0" layoutY="14.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="✕" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="botonminimiza2" alignment="CENTER" layoutX="637.0" layoutY="14.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="panelMisSeries" layoutX="275.0" layoutY="-5.0" prefHeight="749.0" prefWidth="749.0" visible="false">
+         <children>
+            <ImageView fx:id="fondoMisSeries" fitHeight="743.0" fitWidth="749.0" layoutX="-9.0" layoutY="-13.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../recursos_fondos/DEGRADADO_AZUL.png" />
+               </image>
+            </ImageView>
+            <ListView fx:id="listviewmisseries" layoutX="37.0" layoutY="105.0" prefHeight="550.0" prefWidth="300.0" />
+            <Button fx:id="botonVolverSeries" layoutX="571.0" layoutY="643.0" mnemonicParsing="false" text="Volver" />
+            <Text fx:id="textMisSeries" fill="WHITE" layoutX="121.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mis Series" wrappingWidth="131.533203125" />
+            <ImageView fx:id="PortadaSerie" fitHeight="420.0" fitWidth="284.0" layoutX="366.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="EliminarSeri" layoutX="529.0" layoutY="547.0" onMouseClicked="#onClicElimSerie" stylesheets="/com/watchvibe/css/styleHeader.css" text="Elilimar de mi catalogo" />
+            <Label fx:id="botonCerra3" alignment="CENTER" layoutX="679.0" layoutY="19.0" onMouseClicked="#onClicCerrar" prefHeight="37.0" prefWidth="47.0" stylesheets="/com/watchvibe/css/styleHeader.css" text="✕" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label fx:id="botonminimiza3" alignment="CENTER" layoutX="638.0" layoutY="19.0" onMouseClicked="#onClicMinimizar" prefHeight="37.0" prefWidth="47.0" text="―" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </Pane>

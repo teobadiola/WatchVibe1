@@ -636,8 +636,7 @@ public class Operacion {
     }
 
     public void agregarReseñaMenu(FXMLMenuController fxmlMenuController, Usuarios usuario) {
-        String reseña = fxmlMenuController.getTextoReseñaEnviarr().getText();
-
+        String reseña = "";
         EntityManager em = Conexion.conecta();
         EntityTransaction transaction = null;
 
@@ -836,6 +835,186 @@ public class Operacion {
             em.close();
         }
     }
+
+    public ArrayList<CatalogoPeliculas> obtenerCatalogoPeliculasUsuario(Usuarios usuario) {
+        ArrayList<CatalogoPeliculas> catalogoPeliculas = new ArrayList<>();
+
+        // Crear el EntityManager
+        EntityManager em = Conexion.conecta();
+
+        try {
+            // Construir la consulta JPQL para obtener los catálogos de películas del usuario
+            String consulta = "SELECT cp FROM CatalogoPeliculas cp WHERE cp.iDusuario = :usuario";
+
+            // Crear la consulta TypedQuery
+            TypedQuery<CatalogoPeliculas> query = em.createQuery(consulta, CatalogoPeliculas.class);
+
+            // Establecer el parámetro de usuario en la consulta
+            query.setParameter("usuario", usuario);
+
+            // Obtener los resultados de la consulta
+            List<CatalogoPeliculas> resultados = query.getResultList();
+
+            // Agregar los resultados al catálogo de películas
+            catalogoPeliculas.addAll(resultados);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Cerrar el EntityManager
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return catalogoPeliculas;
+    }
+
+    public ArrayList<CatalogoSeries> obtenerCatalogoSeriesUsuario(Usuarios usuario) {
+        ArrayList<CatalogoSeries> catalogoSeries = new ArrayList<>();
+
+        // Crear el EntityManager
+        EntityManager em = Conexion.conecta();
+
+        try {
+            // Construir la consulta JPQL para obtener los catálogos de series del usuario
+            String consulta = "SELECT cs FROM CatalogoSeries cs WHERE cs.iDusuario = :usuario";
+
+            // Crear la consulta TypedQuery
+            TypedQuery<CatalogoSeries> query = em.createQuery(consulta, CatalogoSeries.class);
+
+            // Establecer el parámetro de usuario en la consulta
+            query.setParameter("usuario", usuario);
+
+            // Obtener los resultados de la consulta
+            List<CatalogoSeries> resultados = query.getResultList();
+
+            // Agregar los resultados al catálogo de series
+            catalogoSeries.addAll(resultados);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Cerrar el EntityManager
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return catalogoSeries;
+    }
+
+    public ArrayList<Peliculas> obtenerPeliculasDeCatalogo(ArrayList<CatalogoPeliculas> catalogoPeliculas) {
+        ArrayList<Peliculas> peliculas = new ArrayList<>();
+
+        for (CatalogoPeliculas cp : catalogoPeliculas) {
+            Peliculas pelicula = cp.getIDpelicula();
+            if (pelicula != null) {
+                peliculas.add(pelicula);
+            }
+        }
+
+        return peliculas;
+    }
+
+    public ArrayList<Series> obtenerSeriesDeCatalogo(ArrayList<CatalogoSeries> catalogoSeries) {
+        ArrayList<Series> series = new ArrayList<>();
+
+        for (CatalogoSeries cs : catalogoSeries) {
+            Series serie = cs.getIDserie();
+            if (serie != null) {
+                series.add(serie);
+            }
+        }
+
+        return series;
+    }
+
+    public boolean eliminarSerie(int serieId, int usuarioId) {
+        // Crear el EntityManager
+        EntityManager em = Conexion.conecta();
+
+        try {
+            // Iniciar una transacción
+            em.getTransaction().begin();
+
+            // Buscar el objeto CatalogoSeries por el ID de la serie y el ID del usuario
+            TypedQuery<CatalogoSeries> query = em.createQuery("SELECT cs FROM CatalogoSeries cs WHERE cs.iDserie.iDSerie = :serieId AND cs.iDusuario.iDUsuario = :usuarioId", CatalogoSeries.class);
+            query.setParameter("serieId", serieId);
+            query.setParameter("usuarioId", usuarioId);
+
+            CatalogoSeries catalogoSeries = query.getSingleResult();
+
+            if (catalogoSeries != null) {
+                // Eliminar el objeto CatalogoSeries
+                em.remove(catalogoSeries);
+
+                // Confirmar la transacción
+                em.getTransaction().commit();
+                return true;
+            } else {
+                // El objeto CatalogoSeries no existe o no corresponde al usuario
+                return false;
+            }
+        } catch (NoResultException e) {
+            // El objeto CatalogoSeries no existe o no corresponde al usuario
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Ocurrió un error en la transacción
+            em.getTransaction().rollback();
+            return false;
+        } finally {
+            // Cerrar el EntityManager
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
+
+
+    public boolean eliminarPelicula(int peliculaId, int usuarioId) {
+        // Crear el EntityManager
+        EntityManager em = Conexion.conecta();
+
+        try {
+            // Iniciar una transacción
+            em.getTransaction().begin();
+
+            // Buscar el objeto CatalogoSeries por el ID de la serie y el ID del usuario
+            TypedQuery<CatalogoPeliculas> query = em.createQuery("SELECT cs FROM CatalogoPeliculas cs WHERE cs.iDpelicula.iDPelicula = :serieId AND cs.iDusuario.iDUsuario = :usuarioId", CatalogoPeliculas.class);
+            query.setParameter("serieId", peliculaId);
+            query.setParameter("usuarioId", usuarioId);
+
+            CatalogoPeliculas catalogopelicula = query.getSingleResult();
+
+            if (catalogopelicula != null) {
+                // Eliminar el objeto CatalogoSeries
+                em.remove(catalogopelicula);
+
+                // Confirmar la transacción
+                em.getTransaction().commit();
+                return true;
+            } else {
+                // El objeto CatalogoSeries no existe o no corresponde al usuario
+                return false;
+            }
+        } catch (NoResultException e) {
+            // El objeto CatalogoSeries no existe o no corresponde al usuario
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Ocurrió un error en la transacción
+            em.getTransaction().rollback();
+            return false;
+        } finally {
+            // Cerrar el EntityManager
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
+
+
+
 }
 
 

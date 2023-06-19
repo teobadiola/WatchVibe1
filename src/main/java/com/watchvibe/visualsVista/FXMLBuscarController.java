@@ -304,6 +304,26 @@ public class FXMLBuscarController {
                 };
             }
         });
+        listviewpeliculas.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                // Double-clicked the selected item, clear the selection
+                listviewpeliculas.getSelectionModel().clearSelection();
+            } else {
+                Peliculas selectedPelicula = listviewpeliculas.getSelectionModel().getSelectedItem();
+                if (selectedPelicula != null) {
+                    titulotxt.setText(selectedPelicula.getTitulo());
+                    aniotxt.setText("" + selectedPelicula.getAnio());
+                    String sinopsis = selectedPelicula.getSinopsis();
+                    if (sinopsis.length() > 200) {
+                        sinopsis = sinopsis.substring(0, 200) + "...";
+                    }
+                    sionpsistxt.setText(sinopsis);
+                    pathimagentxt.setText(selectedPelicula.getFotodePortada());
+                    portada.setImage(new Image(selectedPelicula.getFotodePortada()));
+                }
+            }
+        });
+
     }
 
     public void setPeliculas(List<Peliculas> peliculas) {
@@ -324,25 +344,6 @@ public class FXMLBuscarController {
                         }
                     }
                 };
-            }
-        });
-        listviewpeliculas.setOnMouseClicked(event -> {
-            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
-                // Double-clicked the selected item, clear the selection
-                listviewpeliculas.getSelectionModel().clearSelection();
-            } else {
-                Peliculas selectedPelicula = listviewpeliculas.getSelectionModel().getSelectedItem();
-                if (selectedPelicula != null) {
-                    titulotxt.setText(selectedPelicula.getTitulo());
-                    aniotxt.setText("" + selectedPelicula.getAnio());
-                    String sinopsis = selectedPelicula.getSinopsis();
-                    if (sinopsis.length() > 200) {
-                        sinopsis = sinopsis.substring(0, 200) + "...";
-                    }
-                    sionpsistxt.setText(sinopsis);
-                    pathimagentxt.setText(selectedPelicula.getFotodePortada());
-                    portada.setImage(new Image(selectedPelicula.getFotodePortada()));
-                }
             }
         });
 
@@ -407,7 +408,6 @@ public class FXMLBuscarController {
 
         if (series.isEmpty() && peliculas.isEmpty()) {
             System.out.println("No hay resultados para esta búsqueda");
-            return; // No cargar la nueva escena si ambas listas están vacías
         } else {
             // Limpiar el ListView
             listviewseries.getItems().clear();
